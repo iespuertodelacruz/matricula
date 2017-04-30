@@ -3,6 +3,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">    
+        <link rel="stylesheet" href="{% static 'bower_components/jquery-ui/themes/base/jquery-ui.min.css' %}">    
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">    
     </head>
 
@@ -28,4 +29,13 @@
             {% endblock %}
         </div>
     </body>
+
+    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'bower_components/jquery-ui/ui/i18n/datepicker-es.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+
+    <script>
+        prevent_exit = {{ prevent_exit }};
+    </script>
 </html>
