@@ -6,6 +6,24 @@
     <div class="row">
         <p>Bienvenido/a a la aplicación de matrícula del IES Puerto de la Cruz - Telesforo Bravo.</p>
         <p>Selecciona el nivel para el que te quieres matricular:</p>
+
+        <table class="table table-striped table-hover">
+            <thead>
+                <th></th>            
+                <th></th>            
+                <th></th>            
+                <th>Fecha de matrícula</th>            
+            </thead>
+
+            {% for level in education_levels %}
+                <tr>
+                    <td>{{ level.code }}</td>
+                    <td>{{ level.law }}</td>
+                    <td>{{ level.description }}</td>
+                    <td>{{ level.enrollment_date }}</td>
+                </tr>
+            {% endfor %}
+        </table>
     </div>
 </div>
 

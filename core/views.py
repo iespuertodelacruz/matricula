@@ -1,10 +1,16 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import StudentForm
+from .models import EducationLevel
 
 
 def index(request):
-    return render(request, "index.html")
+    education_levels = EducationLevel.objects.all()
+    return render(
+        request,
+        "index.html",
+        {"education_levels": education_levels}
+    )
 
 
 def student(request):
