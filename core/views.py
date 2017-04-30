@@ -1,19 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from .forms import StudentForm
-from .models import EducationLevel
+from .models import EduLevel
 
 
 def index(request):
-    education_levels = EducationLevel.objects.all()
+    edu_levels = EduLevel.objects.all()
     return render(
         request,
         "index.html",
-        {"education_levels": education_levels}
+        {"edu_levels": edu_levels}
     )
 
 
-def student(request):
+def student(request, edulevel_code):
     if request.method == "POST":
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -21,4 +21,11 @@ def student(request):
     else:
         form = StudentForm()
 
-    return render(request, "student.html", {"form": form})
+    return render(
+        request,
+        "student.html",
+        {
+            "form": form,
+            "edulevel": EduLevel.objects.get(code=edulevel_code)
+        }
+    )

@@ -3,5 +3,5 @@ from . import views
 
 urlpatterns = [
     url(r"^$", views.index, name="index"),
-    url(r"^student/$", views.student, name="student"),
+    url(r"^m/(?P<edulevel_code>.*)/$", views.student, name="student"),
 ]
