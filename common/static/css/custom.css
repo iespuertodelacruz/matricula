@@ -1,0 +1,16 @@
+@font-face {
+  font-family: "BebasNeue";
+  src: url("../fonts/BebasNeue.otf");
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "BebasNeue";
+}
+.navbar .row {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

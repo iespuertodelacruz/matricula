@@ -1,0 +1,29 @@
+{% load static %}
+
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">    
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">    
+    </head>
+
+    <body>
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="http://www.iespuertodelacruz.es"><img src="{% static 'img/Logotipo_IES.png' %}"></a>
+                    </div>
+                    <div class="col-md-4">
+                        <h1>Aplicación de matrícula</h1>
+                    </div>
+                    <div class="col-md-4 text-right">
+                        <a href="http://www.gobiernodecanarias.org/educacion"><img src="{% static 'img/Logotipo_CONSEJERIA.png' %}"></a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
