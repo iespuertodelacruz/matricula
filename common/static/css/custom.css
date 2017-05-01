@@ -17,3 +17,6 @@ h6 {
 .navbar .row img {
   padding-top: 7px;
 }
+.navbar .row a {
+  color: #333;
+}
