@@ -92,20 +92,15 @@ class AcademicForm_3ESO(forms.Form):
 
     def clean(self):
         cleaned_data = super(AcademicForm_3ESO, self).clean()
-        specific_subject3_order1 = cleaned_data.get("specific_subject3_order1")
-        specific_subject3_order2 = cleaned_data.get("specific_subject3_order2")
-        specific_subject3_order3 = cleaned_data.get("specific_subject3_order3")
-        specific_subject3_order4 = cleaned_data.get("specific_subject3_order4")
-        specific_subject3_order5 = cleaned_data.get("specific_subject3_order5")
 
-        specific_subjects = set()
-        specific_subjects.add(specific_subject3_order1)
-        specific_subjects.add(specific_subject3_order2)
-        specific_subjects.add(specific_subject3_order3)
-        specific_subjects.add(specific_subject3_order4)
-        specific_subjects.add(specific_subject3_order5)
-        if len(specific_subjects) < 5:
-            raise forms.ValidationError(
-                "Las elecciones de la materia específica 3 no son correctas. "
-                "Puede que haya repetido alguna materia"
-            )
+        specific_subjects3 = []
+        for i in range(1, 6):
+            field = "specific_subject3_order{}".format(i)
+            value = cleaned_data.get(field)
+            if value in specific_subjects3:
+                self.add_error(
+                    field,
+                    "Materia repetida. Por favor, seleccione otra"
+                )
+            else:
+                specific_subjects3.append(value)
