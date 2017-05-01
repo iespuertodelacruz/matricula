@@ -5,6 +5,9 @@
 {% block content_left %}
 
 <h2>Datos personales del alumno/a</h2>
+
+{% include "form_error.html" %}
+
 <form action="." method="post">
     {% csrf_token %}
     {{ form|crispy }}

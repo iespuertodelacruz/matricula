@@ -19,6 +19,7 @@ def index(request):
 
 
 def student(request, edulevel_code):
+    valid_form = True
     if request.method == "POST":
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -33,6 +34,8 @@ def student(request, edulevel_code):
             return HttpResponseRedirect(
                 reverse("academic", args=[edulevel_code])
             )
+        else:
+            valid_form = False
     else:
         form = StudentForm(STUDENT_DATA)
 
@@ -42,6 +45,7 @@ def student(request, edulevel_code):
         {
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "valid_form": valid_form,
             "prevent_exit": "false"
         }
     )

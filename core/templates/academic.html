@@ -6,11 +6,7 @@
 
 <h2>Información académica</h2>
 
-{% if not valid_form %}
-    <div class="well error">
-        <i class="fa fa-warning"></i> Errores en el formulario
-    </div>
-{% endif %}
+{% include "form_error.html" %}
 
 <form action="." method="post">
     {% csrf_token %}

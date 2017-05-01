@@ -121,6 +121,7 @@ class StudentForm(forms.Form):
         passport = cleaned_data.get("passport")
 
         if (not nif) and (not nie) and (not passport):
-            raise forms.ValidationError(
-                "Debe especificar NIF, NIE ó Pasaporte"
-            )
+            msg = "Debe especificar NIF, NIE ó Pasaporte"
+            self.add_error("nif", msg)
+            self.add_error("nie", msg)
+            self.add_error("passport", msg)
