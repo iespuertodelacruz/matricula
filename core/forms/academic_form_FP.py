@@ -29,20 +29,6 @@ class AcademicForm_CF(forms.Form):
     )
 
 
-class AcademicForm_1CF(forms.Form):
-    ACCESS_VIA_CHOICES = (
-        ("PAC", "Prueba de acceso"),
-        ("FPB", "Formación Profesional Básica"),
-        ("ESO", "Educación Secundaria Obligatoria"),
-        ("OTR", "Otros"),
-    )
-
-    access_via = forms.ChoiceField(
-        choices=ACCESS_VIA_CHOICES,
-        label="MÉTODO DE ACCESO"
-    )
-
-
 class AcademicForm_CFGM(forms.Form):
     TOPIC_CHOICES = sorted((
         ("CAR", "Carrocería"),
@@ -85,7 +71,49 @@ class AcademicForm_CFD(forms.Form):
     )
 
 
-class AcademicForm_1CFGM(AcademicForm_CF, AcademicForm_1CF, AcademicForm_CFGM):
+class AcademicForm_Access_CFGM(forms.Form):
+    # http://todofp.es/todofp/sobre-fp/informacion-general/
+    # sistema-educativo-fp/como-accedo.html
+    ACCESS_VIA_CHOICES = (
+        ("ESO", "Educación Secundaria Obligatoria"),
+        ("FPB", "Formación Profesional Básica"),
+        ("TEC", "Técnico, Técnico Auxiliar o equivalente"),
+        ("BUP", "Segundo curso de BUP"),
+        ("PAC", "Prueba de acceso a grado medio"),
+        ("U25", "Prueba de acceso a la Universidad (>25)")
+    )
+
+    access_via = forms.ChoiceField(
+        choices=ACCESS_VIA_CHOICES,
+        label="MÉTODO DE ACCESO"
+    )
+
+
+class AcademicForm_Access_CFGS(forms.Form):
+    # http://todofp.es/todofp/sobre-fp/informacion-general/
+    # sistema-educativo-fp/como-accedo.html
+    ACCESS_VIA_CHOICES = (
+        ("BAC", "Bachillerato"),
+        ("EXP", "Segundo curso de bachillerato experimental"),
+        ("CGM", "Formación Profesional de Grado Medio"),
+        ("TEC", "Técnico Superior, Técnico Expecialista o equivalente"),
+        ("COU", "COU"),
+        ("UNI", "Titulación Universitaria"),
+        ("PAC", "Prueba de acceso a grado superior"),
+        ("U25", "Prueba de acceso a la Universidad (>25)")
+    )
+
+    access_via = forms.ChoiceField(
+        choices=ACCESS_VIA_CHOICES,
+        label="MÉTODO DE ACCESO"
+    )
+
+
+class AcademicForm_1CFGM(
+    AcademicForm_CF,
+    AcademicForm_Access_CFGM,
+    AcademicForm_CFGM
+):
     pass
 
 
@@ -93,7 +121,11 @@ class AcademicForm_2CFGM(AcademicForm_CF, AcademicForm_CFGM):
     pass
 
 
-class AcademicForm_1CFGS(AcademicForm_CF, AcademicForm_1CF, AcademicForm_CFGS):
+class AcademicForm_1CFGS(
+    AcademicForm_CF,
+    AcademicForm_Access_CFGS,
+    AcademicForm_CFGS
+):
     pass
 
 
