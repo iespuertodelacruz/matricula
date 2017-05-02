@@ -184,3 +184,17 @@ h6 {
   color: #a94442;
   font-weight: bold;
 }
+.footer {
+  background: url("../img/background.png");
+  border-top: 1px solid #d3d3d3;
+  margin-top: 50px;
+  height: 100px;
+  text-align: center;
+}
+.footer p {
+  padding: 40px;
+  margin: 0;
+}
+.footer p i {
+  color: #f00;
+}
