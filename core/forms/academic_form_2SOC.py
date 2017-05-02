@@ -23,7 +23,8 @@ class AcademicForm_2SOC(forms.Form):
 
     training_itinerary = forms.ChoiceField(
         choices=TRAINING_ITINERARY_CHOICES,
-        label="Itinerario",
+        label="ITINERARIO",
+        help_text="Sería deseable continuar con el itinerario de primer curso"
     )
     specific_subject1_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT1_CHOICES,

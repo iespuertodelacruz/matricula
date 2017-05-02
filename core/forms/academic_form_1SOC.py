@@ -15,54 +15,56 @@ class AcademicForm_1SOC(forms.Form):
 
     training_itinerary = forms.ChoiceField(
         choices=TRAINING_ITINERARY_CHOICES,
-        label="Itinerario",
+        label="ITINERARIO",
     )
     specific_subject1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT1_CHOICES,
-        label="Materia específica 1",
+        label="MATERIA ESPECÍFICA 1",
     )
 
 
 class AcademicForm_1SOC_HUM(forms.Form):
-    CORE_SUBJECT_CHOICES = (
+    CORE_SUBJECT_CHOICES = sorted((
         ("GRI", "Griego I"),
-        ("LIE", "Literatura Universal")
+        ("LIE", "Literatura Universal")),
+        key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT2_CHOICES = (
+    SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
         ("SGA", "Alemán"),
         ("ECO", "Economía"),
-        ("DAI", "Dibujo Artístico I")
+        ("DAI", "Dibujo Artístico I")),
+        key=lambda x: x[1]
     )
 
     core_subject = forms.ChoiceField(
         choices=CORE_SUBJECT_CHOICES,
-        label="Troncal de opción",
+        label="TRONCAL DE OPCIÓN",
     )
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 1)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 1)",
         help_text="Seleccione la materia que quiera cursar en 1er lugar"
     )
     specific_subject2_order2 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 2)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 2)",
         help_text="Seleccione la materia que quiera cursar en 2do lugar"
     )
     specific_subject2_order3 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 3)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 3)",
         help_text="Seleccione la materia que quiera cursar en 3er lugar"
     )
     specific_subject2_order4 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 4)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 4)",
         help_text="Seleccione la materia que quiera cursar en 4º lugar"
     )
     specific_subject2_order5 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 5)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 5)",
         help_text="Seleccione la materia que quiera cursar en 5º lugar"
     )
 
@@ -82,43 +84,44 @@ class AcademicForm_1SOC_HUM(forms.Form):
 
 
 class AcademicForm_1SOC_SOC(forms.Form):
-    SPECIFIC_SUBJECT2_CHOICES = (
+    SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
         ("SGA", "Alemán"),
         ("ECO", "Economía"),
         ("GRI", "Griego I"),
-        ("LIE", "Literatura Universal")
+        ("LIE", "Literatura Universal")),
+        key=lambda x: x[1]
     )
 
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 1)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 1)",
         help_text="Seleccione la materia que quiera cursar en 1er lugar"
     )
     specific_subject2_order2 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 2)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 2)",
         help_text="Seleccione la materia que quiera cursar en 2do lugar"
     )
     specific_subject2_order3 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 3)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 3)",
         help_text="Seleccione la materia que quiera cursar en 3er lugar"
     )
     specific_subject2_order4 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 4)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 4)",
         help_text="Seleccione la materia que quiera cursar en 4º lugar"
     )
     specific_subject2_order5 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 5)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 5)",
         help_text="Seleccione la materia que quiera cursar en 5º lugar"
     )
     specific_subject2_order6 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="Materia específica 2 (PREFERENCIA 6)",
+        label="MATERIA ESPECÍFICA 2 (Preferencia 6)",
         help_text="Seleccione la materia que quiera cursar en 6º lugar"
     )
 
