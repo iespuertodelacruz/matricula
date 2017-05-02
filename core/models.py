@@ -14,4 +14,4 @@ class EduLevel(models.Model):
     class Meta:
         verbose_name = "Nivel educativo"
         verbose_name_plural = "Niveles educativos"
-        ordering = ["order"]
+        ordering = ["order", "code"]

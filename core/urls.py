@@ -17,4 +17,10 @@ urlpatterns = [
         views.academic,
         name="academic"
     ),
+    url(
+        r"^m/(?P<edulevel_code>[\dA-Z]+)/academic/"
+        "(?P<itinerary_code>[A-Z]+)/$",
+        views.itinerary,
+        name="itinerary"
+    ),
 ]

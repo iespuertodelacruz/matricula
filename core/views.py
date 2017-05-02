@@ -5,7 +5,7 @@ from .models import EduLevel
 from common.test_data import STUDENT_DATA
 from django.urls import reverse
 import json
-from common.utils import age, json_dump_handler
+from common.utils import age, json_dump_handler, field_verbose
 from core.forms.academic_index import get_formclass
 
 
@@ -58,7 +58,15 @@ def academic(request, edulevel_code):
         form = AcademicForm(request.POST)
         if form.is_valid():
             request.session["academic"] = form.cleaned_data
-            return HttpResponseRedirect("/next/")
+            training_itinerary = form.cleaned_data.get("training_itinerary")
+            if training_itinerary:
+                return HttpResponseRedirect(
+                    reverse("itinerary", args=[
+                        edulevel_code, training_itinerary
+                    ])
+                )
+            else:
+                return HttpResponseRedirect("/next/")
         else:
             valid_form = False
     else:
@@ -72,5 +80,38 @@ def academic(request, edulevel_code):
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
             "prevent_exit": "false"
+        }
+    )
+
+
+def itinerary(request, edulevel_code, itinerary_code):
+    AcademicForm = get_formclass(edulevel_code)
+    ItineraryForm = get_formclass("{}_{}".format(
+        edulevel_code,
+        itinerary_code
+    ))
+    valid_form = True
+    if request.method == "POST":
+        form = ItineraryForm(request.POST)
+        if form.is_valid():
+            request.session["itinerary"] = form.cleaned_data
+            return HttpResponseRedirect("/next/")
+        else:
+            valid_form = False
+    else:
+        form = ItineraryForm()
+
+    return render(
+        request,
+        "academic.html",
+        {
+            "form": form,
+            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "valid_form": valid_form,
+            "prevent_exit": "false",
+            "itinerary": field_verbose(
+                AcademicForm.TRAINING_ITINERARY_CHOICES,
+                itinerary_code
+            )
         }
     )

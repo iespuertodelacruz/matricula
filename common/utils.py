@@ -13,3 +13,7 @@ def age(birth_date):
     return today.year -\
         birth_date.year -\
         ((today.month, today.day) < (birth_date.month, birth_date.day))
+
+
+def field_verbose(choices, key):
+    return dict(choices)[key]

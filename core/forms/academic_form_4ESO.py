@@ -39,7 +39,7 @@ class AcademicForm_4ESO(forms.Form):
                     "Tecnología")
     )
 
-    training_itinerary = forms.ChoiceField(
+    training_via = forms.ChoiceField(
         choices=TRAINING_ITINERARY_CHOICES,
         label="Opción de enseñanzas",
     )
@@ -126,17 +126,17 @@ class AcademicForm_4ESO(forms.Form):
 
     def clean(self):
         cleaned_data = super(AcademicForm_4ESO, self).clean()
-        training_itinerary = cleaned_data.get("training_itinerary")
+        training_via = cleaned_data.get("training_via")
         academic_core_subjects = cleaned_data.get("academic_core_subjects")
         applied_core_subjects = cleaned_data.get("applied_core_subjects")
 
-        if training_itinerary == "EAC" and not academic_core_subjects:
+        if training_via == "EAC" and not academic_core_subjects:
             self.add_error(
                 "academic_core_subjects",
                 "Debe seleccionar las troncales de opción"
             )
 
-        if training_itinerary == "EAP" and not applied_core_subjects:
+        if training_via == "EAP" and not applied_core_subjects:
             self.add_error(
                 "applied_core_subjects",
                 "Debe seleccionar las troncales de opción"
