@@ -8,26 +8,52 @@ from .academic_form_1CIE import AcademicForm_1CIE_TEC
 from .academic_form_1SOC import AcademicForm_1SOC
 from .academic_form_1SOC import AcademicForm_1SOC_HUM
 from .academic_form_1SOC import AcademicForm_1SOC_SOC
+from .academic_form_2CIE import AcademicForm_2CIE
+from .academic_form_2CIE import AcademicForm_2CIE_CCS
+from .academic_form_2CIE import AcademicForm_2CIE_TEC
+from .academic_form_2SOC import AcademicForm_2SOC
+from .academic_form_2SOC import AcademicForm_2SOC_HUM
+from .academic_form_2SOC import AcademicForm_2SOC_SOC
+from .academic_form_PMAR import AcademicForm_1PMAR
+from .academic_form_PMAR import AcademicForm_2PMAR
+from .academic_form_PMAR import AcademicForm_PostPMAR
+from .academic_form_FP import AcademicForm_1FPB
+from .academic_form_FP import AcademicForm_2FPB
+from .academic_form_FP import AcademicForm_1CFGM
+from .academic_form_FP import AcademicForm_2CFGM
+from .academic_form_FP import AcademicForm_1CFGS
+from .academic_form_FP import AcademicForm_2CFGS
+from .academic_form_FP import AcademicForm_3CFGS
+
+FORMS = {
+    "1ESO": AcademicForm_1ESO,
+    "2ESO": AcademicForm_2ESO,
+    "3ESO": AcademicForm_3ESO,
+    "4ESO": AcademicForm_4ESO,
+    "1CIE": AcademicForm_1CIE,
+    "1CIE_CCS": AcademicForm_1CIE_CCS,
+    "1CIE_TEC": AcademicForm_1CIE_TEC,
+    "1SOC": AcademicForm_1SOC,
+    "1SOC_HUM": AcademicForm_1SOC_HUM,
+    "1SOC_SOC": AcademicForm_1SOC_SOC,
+    "2CIE": AcademicForm_2CIE,
+    "2CIE_CCS": AcademicForm_2CIE_CCS,
+    "2CIE_TEC": AcademicForm_2CIE_TEC,
+    "2SOC": AcademicForm_2SOC,
+    "2SOC_HUM": AcademicForm_2SOC_HUM,
+    "2SOC_SOC": AcademicForm_2SOC_SOC,
+    "1PMAR": AcademicForm_1PMAR,
+    "2PMAR": AcademicForm_2PMAR,
+    "PostPMAR": AcademicForm_PostPMAR,
+    "1FPB": AcademicForm_1FPB,
+    "2FPB": AcademicForm_2FPB,
+    "1CFGM": AcademicForm_1CFGM,
+    "2CFGM": AcademicForm_2CFGM,
+    "1CFGS": AcademicForm_1CFGS,
+    "2CFGS": AcademicForm_2CFGS,
+    "3CFGS": AcademicForm_3CFGS
+}
 
 
 def get_formclass(code):
-    if code == "1ESO":
-        return AcademicForm_1ESO
-    if code == "2ESO":
-        return AcademicForm_2ESO
-    if code == "3ESO":
-        return AcademicForm_3ESO
-    if code == "4ESO":
-        return AcademicForm_4ESO
-    if code == "1CIE":
-        return AcademicForm_1CIE
-    if code == "1CIE_CCS":
-        return AcademicForm_1CIE_CCS
-    if code == "1CIE_TEC":
-        return AcademicForm_1CIE_TEC
-    if code == "1SOC":
-        return AcademicForm_1SOC
-    if code == "1SOC_HUM":
-        return AcademicForm_1SOC_HUM
-    if code == "1SOC_SOC":
-        return AcademicForm_1SOC_SOC
+    return FORMS[code]

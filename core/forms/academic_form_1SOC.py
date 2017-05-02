@@ -2,13 +2,15 @@ from django import forms
 
 
 class AcademicForm_1SOC(forms.Form):
-    TRAINING_ITINERARY_CHOICES = (
+    TRAINING_ITINERARY_CHOICES = sorted((
         ("HUM", "Humanidades"),
-        ("SOC", "Sociales")
+        ("SOC", "Sociales")),
+        key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT1_CHOICES = (
+    SPECIFIC_SUBJECT1_CHOICES = sorted((
         ("RLG", "Religión"),
-        ("TFY", "Tecnologías de la información y la comunicación")
+        ("TFY", "Tecnologías de la información y la comunicación")),
+        key=lambda x: x[1]
     )
 
     training_itinerary = forms.ChoiceField(
