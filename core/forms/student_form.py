@@ -1,13 +1,14 @@
 from django import forms
 from .formfields import NifField, NieField, AlphaField, NumericField
 
-GENDER_CHOICES = (
-    ("H", "Hombre"),
-    ("M", "Mujer")
-)
-
 
 class StudentForm(forms.Form):
+    GENDER_CHOICES = sorted((
+        ("H", "Hombre"),
+        ("M", "Mujer")),
+        key=lambda x: x[1]
+    )
+
     name = AlphaField(
         label="Nombre",
         max_length=128,

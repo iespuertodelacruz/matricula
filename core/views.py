@@ -1,12 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from core.forms.student_form import StudentForm
+from core.forms.family_form import Responsible1Form, Responsible2Form
 from .models import EduLevel
-from common.test_data import STUDENT_DATA
+from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
 from django.urls import reverse
 import json
 from common.utils import age, json_dump_handler, field_verbose
 from core.forms.academic_index import get_formclass
+from django.conf import settings
 
 
 def index(request):
@@ -37,12 +39,16 @@ def student(request, edulevel_code):
         else:
             valid_form = False
     else:
-        form = StudentForm(STUDENT_DATA)
+        if settings.DEBUG:
+            form = StudentForm(STUDENT_DATA)
+        else:
+            form = StudentForm()
 
     return render(
         request,
-        "student.html",
+        "form.html",
         {
+            "title": "Datos personales del alumno/a",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
@@ -65,8 +71,12 @@ def academic(request, edulevel_code):
                         edulevel_code, training_itinerary
                     ])
                 )
+            elif json.loads(request.session["student"])["adult"]:
+                return HttpResponseRedirect("next")
             else:
-                return HttpResponseRedirect("/next/")
+                return HttpResponseRedirect(
+                    reverse("family", args=[edulevel_code, 1])
+                )
         else:
             valid_form = False
     else:
@@ -74,8 +84,9 @@ def academic(request, edulevel_code):
 
     return render(
         request,
-        "academic.html",
+        "form.html",
         {
+            "title": "Información académica",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
@@ -95,7 +106,12 @@ def itinerary(request, edulevel_code, itinerary_code):
         form = ItineraryForm(request.POST)
         if form.is_valid():
             request.session["itinerary"] = form.cleaned_data
-            return HttpResponseRedirect("/next/")
+            if request.session["student"].adult:
+                return HttpResponseRedirect("next")
+            else:
+                return HttpResponseRedirect(
+                    reverse("family", args=[edulevel_code, 1])
+                )
         else:
             valid_form = False
     else:
@@ -103,8 +119,9 @@ def itinerary(request, edulevel_code, itinerary_code):
 
     return render(
         request,
-        "academic.html",
+        "form.html",
         {
+            "title": "Información académica (Itinerario)",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
@@ -113,5 +130,50 @@ def itinerary(request, edulevel_code, itinerary_code):
                 AcademicForm.TRAINING_ITINERARY_CHOICES,
                 itinerary_code
             )
+        }
+    )
+
+
+def family(request, edulevel_code, responsible_id):
+    valid_form = True
+    if responsible_id == "1":
+        ResponsibleForm = Responsible1Form
+    elif responsible_id == "2":
+        ResponsibleForm = Responsible2Form
+    if request.method == "POST":
+        form = ResponsibleForm(request.POST)
+        if form.is_valid():
+            if not form.cleaned_data.get("ignore_info"):
+                key = "responsible{}".format(responsible_id)
+                request.session[key] = json.dumps(
+                    form.cleaned_data,
+                    default=json_dump_handler
+                )
+            if responsible_id == "1":
+                return HttpResponseRedirect(
+                    reverse("family", args=[edulevel_code, 2])
+                )
+            elif responsible_id == "2":
+                return HttpResponseRedirect("/next")
+        else:
+            valid_form = False
+    else:
+        if settings.DEBUG:
+            if responsible_id == "1":
+                form = ResponsibleForm(RESPONSIBLE1_DATA)
+            elif responsible_id == "2":
+                form = ResponsibleForm(RESPONSIBLE2_DATA)
+        else:
+            form = ResponsibleForm()
+
+    return render(
+        request,
+        "form.html",
+        {
+            "title": "Datos del responsable {}".format(responsible_id),
+            "form": form,
+            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "valid_form": valid_form,
+            "prevent_exit": "false"
         }
     )

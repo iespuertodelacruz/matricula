@@ -23,4 +23,9 @@ urlpatterns = [
         views.itinerary,
         name="itinerary"
     ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/family/r(?P<responsible_id>\d)/$",
+        views.family,
+        name="family"
+    ),
 ]
