@@ -2,6 +2,9 @@
   font-family: "BebasNeue";
   src: url("../fonts/BebasNeue.otf");
 }
+.main {
+  min-height: 100%;
+}
 h1,
 h2,
 h3,
