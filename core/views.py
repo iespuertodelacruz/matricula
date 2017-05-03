@@ -8,6 +8,7 @@ import json
 from common.utils import age, json_dump_handler, field_verbose
 from core.forms.router import get_formclass
 from django.conf import settings
+from core.forms.extra_forms import ExtraForm
 
 
 def index(request):
@@ -150,7 +151,9 @@ def family(request, edulevel_code, responsible_id):
                     reverse("family", args=[edulevel_code, 2])
                 )
             elif responsible_id == "2":
-                return HttpResponseRedirect("/next")
+                return HttpResponseRedirect(
+                    reverse("extra", args=[edulevel_code])
+                )
         else:
             valid_form = False
     else:
@@ -167,6 +170,33 @@ def family(request, edulevel_code, responsible_id):
         "form.html",
         {
             "title": "Datos del responsable {}".format(responsible_id),
+            "form": form,
+            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "valid_form": valid_form,
+            "prevent_exit": "false"
+        }
+    )
+
+
+def extra(request, edulevel_code):
+    valid_form = True
+    if request.method == "POST":
+        form = ExtraForm(request.POST)
+        if form.is_valid():
+            request.session["extra"] = form.cleaned_data
+            return HttpResponseRedirect(
+                reverse("next", args=[edulevel_code])
+            )
+        else:
+            valid_form = False
+    else:
+        form = ExtraForm()
+
+    return render(
+        request,
+        "form.html",
+        {
+            "title": "Otra información de interés",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,

@@ -28,4 +28,9 @@ urlpatterns = [
         views.family,
         name="family"
     ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/extra/$",
+        views.extra,
+        name="extra"
+    ),
 ]
