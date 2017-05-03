@@ -1,13 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from core.forms.student_form import StudentForm
-from core.forms.family_form import Responsible1Form, Responsible2Form
 from .models import EduLevel
 from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
 from django.urls import reverse
 import json
 from common.utils import age, json_dump_handler, field_verbose
-from core.forms.academic_index import get_formclass
+from core.forms.router import get_formclass
 from django.conf import settings
 
 
@@ -136,10 +135,7 @@ def itinerary(request, edulevel_code, itinerary_code):
 
 def family(request, edulevel_code, responsible_id):
     valid_form = True
-    if responsible_id == "1":
-        ResponsibleForm = Responsible1Form
-    elif responsible_id == "2":
-        ResponsibleForm = Responsible2Form
+    ResponsibleForm = get_formclass("R" + responsible_id)
     if request.method == "POST":
         form = ResponsibleForm(request.POST)
         if form.is_valid():

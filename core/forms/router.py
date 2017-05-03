@@ -24,6 +24,8 @@ from .academic_form_FP import AcademicForm_2CFGM
 from .academic_form_FP import AcademicForm_1CFGS
 from .academic_form_FP import AcademicForm_2CFGS
 from .academic_form_FP import AcademicForm_3CFGS
+from .family_forms import Responsible1Form
+from .family_forms import Responsible2Form
 
 FORMS = {
     "1ESO": AcademicForm_1ESO,
@@ -51,7 +53,9 @@ FORMS = {
     "2CFGM": AcademicForm_2CFGM,
     "1CFGS": AcademicForm_1CFGS,
     "2CFGS": AcademicForm_2CFGS,
-    "3CFGS": AcademicForm_3CFGS
+    "3CFGS": AcademicForm_3CFGS,
+    "R1": Responsible1Form,
+    "R2": Responsible2Form
 }
 
 
