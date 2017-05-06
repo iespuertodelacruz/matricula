@@ -1,5 +1,5 @@
 from django import forms
-from .formfields import NifField, NieField, AlphaField, NumericField
+from .formfields import NifField, NieField, NumericField
 
 
 class StudentForm(forms.Form):
@@ -9,11 +9,11 @@ class StudentForm(forms.Form):
         key=lambda x: x[1]
     )
 
-    name = AlphaField(
+    name = forms.CharField(
         label="Nombre",
         max_length=128,
     )
-    surname = AlphaField(
+    surname = forms.CharField(
         label="Apellidos",
         max_length=256
     )
@@ -58,23 +58,23 @@ class StudentForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={"class": "datepicker"})
     )
-    birth_country = AlphaField(
+    birth_country = forms.CharField(
         label="País de nacimiento",
         max_length=128,
         initial="España"
     )
-    birth_province = AlphaField(
+    birth_province = forms.CharField(
         label="Provincia de nacimiento",
         max_length=128,
         required=False,
         initial="Santa Cruz de Tenerife"
     )
-    birth_town = AlphaField(
+    birth_town = forms.CharField(
         label="Localidad de nacimiento",
         max_length=128,
         initial="Puerto de la Cruz"
     )
-    nationality = AlphaField(
+    nationality = forms.CharField(
         label="Nacionalidad",
         max_length=64,
         initial="Española"
@@ -84,7 +84,7 @@ class StudentForm(forms.Form):
         max_length=32,
         required=False
     )
-    address = AlphaField(
+    address = forms.CharField(
         label="Dirección",
         max_length=128,
         help_text="Domicilio durante el curso escolar"
@@ -95,19 +95,19 @@ class StudentForm(forms.Form):
         help_text="Domicilio durante el curso escolar",
         initial="38400"
     )
-    hometown = AlphaField(
+    hometown = forms.CharField(
         label="Municipio",
         help_text="Domicilio durante el curso escolar",
         initial="Puerto de la Cruz"
     )
-    lastyear_institution = AlphaField(
+    lastyear_institution = forms.CharField(
         label="Centro de procedencia",
         max_length=256,
         help_text="Cumplimentar sólo si el curso anterior realizó estudios en "
                   "otro centro",
         required=False
     )
-    lastyear_studies = AlphaField(
+    lastyear_studies = forms.CharField(
         label="Estudios realizados el curso anterior",
         max_length=256,
         help_text="Cumplimentar sólo si el curso anterior realizó estudios en "

@@ -1,7 +1,7 @@
 STUDENT_DATA = {
     "name": "Nombre largo",
     "surname": "Apellido Bastante Largo",
-    "nif": "12345678Y",
+    "nif": "12345678y",
     "nie": "",
     "passport": "",
     "gender": "M",

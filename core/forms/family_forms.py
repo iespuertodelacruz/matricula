@@ -1,5 +1,5 @@
 from django import forms
-from .formfields import NifField, NieField, AlphaField, NumericField
+from .formfields import NifField, NieField, NumericField
 
 
 class ResponsibleForm(forms.Form):
@@ -13,11 +13,11 @@ class ResponsibleForm(forms.Form):
         label="Sexo",
         choices=GENDER_CHOICES
     )
-    name = AlphaField(
+    name = forms.CharField(
         label="Nombre",
         max_length=128,
     )
-    surname = AlphaField(
+    surname = forms.CharField(
         label="Apellidos",
         max_length=256
     )
@@ -54,7 +54,7 @@ class ResponsibleForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={"class": "datepicker"})
     )
-    job = AlphaField(
+    job = forms.CharField(
         label="Profesión",
         required=False
     )
