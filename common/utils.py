@@ -30,3 +30,9 @@ def age(birth_date):
 
 def field_verbose(choices, key):
     return dict(choices)[key]
+
+
+def calculate_schoolyear():
+    today = datetime.date.today()
+    ref_year = today.year - (today.month < 5)
+    return "{}/{}".format(ref_year, ref_year+1)

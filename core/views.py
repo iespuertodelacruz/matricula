@@ -7,6 +7,7 @@ from common.test_data import ACADEMIC_DATA, ITINERARY_DATA
 from django.urls import reverse
 import json
 from common.utils import age, json_dump_handler, field_verbose, expand_choices
+from common.utils import calculate_schoolyear
 from core.forms.router import get_formclass
 from django.conf import settings
 from core.forms.extra_forms import ExtraForm
@@ -248,5 +249,10 @@ def form(request, edulevel_code):
     # vocational training
     vt_edulevel = get_edulevel(edulevel_code, params["academic"])
 
-    report.render(**params, edulevel=edulevel, vt_edulevel=vt_edulevel)
+    report.render(
+        **params,
+        edulevel=edulevel,
+        vt_edulevel=vt_edulevel,
+        school_year=calculate_schoolyear()
+    )
     return report.http_response()
