@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block body %}
+    
+    {% include "header.html" %}
+    {% include "student.html" %}
+    {% include "academic_{}.html".format(edulevel.code) %}
+
+{% endblock %}

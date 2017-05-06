@@ -1,0 +1,100 @@
+<div id="student" class="section">
+    <div class="title">Datos personales del alumno/a</div>
+
+    <table>
+        <tr>
+            <td class="label">Nombre:</td>
+            <td class="value u50" colspan="2">{{ student.name|upper }}</td>
+            <td></td>
+            <td class="label">Apellidos:</td>
+            <td class="value" colspan="3">{{ student.surname|upper }}</td>
+        </tr>
+        <tr>
+            {% if student.nif %}
+                <td class="label">NIF:</td>
+                <td class="value u30">{{ student.nif|upper }}</td>
+            {% elif student.nie %}
+                <td class="label">NIE:</td>
+                <td class="value">{{ student.nie|upper }}</td>
+            {% elif student.passport %}
+                <td class="label">Pasaporte:</td>
+                <td class="value">{{ student.passport|upper }}</td>
+            {% endif %}
+            <td></td>
+            <td></td>
+            <td class="label">Nº Seg. Social</td>
+            <td class="value" colspan="3">{{ student.social_security_number }}</td>
+        </tr>
+        <tr>
+            <td class="label">Sexo:</td>
+            <td class="value u30">{{ student.gender_label }}</td>
+            <td></td>
+            <td></td>
+            <td class="label">Tfno. casa:</td>
+            <td class="value u30">{{ student.home_phone }}</td>
+            <td class="label">Tfno. móvil:</td>
+            <td class="value u30">{{ student.mobile_phone }}</td>
+        </tr>
+        <tr>
+            <td class="label">F. Nac.:</td>
+            <td class="value u30">{{ student.birth_date }}</td>
+            <td></td>
+            <td></td>
+            <td class="label">Email:</td>
+            <td class="value" colspan="3">{{ student.email }}</td>
+        </tr>
+        <tr>
+            <td class="label">Edad:</td>
+            <td class="value u30">{{ student.age }} años</td>
+            <td></td>
+            <td></td>
+            <td class="label">Mayor de edad:</td>
+            <td class="value u30">{{ student.adult|boolean }}</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td class="label">País nacim.:</td>
+            <td class="value u50" colspan="2">{{ student.birth_country|upper }}</td>
+            <td></td>
+            <td class="label">Prov. nacim.:</td>
+            <td class="value" colspan="3">{{ student.birth_province|upper }}</td>
+        </tr>
+        <tr>
+            <td class="label">Nacionalidad:</td>
+            <td class="value u50" colspan="2">{{ student.nationality|upper }}</td>
+            <td></td>
+            <td class="label">Loc. nacim.:</td>
+            <td class="value" colspan="3">{{ student.birth_town|upper }}</td>
+        </tr>
+        <tr>
+            <td class="subtitle" colspan="8">
+                Domicilio del alumno/a durante el curso escolar
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Dirección:</td>
+            <td class="value" colspan="5">{{ student.address|upper }}</td>
+            <td class="label">Cód. postal:</td>
+            <td class="value" colspan="3">{{ student.zipcode }}</td>
+        </tr>
+        <tr>
+            <td class="label">Municipio:</td>
+            <td class="value" colspan="4">{{ student.hometown|upper }}</td>
+        </tr>
+        <tr>
+            <td class="subtitle" colspan="8">
+                Estudios realizados el curso anterior, sólo en caso de otro centro
+            </td>
+        </tr>
+        <tr>
+            <td class="label">Centro:</td>
+            <td class="value" colspan="5">{{ student.lastyear_institution|upper }}</td>
+        </tr>
+        <tr>
+            <td class="label">Estudios:</td>
+            <td class="value" colspan="8">{{ student.lastyear_studies|upper }}</td>
+        </tr>
+    </table>
+
+</div>

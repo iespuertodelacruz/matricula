@@ -1,0 +1,169 @@
+@page {
+  size: a4;
+  margin-top: 5cm;
+  margin-left: 1cm;
+  margin-right: 1cm;
+  @top-center {
+    content: element(header);
+  }
+}
+#header {
+  position: running(header);
+}
+@font-face {
+  src: url("../fonts/NewsCycle-Regular.ttf");
+  font-family: NewsCycle;
+  font-weight: normal;
+}
+@font-face {
+  src: url("../fonts/NewsCycle-Bold.ttf");
+  font-family: NewsCycle;
+  font-weight: bold;
+}
+@font-face {
+  src: url("../fonts/BebasNeue.otf");
+  font-family: BebasNeue;
+}
+html {
+  font-family: NewsCycle;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: BebasNeue;
+  margin: 0;
+  padding-top: 2mm;
+  padding-bottom: 2mm;
+}
+.value {
+  padding: 0;
+  padding-left: 1mm;
+  padding-right: 1mm;
+  border: 1px solid #000;
+  font-weight: bold;
+}
+.field {
+  margin-right: 7mm;
+}
+#header #logo-school {
+  position: absolute;
+  top: 3mm;
+  left: 0;
+  width: 40mm;
+}
+#header #logo-consejeria {
+  position: absolute;
+  top: -17mm;
+  left: 0;
+  width: 50mm;
+}
+#header #profile-pic {
+  width: 33mm;
+  height: 43mm;
+  border: 1px solid #000;
+  position: absolute;
+  top: -20mm;
+  right: 0;
+  text-align: center;
+  line-height: 43mm;
+}
+#header #order-id {
+  position: absolute;
+  width: 40mm;
+  height: 20mm;
+  left: 55mm;
+  top: -20mm;
+  text-align: center;
+  border: 1px solid #000;
+  line-height: 20mm;
+}
+#header #register {
+  position: absolute;
+  top: -20mm;
+  left: 100mm;
+}
+#header #title {
+  position: absolute;
+  top: 5mm;
+  left: 55mm;
+  font-family: BebasNeue;
+  font-size: 20pt;
+  line-height: 7mm;
+}
+#header #title .edulevel {
+  font-size: 30pt;
+}
+#header #subtitle {
+  width: 10cm;
+  position: absolute;
+  top: 13mm;
+  left: 55mm;
+  font-size: 16pt;
+  line-height: 5mm;
+  color: #808080;
+  font-family: BebasNeue;
+}
+#header #school-year {
+  position: absolute;
+  top: -20mm;
+  left: 14mm;
+  font-family: BebasNeue;
+  font-size: 16pt;
+}
+.section .title {
+  font-family: BebasNeue;
+  font-size: 16pt;
+  border-bottom: 1px solid #000;
+  margin-bottom: 3mm;
+}
+.section table {
+  width: 100%;
+  border-spacing: 2mm;
+  border-collapse: separate;
+}
+.section table td.subtitle {
+  font-family: BebasNeue;
+  font-size: 13pt;
+  padding-top: 2mm;
+  padding-bottom: 1mm;
+}
+.section .label {
+  width: 1%;
+  white-space: nowrap;
+}
+.section .u10 {
+  width: 10mm;
+}
+.section .u20 {
+  width: 20mm;
+}
+.section .u30 {
+  width: 30mm;
+}
+.section .u40 {
+  width: 40mm;
+}
+.section .u50 {
+  width: 50mm;
+}
+.section .u60 {
+  width: 60mm;
+}
+.section .u70 {
+  width: 70mm;
+}
+.section .u80 {
+  width: 80mm;
+}
+.section .u90 {
+  width: 90mm;
+}
+#academic {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 122mm;
+}
