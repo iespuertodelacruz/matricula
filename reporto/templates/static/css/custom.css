@@ -82,8 +82,9 @@ h6 {
 }
 #header #register {
   position: absolute;
-  top: -20mm;
+  top: -23mm;
   left: 100mm;
+  line-height: 6mm;
 }
 #header #title {
   position: absolute;
