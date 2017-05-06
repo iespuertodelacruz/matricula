@@ -3,9 +3,22 @@ import datetime
 
 def json_dump_handler(data):
     if isinstance(data, datetime.date):
-        return data.isoformat()
+        return data.strftime("%d/%m/%Y")
     else:
         return data
+
+
+def expand_choices(form):
+    r = {}
+    for k, v in form.cleaned_data.items():
+        r[k] = v
+        try:
+            value = dict(form.fields[k].choices)[v]
+            label_key = k + "_label"
+            r[label_key] = value
+        except:
+            pass
+    return r
 
 
 def age(birth_date):

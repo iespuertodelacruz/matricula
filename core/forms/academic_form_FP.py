@@ -3,7 +3,7 @@ from django import forms
 
 class AcademicForm_FPB(forms.Form):
     TOPIC_CHOICES = (
-        ("ELE", "Electricidad y Electrónica"),
+        ("FPB", "Electricidad y Electrónica"),
     )
 
     topic = forms.ChoiceField(
@@ -135,3 +135,11 @@ class AcademicForm_2CFGS(AcademicForm_CF, AcademicForm_CFGS):
 
 class AcademicForm_3CFGS(AcademicForm_CF, AcademicForm_CFD):
     pass
+
+
+def get_edulevel(edulevel_code, academic):
+    topic = academic.get("topic")
+    if topic:
+        return edulevel_code[0] + topic
+    else:
+        return None

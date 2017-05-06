@@ -1,18 +1,34 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from core.forms.student_form import StudentForm
 from .models import EduLevel
 from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
+from common.test_data import ACADEMIC_DATA, ITINERARY_DATA
 from django.urls import reverse
 import json
-from common.utils import age, json_dump_handler, field_verbose
+from common.utils import age, json_dump_handler, field_verbose, expand_choices
 from core.forms.router import get_formclass
 from django.conf import settings
 from core.forms.extra_forms import ExtraForm
+from reporto.core import PdfReport
+from core.forms.academic_form_FP import get_edulevel
+
+SECTIONS = [
+    "student",
+    "academic",
+    "itinerary",
+    "responsible1",
+    "responsible2",
+    "extra"
+]
 
 
 def index(request):
     edu_levels = EduLevel.objects.all()
+
+    for s in SECTIONS:
+        request.session[s] = None
+
     return render(
         request,
         "index.html",
@@ -25,12 +41,11 @@ def student(request, edulevel_code):
     if request.method == "POST":
         form = StudentForm(request.POST)
         if form.is_valid():
-            form.cleaned_data["age"] = age(
-                form.cleaned_data["birth_date"]
-            )
-            form.cleaned_data["adult"] = form.cleaned_data["age"] >= 18
+            data = expand_choices(form)
+            data["age"] = age(data["birth_date"])
+            data["adult"] = data["age"] >= 18
             request.session["student"] = json.dumps(
-                form.cleaned_data,
+                data,
                 default=json_dump_handler
             )
             return HttpResponseRedirect(
@@ -63,8 +78,9 @@ def academic(request, edulevel_code):
     if request.method == "POST":
         form = AcademicForm(request.POST)
         if form.is_valid():
-            request.session["academic"] = form.cleaned_data
             training_itinerary = form.cleaned_data.get("training_itinerary")
+            data = expand_choices(form)
+            request.session["academic"] = json.dumps(data)
             if training_itinerary:
                 return HttpResponseRedirect(
                     reverse("itinerary", args=[
@@ -72,7 +88,9 @@ def academic(request, edulevel_code):
                     ])
                 )
             elif json.loads(request.session["student"])["adult"]:
-                return HttpResponseRedirect("next")
+                return HttpResponseRedirect(
+                    reverse("extra", args=[edulevel_code])
+                )
             else:
                 return HttpResponseRedirect(
                     reverse("family", args=[edulevel_code, 1])
@@ -80,7 +98,10 @@ def academic(request, edulevel_code):
         else:
             valid_form = False
     else:
-        form = AcademicForm()
+        if settings.DEBUG:
+            form = AcademicForm(ACADEMIC_DATA[edulevel_code])
+        else:
+            form = AcademicForm()
 
     return render(
         request,
@@ -105,9 +126,12 @@ def itinerary(request, edulevel_code, itinerary_code):
     if request.method == "POST":
         form = ItineraryForm(request.POST)
         if form.is_valid():
-            request.session["itinerary"] = form.cleaned_data
-            if request.session["student"].adult:
-                return HttpResponseRedirect("next")
+            data = expand_choices(form)
+            request.session["itinerary"] = json.dumps(data)
+            if json.loads(request.session["student"])["adult"]:
+                return HttpResponseRedirect(
+                    reverse("extra", args=[edulevel_code])
+                )
             else:
                 return HttpResponseRedirect(
                     reverse("family", args=[edulevel_code, 1])
@@ -115,13 +139,16 @@ def itinerary(request, edulevel_code, itinerary_code):
         else:
             valid_form = False
     else:
-        form = ItineraryForm()
+        if settings.DEBUG:
+            form = ItineraryForm(ITINERARY_DATA[itinerary_code])
+        else:
+            form = ItineraryForm()
 
     return render(
         request,
         "form.html",
         {
-            "title": "Información académica (Itinerario)",
+            "title": "Información académica - Itinerario",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
@@ -142,8 +169,9 @@ def family(request, edulevel_code, responsible_id):
         if form.is_valid():
             if not form.cleaned_data.get("ignore_info"):
                 key = "responsible{}".format(responsible_id)
+                data = expand_choices(form)
                 request.session[key] = json.dumps(
-                    form.cleaned_data,
+                    data,
                     default=json_dump_handler
                 )
             if responsible_id == "1":
@@ -183,9 +211,10 @@ def extra(request, edulevel_code):
     if request.method == "POST":
         form = ExtraForm(request.POST)
         if form.is_valid():
-            request.session["extra"] = form.cleaned_data
+            data = expand_choices(form)
+            request.session["extra"] = json.dumps(data)
             return HttpResponseRedirect(
-                reverse("next", args=[edulevel_code])
+                reverse("form", args=[edulevel_code])
             )
         else:
             valid_form = False
@@ -203,3 +232,21 @@ def extra(request, edulevel_code):
             "prevent_exit": "false"
         }
     )
+
+
+def form(request, edulevel_code):
+    report = PdfReport("form.html", HttpResponse)
+
+    params = {}
+    for s in SECTIONS:
+        if request.session.get(s):
+            v = json.loads(request.session[s])
+        else:
+            v = None
+        params[s] = v
+    edulevel = EduLevel.objects.get(code=edulevel_code)
+    # vocational training
+    vt_edulevel = get_edulevel(edulevel_code, params["academic"])
+
+    report.render(**params, edulevel=edulevel, vt_edulevel=vt_edulevel)
+    return report.http_response()

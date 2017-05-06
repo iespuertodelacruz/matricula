@@ -33,4 +33,9 @@ urlpatterns = [
         views.extra,
         name="extra"
     ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/form/$",
+        views.form,
+        name="form"
+    ),
 ]
