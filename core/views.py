@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from core.forms.student_form import StudentForm
 from .models import EduLevel
 from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
-from common.test_data import ACADEMIC_DATA, ITINERARY_DATA
+from common.test_data import ACADEMIC_DATA
 from django.urls import reverse
 import json
 from common.utils import age, json_dump_handler, field_verbose, expand_choices
@@ -100,7 +100,7 @@ def academic(request, edulevel_code):
             valid_form = False
     else:
         if settings.DEBUG:
-            form = AcademicForm(ACADEMIC_DATA[edulevel_code])
+            form = AcademicForm(ACADEMIC_DATA[edulevel_code]["global"])
         else:
             form = AcademicForm()
 
@@ -141,7 +141,9 @@ def itinerary(request, edulevel_code, itinerary_code):
             valid_form = False
     else:
         if settings.DEBUG:
-            form = ItineraryForm(ITINERARY_DATA[itinerary_code])
+            form = ItineraryForm(
+                ACADEMIC_DATA[edulevel_code]["itinerary"][itinerary_code]
+            )
         else:
             form = ItineraryForm()
 

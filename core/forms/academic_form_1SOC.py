@@ -38,9 +38,13 @@ class AcademicForm_1SOC_HUM(forms.Form):
         key=lambda x: x[1]
     )
 
-    core_subject = forms.ChoiceField(
+    core_subject_order1 = forms.ChoiceField(
         choices=CORE_SUBJECT_CHOICES,
-        label="TRONCAL DE OPCIÓN",
+        label="TRONCAL DE OPCIÓN (Preferencia 1)",
+    )
+    core_subject_order2 = forms.ChoiceField(
+        choices=CORE_SUBJECT_CHOICES,
+        label="TRONCAL DE OPCIÓN (Preferencia 2)",
     )
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,

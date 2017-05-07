@@ -53,51 +53,141 @@ RESPONSIBLE2_DATA = {
 }
 
 ACADEMIC_DATA = {
-    "2SOC": {
-        "training_itinerary": "SOC",
-        "specific_subject1_order1": "ACF",
-        "specific_subject1_order2": "AYS",
-        "specific_subject1_order3": "BIL",
-        "specific_subject1_order4": "RLG",
-        "specific_subject1_order4": "RLG",
-        "specific_subject1_order5": "FOT",
-        "specific_subject1_order6": "MYS",
-        "specific_subject1_order7": "AST",
-        "specific_subject1_order8": "LCA",
-        "specific_subject1_order9": "HIC",
-        "specific_subject1_order10": "MNC",
-    }
-}
-
-ITINERARY_DATA = {
-    "HUM": {
-        "core_subject_order1": "GEO",
-        "core_subject_order2": "GR2",
-        "core_subject_order3": "HFI",
-        "core_subject_order4": "HAR",
-        "specific_subject2_order1": "DA2",
-        "specific_subject2_order2": "FUE",
-        "specific_subject2_order3": "HFI",
-        "specific_subject2_order4": "HMD",
-        "specific_subject2_order5": "PSI",
-        "specific_subject2_order6": "SGA",
-        "specific_subject2_order7": "SGN",
-        "specific_subject2_order8": "TFL",
-        "specific_subject2_order9": "ECN",
+    "1CIE": {
+        "global": {
+            "training_itinerary": "CCS",
+            "specific_subject1": "TFY"
+        },
+        "itinerary": {
+            "CCS": {
+                "specific_subject2_order1": "CUF",
+                "specific_subject2_order2": "SGG",
+                "specific_subject2_order3": "SGA",
+                "specific_subject2_order4": "TNI",
+                "specific_subject2_order5": "DBT",
+            },
+            "TEC": {
+                "specific_subject2_order1": "CUF",
+                "specific_subject2_order2": "SGG",
+                "specific_subject2_order3": "SGA",
+                "specific_subject2_order4": "TNI",
+                "specific_subject2_order5": "BIG",
+            }
+        }
     },
-    "SOC": {
-        "core_subject_order1": "ECN",
-        "core_subject_order2": "GEO",
-        "core_subject_order3": "HFI",
-        "specific_subject2_order1": "DA2",
-        "specific_subject2_order2": "FUE",
-        "specific_subject2_order3": "HFI",
-        "specific_subject2_order4": "HMD",
-        "specific_subject2_order5": "PSI",
-        "specific_subject2_order6": "SGA",
-        "specific_subject2_order7": "SGN",
-        "specific_subject2_order8": "TFL",
-        "specific_subject2_order9": "GR2",
-        "specific_subject2_order10": "HAR",
+    "1SOC": {
+        "global": {
+            "training_itinerary": "HUM",
+            "specific_subject1": "TFY"
+        },
+        "itinerary": {
+            "HUM": {
+                "core_subject_order1": "LIE",
+                "core_subject_order2": "GRI",
+                "specific_subject2_order1": "CUF",
+                "specific_subject2_order2": "SGG",
+                "specific_subject2_order3": "SGA",
+                "specific_subject2_order4": "ECO",
+                "specific_subject2_order5": "DAI",
+            },
+            "SOC": {
+                "specific_subject2_order1": "CUF",
+                "specific_subject2_order2": "SGG",
+                "specific_subject2_order3": "SGA",
+                "specific_subject2_order4": "ECO",
+                "specific_subject2_order5": "GRI",
+                "specific_subject2_order6": "LIE",
+            }
+        }
+    },
+    "2CIE": {
+        "global": {
+            "training_itinerary": "CCS",
+            "specific_subject1_order1": "ACF",
+            "specific_subject1_order2": "AYS",
+            "specific_subject1_order3": "BIL",
+            "specific_subject1_order4": "RLG",
+            "specific_subject1_order5": "FOT",
+            "specific_subject1_order6": "MYS",
+            "specific_subject1_order7": "AST",
+            "specific_subject1_order8": "LCA",
+            "specific_subject1_order9": "HIC",
+            "specific_subject1_order10": "MNC",
+        },
+        "itinerary": {
+            "CCS": {
+                "core_subject_order1": "GEO",
+                "core_subject_order2": "QUI",
+                "specific_subject2_order1": "CTM",
+                "specific_subject2_order2": "HFI",
+                "specific_subject2_order3": "IYS",
+                "specific_subject2_order4": "PSI",
+                "specific_subject2_order5": "SGA",
+                "specific_subject2_order6": "SGN",
+                "specific_subject2_order7": "TFL",
+                "specific_subject2_order8": "TII",
+                "specific_subject2_order9": "DBT",
+            },
+            "TEC": {
+                "core_subject_order1": "DB2",
+                "core_subject_order2": "QUI",
+                "specific_subject2_order1": "CTM",
+                "specific_subject2_order2": "HFI",
+                "specific_subject2_order3": "IYS",
+                "specific_subject2_order4": "PSI",
+                "specific_subject2_order5": "SGA",
+                "specific_subject2_order6": "SGN",
+                "specific_subject2_order7": "TFL",
+                "specific_subject2_order8": "TII",
+                "specific_subject2_order9": "GEO",
+            },
+        }
+    },
+    "2SOC": {
+        "global": {
+            "training_itinerary": "HUM",
+            "specific_subject1_order1": "ACF",
+            "specific_subject1_order2": "AYS",
+            "specific_subject1_order3": "BIL",
+            "specific_subject1_order4": "RLG",
+            "specific_subject1_order5": "FOT",
+            "specific_subject1_order6": "MYS",
+            "specific_subject1_order7": "AST",
+            "specific_subject1_order8": "LCA",
+            "specific_subject1_order9": "HIC",
+            "specific_subject1_order10": "MNC",
+        },
+        "itinerary": {
+            "HUM": {
+                "core_subject_order1": "GEO",
+                "core_subject_order2": "GR2",
+                "core_subject_order3": "HFI",
+                "core_subject_order4": "HAR",
+                "specific_subject2_order1": "DA2",
+                "specific_subject2_order2": "FUE",
+                "specific_subject2_order3": "HFI",
+                "specific_subject2_order4": "HMD",
+                "specific_subject2_order5": "PSI",
+                "specific_subject2_order6": "SGA",
+                "specific_subject2_order7": "SGN",
+                "specific_subject2_order8": "TFL",
+                "specific_subject2_order9": "ECN",
+            },
+            "SOC": {
+                "core_subject_order1": "ECN",
+                "core_subject_order2": "GEO",
+                "core_subject_order3": "HFI",
+                "specific_subject2_order1": "DA2",
+                "specific_subject2_order2": "FUE",
+                "specific_subject2_order3": "HFI",
+                "specific_subject2_order4": "HMD",
+                "specific_subject2_order5": "PSI",
+                "specific_subject2_order6": "SGA",
+                "specific_subject2_order7": "SGN",
+                "specific_subject2_order8": "TFL",
+                "specific_subject2_order9": "GR2",
+                "specific_subject2_order10": "HAR",
+            }
+        }
     }
 }

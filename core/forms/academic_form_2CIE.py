@@ -111,9 +111,15 @@ class AcademicForm_2CIE_CCS(forms.Form):
         key=lambda x: x[1]
     )
 
-    core_subject = forms.ChoiceField(
+    core_subject_order1 = forms.ChoiceField(
         choices=CORE_SUBJECT_CHOICES,
-        label="MATERIA TRONCAL DE OPCIÓN",
+        label="MATERIA TRONCAL DE OPCIÓN (Preferencia 1)",
+        help_text="Seleccione la materia que quiera cursar en 1er lugar"
+    )
+    core_subject_order2 = forms.ChoiceField(
+        choices=CORE_SUBJECT_CHOICES,
+        label="MATERIA TRONCAL DE OPCIÓN (Preferencia 2)",
+        help_text="Seleccione la materia que quiera cursar en 2do lugar"
     )
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
@@ -195,9 +201,15 @@ class AcademicForm_2CIE_TEC(forms.Form):
         key=lambda x: x[1]
     )
 
-    core_subject = forms.ChoiceField(
+    core_subject_order1 = forms.ChoiceField(
         choices=CORE_SUBJECT_CHOICES,
-        label="MATERIA TRONCAL DE OPCIÓN",
+        label="MATERIA TRONCAL DE OPCIÓN (Preferencia 1)",
+        help_text="Seleccione la materia que quiera cursar en 1er lugar"
+    )
+    core_subject_order2 = forms.ChoiceField(
+        choices=CORE_SUBJECT_CHOICES,
+        label="MATERIA TRONCAL DE OPCIÓN (Preferencia 2)",
+        help_text="Seleccione la materia que quiera cursar en 2do lugar"
     )
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,

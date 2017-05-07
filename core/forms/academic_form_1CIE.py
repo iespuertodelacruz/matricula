@@ -80,7 +80,7 @@ class AcademicForm_1CIE_TEC(forms.Form):
         ("SGG", "Francés"),
         ("SGA", "Alemán"),
         ("TNI", "Tecnología Industrial I"),
-        ("DBT", "Dibujo Técnico I")),
+        ("BIG", "Biología y Geología")),
         key=lambda x: x[1]
     )
 
