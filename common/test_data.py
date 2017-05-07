@@ -266,5 +266,15 @@ ACADEMIC_DATA = {
                 "specific_subject2_order10": "HAR",
             }
         }
+    },
+    "1FPB": {
+        "global": {
+            "topic": "FPB"
+        }
+    },
+    "2FPB": {
+        "global": {
+            "topic": "FPB"
+        }
     }
 }
