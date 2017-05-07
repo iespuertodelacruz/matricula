@@ -11,6 +11,7 @@
             <th></th>            
             <th></th>            
             <th></th>            
+            <th>Coste</th>            
             <th>Fecha de matrícula</th>            
         </thead>
 
@@ -19,6 +20,7 @@
                 <td><a href="m/{{ level.code }}/">{{ level.code }}</a></td>
                 <td>{{ level.law }}</td>
                 <td>{{ level.description }}</td>
+                <td>{{ level.cost }}€</td>
                 <td>{{ level.enrollment_date }}</td>
             </tr>
         {% endfor %}
