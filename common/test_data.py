@@ -53,6 +53,22 @@ RESPONSIBLE2_DATA = {
 }
 
 ACADEMIC_DATA = {
+    "PostPMAR": {
+        "global": {
+            "specific_subject1": "VAO",
+            "specific_subject2_order1": "SGA",
+            "specific_subject2_order2": "AEZ",
+            "specific_subject2_order3": "CUF",
+            "specific_subject2_order4": "CUC",
+            "specific_subject2_order5": "EPV",
+            "specific_subject2_order6": "FIL",
+            "specific_subject2_order7": "SGN",
+            "specific_subject2_order8": "MUS",
+            "specific_subject2_order9": "TEE",
+            "specific_subject2_order10": "TGD",
+            "core_subjects": "CIE+IVY"
+        }
+    },
     "4ESO": {
         "global": {
             "training_itinerary": "EAC",

@@ -1,0 +1,123 @@
+{% set truncate_limit1 = 13 %}
+{% set truncate_limit2 = 87 %}
+
+<div id="academic" class="section">
+    <div class="title">Información académica</div>
+
+    <table>
+        <tr>
+            <td class="subtitle" colspan="3" style="width: 20%">
+                Materia específica 1
+            </td>
+            <td style="width: 2%"></td>
+            <td class="subtitle" colspan="3" style="width: 20%">
+                Materia específica 2
+            </td>
+            <td style="width: 2%"></td>
+            <td class="subtitle" colspan="3" style="width: 56%">
+                Troncales de opción
+            </td>
+        </tr>
+        <tr>
+            <td class="label">X</td>
+            <td class="value" colspan="2">{{ academic.specific_subject1_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td class="label">1ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order1_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td class="label">X</td>
+            <td class="value" rowspan="2" colspan="2">{{ academic.core_subjects_label|upper|truncate(truncate_limit2, True, "", 0) }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">2ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order2_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">3ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order3_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">4ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order4_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">5ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order5_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">6ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order6_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">7ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order7_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">8ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order8_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">9ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order9_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td colspan="2"></td>
+            <td></td>
+            <td class="label">10ª</td>
+            <td class="value" colspan="2">{{ academic.specific_subject2_order10_label|upper|truncate(truncate_limit1, True, "", 0) }}</td>
+            <td></td>
+            <td></td>
+            <td colspan="2"></td>
+        </tr>
+    </table>
+
+</div>
