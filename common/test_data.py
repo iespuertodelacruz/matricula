@@ -53,6 +53,18 @@ RESPONSIBLE2_DATA = {
 }
 
 ACADEMIC_DATA = {
+    "3ESO": {
+        "global": {
+            "specific_subject1": "VAO",
+            "specific_subject2": "SGN",
+            "core_subject": "SAA",
+            "specific_subject3_order1": "CUC",
+            "specific_subject3_order2": "MUS",
+            "specific_subject3_order3": "TEE",
+            "specific_subject3_order4": "EUP",
+            "specific_subject3_order5": "IVY",
+        }
+    },
     "PostPMAR": {
         "global": {
             "specific_subject1": "VAO",
