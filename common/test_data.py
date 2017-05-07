@@ -24,6 +24,7 @@ STUDENT_DATA = {
 RESPONSIBLE1_DATA = {
     "name": "Frank",
     "surname": "Mayer",
+    "link": "PAD",
     "nif": "12345678Y",
     "nie": "",
     "passport": "",
@@ -40,6 +41,7 @@ RESPONSIBLE2_DATA = {
     "ignore_info": False,
     "name": "Andrea",
     "surname": "Magnet Press",
+    "link": "MAD",
     "nif": "12345678Y",
     "nie": "",
     "passport": "",
@@ -55,7 +57,7 @@ RESPONSIBLE2_DATA = {
 ACADEMIC_DATA = {
     "1ESO": {
         "global": {
-            "specific_subject": "VAO",
+            "specific_subject1": "VAO",
             "specific_subject2": "SGN"
         }
     },

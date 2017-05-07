@@ -8,6 +8,13 @@ class ResponsibleForm(forms.Form):
         ("M", "Mujer")),
         key=lambda x: x[1]
     )
+    LINK_CHOICES = sorted((
+        ("PAD", "Padre"),
+        ("MAD", "Madre"),
+        ("TUO", "Tutor"),
+        ("TUA", "Tutora")),
+        key=lambda x: x[1]
+    )
 
     gender = forms.ChoiceField(
         label="Sexo",
@@ -20,6 +27,10 @@ class ResponsibleForm(forms.Form):
     surname = forms.CharField(
         label="Apellidos",
         max_length=256
+    )
+    link = forms.ChoiceField(
+        choices=LINK_CHOICES,
+        label="Vínculo con el alumno/a"
     )
     nif = NifField(
         label="NIF",
