@@ -1,0 +1,15 @@
+<div id="academic" class="section">
+    <div class="title">Información académica</div>
+
+    <table>
+        <tr>
+            <td class="subtitle">
+                Módulos a cursar nuevamente - Alumnado repetidor
+            </td>
+        </tr>
+        <tr>
+            <td class="value">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0)|replace("\r\n", "<br>") }}</td>
+        </tr>
+    </table>
+
+</div>
