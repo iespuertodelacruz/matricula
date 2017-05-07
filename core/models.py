@@ -5,7 +5,7 @@ class EduLevel(models.Model):
     code = models.CharField(max_length=32)
     law = models.CharField(max_length=32)
     description = models.CharField(max_length=256)
-    enrollment_date = models.DateField()
+    enrollment_date = models.DateField(blank=True, null=True)
     order = models.SmallIntegerField()
     cost = models.PositiveSmallIntegerField()
 

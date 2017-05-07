@@ -21,7 +21,7 @@
                 <td>{{ level.law }}</td>
                 <td>{{ level.description }}</td>
                 <td>{{ level.cost }}€</td>
-                <td>{{ level.enrollment_date }}</td>
+                <td>{{ level.enrollment_date|default:"---" }}</td>
             </tr>
         {% endfor %}
     </table>
