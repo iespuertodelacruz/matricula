@@ -16,7 +16,7 @@
     <div id="subtitle">
         {{ academic.topic_label or edulevel.description }}
         {% if academic.training_itinerary_label %}
-            - itinerario {{ academic.training_itinerary_label }}
+            - itinerario {{ academic.training_itinerary_label|truncate(40, True, "", 0) }}
         {% endif %}
     </div>
     <div id="school-year">

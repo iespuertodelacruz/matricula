@@ -2,6 +2,8 @@ from .academic_form_1ESO import AcademicForm_1ESO
 from .academic_form_2ESO import AcademicForm_2ESO
 from .academic_form_3ESO import AcademicForm_3ESO
 from .academic_form_4ESO import AcademicForm_4ESO
+from .academic_form_4ESO import AcademicForm_4ESO_EAC
+from .academic_form_4ESO import AcademicForm_4ESO_EAP
 from .academic_form_1CIE import AcademicForm_1CIE
 from .academic_form_1CIE import AcademicForm_1CIE_CCS
 from .academic_form_1CIE import AcademicForm_1CIE_TEC
@@ -32,6 +34,8 @@ FORMS = {
     "2ESO": AcademicForm_2ESO,
     "3ESO": AcademicForm_3ESO,
     "4ESO": AcademicForm_4ESO,
+    "4ESO_EAC": AcademicForm_4ESO_EAC,
+    "4ESO_EAP": AcademicForm_4ESO_EAP,
     "1CIE": AcademicForm_1CIE,
     "1CIE_CCS": AcademicForm_1CIE_CCS,
     "1CIE_TEC": AcademicForm_1CIE_TEC,

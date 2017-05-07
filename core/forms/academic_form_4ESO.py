@@ -27,44 +27,14 @@ class AcademicForm_4ESO(forms.Form):
         ("TGD", "Informática")),
         key=lambda x: x[1]
     )
-    ACADEMIC_CORE_SUBJECTS_CHOICES = sorted((
-        ("", "---"),
-        ("BIG+FYQ", "Biología y Geología + Física y Química"),
-        ("ECO+LAT", "Economía + Latín")),
-        key=lambda x: x[1]
-    )
-    APPLIED_CORE_SUBJECTS_CHOICES = sorted((
-        ("", "---"),
-        ("CIE+IVY", "Ciencias aplicadas a la actividad profesional + "
-                    "Iniciación a la actividad emprendedora y empresarial"),
-        ("CIE+TEE", "Ciencias aplicadas a la actividad profesional + "
-                    "Tecnología"),
-        ("IVY+TEE", "Iniciación a la actividad emprendedora y empresarial "
-                    "Tecnología")),
-        key=lambda x: x[1]
-    )
 
-    training_via = forms.ChoiceField(
+    training_itinerary = forms.ChoiceField(
         choices=TRAINING_ITINERARY_CHOICES,
-        label="OPCIÓN DE ENSEÑANZAS",
-    )
-    academic_core_subjects = forms.ChoiceField(
-        choices=ACADEMIC_CORE_SUBJECTS_CHOICES,
-        label="TRONCALES DE OPCIÓN (para Enseñanzas Académicas)",
-        help_text="Cumplimentar sólo en el caso de haber elegido "
-                  "'Enseñanzas Académicas'",
-        required=False
-    )
-    applied_core_subjects = forms.ChoiceField(
-        choices=APPLIED_CORE_SUBJECTS_CHOICES,
-        label="TRONCALES DE OPCIÓN (para Enseñanzas Aplicadas)",
-        help_text="Cumplimentar sólo en el caso de haber elegido "
-                  "'Enseñanzas Aplicadas'",
-        required=False
+        label="ITINERARIO",
     )
     specific_subject1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT1_CHOICES,
-        label="Materia específica 1",
+        label="MATERIA ESPECÍFICA 1",
     )
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
@@ -119,22 +89,6 @@ class AcademicForm_4ESO(forms.Form):
 
     def clean(self):
         cleaned_data = super(AcademicForm_4ESO, self).clean()
-        training_via = cleaned_data.get("training_via")
-        academic_core_subjects = cleaned_data.get("academic_core_subjects")
-        applied_core_subjects = cleaned_data.get("applied_core_subjects")
-
-        if training_via == "EAC" and not academic_core_subjects:
-            self.add_error(
-                "academic_core_subjects",
-                "Debe seleccionar las troncales de opción"
-            )
-
-        if training_via == "EAP" and not applied_core_subjects:
-            self.add_error(
-                "applied_core_subjects",
-                "Debe seleccionar las troncales de opción"
-            )
-
         specific_subjects2 = []
         for i in range(1, 11):
             field = "specific_subject2_order{}".format(i)
@@ -146,3 +100,33 @@ class AcademicForm_4ESO(forms.Form):
                 )
             else:
                 specific_subjects2.append(value)
+
+
+class AcademicForm_4ESO_EAC(forms.Form):
+    CORE_SUBJECTS_CHOICES = sorted((
+        ("BIG+FYQ", "Biología y Geología + Física y Química"),
+        ("ECO+LAT", "Economía + Latín")),
+        key=lambda x: x[1]
+    )
+
+    core_subjects = forms.ChoiceField(
+        choices=CORE_SUBJECTS_CHOICES,
+        label="TRONCALES DE OPCIÓN"
+    )
+
+
+class AcademicForm_4ESO_EAP(forms.Form):
+    CORE_SUBJECTS_CHOICES = sorted((
+        ("CIE+IVY", "Ciencias aplicadas a la actividad profesional + "
+                    "Iniciación a la actividad emprendedora y empresarial"),
+        ("CIE+TEE", "Ciencias aplicadas a la actividad profesional + "
+                    "Tecnología"),
+        ("IVY+TEE", "Iniciación a la actividad emprendedora y empresarial "
+                    "Tecnología")),
+        key=lambda x: x[1]
+    )
+
+    core_subjects = forms.ChoiceField(
+        choices=CORE_SUBJECTS_CHOICES,
+        label="TRONCALES DE OPCIÓN"
+    )
