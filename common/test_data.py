@@ -55,8 +55,13 @@ RESPONSIBLE2_DATA = {
 ACADEMIC_DATA = {
     "1ESO": {
         "global": {
-            "specific_subject1": "VAO",
+            "specific_subject": "VAO",
             "specific_subject2": "SGN"
+        }
+    },
+    "1PMAR": {
+        "global": {
+            "specific_subject": "VAO",
         }
     },
     "2ESO": {

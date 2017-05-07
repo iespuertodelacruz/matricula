@@ -1,0 +1,20 @@
+{% set truncate_limit = 40 %}
+
+<div id="academic" class="section">
+    <div class="title">Información académica</div>
+
+    <table>
+        <tr>
+            <td class="subtitle" colspan="3" style="width: 50%">
+                Materia específica
+            </td>
+            <td style="width: 50%"></td>
+        </tr>
+        <tr>
+            <td class="label">X</td>
+            <td class="value" colspan="2">{{ academic.specific_subject_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+            <td></td>
+        </tr>
+    </table>
+
+</div>
