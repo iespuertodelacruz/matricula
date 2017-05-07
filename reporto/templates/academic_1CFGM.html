@@ -1,0 +1,26 @@
+<div id="academic" class="section">
+    <div class="title">Información académica</div>
+
+    <table>
+        <tr>
+            <td class="subtitle" style="width: 48%">
+                Método de acceso
+            </td>
+            <td style="width: 2%"></td>
+            <td class="subtitle" style="width: 48%">
+                Módulos a cursar nuevamente - Alumnado repetidor
+            </td>
+        </tr>
+        <tr>
+            <td class="value">{{ academic.access_via_label|upper|truncate(40, True, "", 0) }}</td>
+            <td></td>
+            <td class="value" rowspan="2">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0) }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+</div>
