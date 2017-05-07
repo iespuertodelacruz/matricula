@@ -123,6 +123,7 @@ class Responsible2Form(ResponsibleForm, UnknownResponsibleForm):
     def clean(self):
         cleaned_data = super(Responsible2Form, self).clean()
         ignore_info = cleaned_data.get("ignore_info")
+        print(ignore_info)
         if not ignore_info:
             if not cleaned_data.get("gender"):
                 self.add_error("gender", "Este campo es obligatorio")

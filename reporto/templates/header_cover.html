@@ -1,0 +1,25 @@
+<div id="header-cover">
+    <img id="logo-school" src="{{ root }}/static/img/Logotipo_IES.png">
+    <img id="logo-consejeria" src="{{ root }}/static/img/Logotipo_CONSEJERIA.png">
+    <span id="profile-pic">Foto</span>
+    <span id="order-id">Número de orden</span>
+    <div id="register">
+        <b>Fecha de recepción:</b><br>
+        ___ / ___ / ______ <br>
+        <b>Número de expediente:</b><br>
+        __ __ __ __<br>
+    </div>
+    <div id="title">
+        Solicitud de matrícula:
+        <span class="edulevel">{{ vt_edulevel or edulevel.code }}</span>
+    </div>
+    <div id="subtitle">
+        {{ academic.topic_label or edulevel.description }}
+        {% if academic.training_itinerary_label %}
+            - itinerario {{ academic.training_itinerary_label|truncate(40, True, "", 0) }}
+        {% endif %}
+    </div>
+    <div id="school-year">
+        {{ school_year }}
+    </div>
+</div>

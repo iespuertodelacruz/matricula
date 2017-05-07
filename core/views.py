@@ -170,13 +170,16 @@ def family(request, edulevel_code, responsible_id):
     if request.method == "POST":
         form = ResponsibleForm(request.POST)
         if form.is_valid():
-            if not form.cleaned_data.get("ignore_info"):
-                key = "responsible{}".format(responsible_id)
+            if form.cleaned_data.get("ignore_info"):
+                data = {"ignore_info": True}
+            else:
                 data = expand_choices(form)
-                request.session[key] = json.dumps(
-                    data,
-                    default=json_dump_handler
-                )
+                data["age"] = age(data["birth_date"])
+            key = "responsible{}".format(responsible_id)
+            request.session[key] = json.dumps(
+                data,
+                default=json_dump_handler
+            )
             if responsible_id == "1":
                 return HttpResponseRedirect(
                     reverse("family", args=[edulevel_code, 2])

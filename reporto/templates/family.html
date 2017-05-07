@@ -1,0 +1,123 @@
+<div id="family" class="section">
+    <div class="title">Datos personales del Responsable 1</div>
+
+    <table>
+        <tr>
+            <td class="label">Nombre:</td>
+            <td class="value u50" colspan="2">{{ responsible1.name|upper|truncate(20, True, "", 0) }}</td>
+            <td></td>
+            <td class="label">Apellidos:</td>
+            <td class="value" colspan="3">{{ responsible1.surname|upper|truncate(38, True, "", 0) }}</td>
+        </tr>
+        <tr>
+            {% if responsible1.nif %}
+                <td class="label">NIF:</td>
+                <td class="value u30">{{ responsible1.nif|upper }}</td>
+            {% elif responsible1.nie %}
+                <td class="label">NIE:</td>
+                <td class="value">{{ responsible1.nie|upper }}</td>
+            {% elif responsible1.passport %}
+                <td class="label">Pasaporte:</td>
+                <td class="value">{{ responsible1.passport|upper }}</td>
+            {% endif %}
+            <td></td>
+            <td></td>
+            <td class="label">Trabajo:</td>
+            <td class="value" colspan="3">{{ responsible1.job|upper|truncate(38, True, "", 0) }}</td>
+        </tr>
+        <tr>
+            <td class="label">Sexo:</td>
+            <td class="value u30">{{ responsible1.gender_label|upper }}</td>
+            <td></td>
+            <td></td>
+            <td class="label">Vínculo:</td>
+            <td class="value u30">{{ responsible1.link_label|upper }}</td>
+            <td class="label">Teléfono móvil:</td>
+            <td class="value u30">{{ responsible1.mobile_phone }}</td>
+        </tr>
+        <tr>
+            <td class="label">F. Nac.:</td>
+            <td class="value u30">{{ responsible1.birth_date }}</td>
+            <td></td>
+            <td></td>
+            <td class="label">Email:</td>
+            <td class="value" colspan="3">{{ responsible1.email }}</td>
+        </tr>
+        <tr>
+            <td class="label">Edad:</td>
+            <td class="value u30">{{ responsible1.age }} años</td>
+            <td></td>
+            <td></td>
+            <td class="label">Patria potestad:</td>
+            <td class="value u30">{{ responsible1.parental_auth|boolean }}</td>
+            <td class="label">Guarda custodia:</td>
+            <td class="value u30">{{ responsible1.children_custody|boolean }}</td>
+        </tr>
+    </table>
+
+    <div style="height: 5mm"></div>
+
+    <div class="title">Datos personales del Responsable 2</div>
+
+    {% if responsible2.ignore_info %}
+        Se desconocen los datos de este responsable.
+
+    {% else %}
+
+        <table>
+            <tr>
+                <td class="label">Nombre:</td>
+                <td class="value u50" colspan="2">{{ responsible2.name|upper|truncate(20, True, "", 0) }}</td>
+                <td></td>
+                <td class="label">Apellidos:</td>
+                <td class="value" colspan="3">{{ responsible2.surname|upper|truncate(38, True, "", 0) }}</td>
+            </tr>
+            <tr>
+                {% if responsible2.nif %}
+                    <td class="label">NIF:</td>
+                    <td class="value u30">{{ responsible2.nif|upper }}</td>
+                {% elif responsible2.nie %}
+                    <td class="label">NIE:</td>
+                    <td class="value">{{ responsible2.nie|upper }}</td>
+                {% elif responsible2.passport %}
+                    <td class="label">Pasaporte:</td>
+                    <td class="value">{{ responsible2.passport|upper }}</td>
+                {% endif %}
+                <td></td>
+                <td></td>
+                <td class="label">Trabajo:</td>
+                <td class="value" colspan="3">{{ responsible2.job|upper|truncate(38, True, "", 0) }}</td>
+            </tr>
+            <tr>
+                <td class="label">Sexo:</td>
+                <td class="value u30">{{ responsible2.gender_label|upper }}</td>
+                <td></td>
+                <td></td>
+                <td class="label">Vínculo:</td>
+                <td class="value u30">{{ responsible2.link_label|upper }}</td>
+                <td class="label">Teléfono móvil:</td>
+                <td class="value u30">{{ responsible2.mobile_phone }}</td>
+            </tr>
+            <tr>
+                <td class="label">F. Nac.:</td>
+                <td class="value u30">{{ responsible2.birth_date }}</td>
+                <td></td>
+                <td></td>
+                <td class="label">Email:</td>
+                <td class="value" colspan="3">{{ responsible2.email }}</td>
+            </tr>
+            <tr>
+                <td class="label">Edad:</td>
+                <td class="value u30">{{ responsible2.age }} años</td>
+                <td></td>
+                <td></td>
+                <td class="label">Patria potestad:</td>
+                <td class="value u30">{{ responsible2.parental_auth|boolean }}</td>
+                <td class="label">Guarda custodia:</td>
+                <td class="value u30">{{ responsible2.children_custody|boolean }}</td>
+            </tr>
+        </table>
+    
+    {% endif %}
+
+</div>

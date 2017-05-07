@@ -1,14 +1,23 @@
 @page {
   size: a4;
-  margin-top: 5cm;
   margin-left: 1cm;
   margin-right: 1cm;
+  margin-top: 3cm;
   @top-center {
     content: element(header);
   }
 }
+@page :first {
+  margin-top: 5cm;
+  @top-center {
+    content: element(header_cover);
+  }
+}
 #header {
   position: running(header);
+}
+#header-cover {
+  position: running(header_cover);
 }
 @font-face {
   src: url("../fonts/NewsCycle-Regular.ttf");
@@ -48,19 +57,19 @@ h6 {
 .field {
   margin-right: 7mm;
 }
-#header #logo-school {
+#header-cover #logo-school {
   position: absolute;
   top: 3mm;
   left: 0;
   width: 40mm;
 }
-#header #logo-consejeria {
+#header-cover #logo-consejeria {
   position: absolute;
   top: -17mm;
   left: 0;
   width: 50mm;
 }
-#header #profile-pic {
+#header-cover #profile-pic {
   width: 33mm;
   height: 43mm;
   border: 1px solid #000;
@@ -70,7 +79,7 @@ h6 {
   text-align: center;
   line-height: 43mm;
 }
-#header #order-id {
+#header-cover #order-id {
   position: absolute;
   width: 40mm;
   height: 20mm;
@@ -80,13 +89,13 @@ h6 {
   border: 1px solid #000;
   line-height: 20mm;
 }
-#header #register {
+#header-cover #register {
   position: absolute;
   top: -23mm;
   left: 100mm;
   line-height: 6mm;
 }
-#header #title {
+#header-cover #title {
   position: absolute;
   top: 5mm;
   left: 55mm;
@@ -94,10 +103,10 @@ h6 {
   font-size: 20pt;
   line-height: 7mm;
 }
-#header #title .edulevel {
+#header-cover #title .edulevel {
   font-size: 30pt;
 }
-#header #subtitle {
+#header-cover #subtitle {
   width: 10cm;
   position: absolute;
   top: 13mm;
@@ -107,7 +116,7 @@ h6 {
   color: #808080;
   font-family: BebasNeue;
 }
-#header #school-year {
+#header-cover #school-year {
   position: absolute;
   top: -20mm;
   left: 14mm;
@@ -167,4 +176,19 @@ h6 {
   left: 0;
   right: 0;
   top: 122mm;
+}
+.page-break {
+  page-break-after: always;
+}
+#header #logo-school {
+  position: absolute;
+  top: -10mm;
+  left: 0;
+  width: 40mm;
+}
+#header #logo-consejeria {
+  position: absolute;
+  top: -10mm;
+  right: 0;
+  width: 50mm;
 }

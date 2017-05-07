@@ -22,8 +22,8 @@ STUDENT_DATA = {
 }
 
 RESPONSIBLE1_DATA = {
-    "name": "Frank",
-    "surname": "Mayer",
+    "name": "Frank ahora pongo un nombre que no cabe",
+    "surname": "Mayer esto es un super apellido larguísimo",
     "link": "PAD",
     "nif": "12345678Y",
     "nie": "",
@@ -32,7 +32,7 @@ RESPONSIBLE1_DATA = {
     "mobile_phone": "555555555",
     "email": "test@test.com",
     "birth_date": "1/6/1984",
-    "job": "Carpenter",
+    "job": "Carpintero pero además Informático y también otras cosas",
     "parental_auth": True,
     "children_custody": False
 }
