@@ -1,0 +1,5 @@
+DEBUG = False
+SECRET_KEY = "xxxxxxxxx"
+ALLOWED_HOSTS = ["matricula.iespuertodelacruz.es"]
+STATIC_ROOT = "/path/to/your/statics"
+MEDIA_ROOT = "/path/to/your/media"
