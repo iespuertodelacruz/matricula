@@ -38,4 +38,14 @@ urlpatterns = [
         views.form,
         name="form"
     ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/auth/pick/$",
+        views.auth_pick,
+        name="auth_pick"
+    ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/auth/exit/$",
+        views.auth_exit,
+        name="auth_exit"
+    ),
 ]

@@ -3,13 +3,14 @@ from django.http import HttpResponseRedirect, HttpResponse
 from core.forms.student_form import StudentForm
 from .models import EduLevel
 from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
-from common.test_data import ACADEMIC_DATA
+from common.test_data import ACADEMIC_DATA, AUTH_DATA, EXTRA_DATA
 from django.urls import reverse
 import json
 from common.utils import age, json_dump_handler, field_verbose, expand_choices
 from common.utils import calculate_schoolyear
 from core.forms.router import get_formclass
 from django.conf import settings
+from core.forms.auth_forms import PickAuthForm, ExitAuthForm
 from core.forms.extra_forms import ExtraForm
 from reporto.core import PdfReport
 from core.forms.academic_form_FP import get_edulevel
@@ -20,6 +21,8 @@ SECTIONS = [
     "itinerary",
     "responsible1",
     "responsible2",
+    "auth_pick",
+    "auth_exit",
     "extra"
 ]
 
@@ -186,7 +189,7 @@ def family(request, edulevel_code, responsible_id):
                 )
             elif responsible_id == "2":
                 return HttpResponseRedirect(
-                    reverse("extra", args=[edulevel_code])
+                    reverse("auth_pick", args=[edulevel_code])
                 )
         else:
             valid_form = False
@@ -212,6 +215,71 @@ def family(request, edulevel_code, responsible_id):
     )
 
 
+def auth_pick(request, edulevel_code):
+    valid_form = True
+    if request.method == "POST":
+        form = PickAuthForm(request.POST)
+        if form.is_valid():
+            data = expand_choices(form)
+            request.session["auth_pick"] = json.dumps(data)
+            return HttpResponseRedirect(
+                reverse("auth_exit", args=[edulevel_code])
+            )
+        else:
+            valid_form = False
+    else:
+        if settings.DEBUG:
+            form = PickAuthForm(AUTH_DATA["pick"])
+        else:
+            form = PickAuthForm()
+
+    return render(
+        request,
+        "form.html",
+        {
+            "title": "Personas autorizadas a recoger al alumno/a",
+            "description": """
+El alumnado menor de edad no puede salir del centro durante el período lectivo.
+En caso de que hubiera necesidad de recogerlo por algún motivo, sólo lo podrían
+hacer padre/madre/tutores legales, ó bien aquellas personas que fueran
+autorizadas en el siguiente formulario. Máximo de 4 personas.
+            """,
+            "form": form,
+            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "valid_form": valid_form,
+            "prevent_exit": "false"
+        }
+    )
+
+
+def auth_exit(request, edulevel_code):
+    valid_form = True
+    if request.method == "POST":
+        form = ExitAuthForm(request.POST)
+        if form.is_valid():
+            data = expand_choices(form)
+            request.session["auth_exit"] = json.dumps(data)
+            return HttpResponseRedirect(
+                reverse("extra", args=[edulevel_code])
+            )
+        else:
+            valid_form = False
+    else:
+        form = ExitAuthForm()
+
+    return render(
+        request,
+        "form.html",
+        {
+            "title": "Autorizaciones de salida",
+            "form": form,
+            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "valid_form": valid_form,
+            "prevent_exit": "false"
+        }
+    )
+
+
 def extra(request, edulevel_code):
     valid_form = True
     if request.method == "POST":
@@ -225,7 +293,10 @@ def extra(request, edulevel_code):
         else:
             valid_form = False
     else:
-        form = ExtraForm()
+        if settings.DEBUG:
+            form = ExtraForm(EXTRA_DATA)
+        else:
+            form = ExtraForm()
 
     return render(
         request,

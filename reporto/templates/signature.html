@@ -1,0 +1,30 @@
+{% set truncate_limit = 25 %}
+
+<div id="signature" class="section">
+    <div class="title">ACEPTACIÓN DE CONDICIONES Y FIRMA</div>
+
+    <div class="content">
+    
+        En Puerto de la Cruz, a 4 de junio de 2016
+
+        <table>
+            <tr>
+                <td style="width: 33%">Responsable 1</td>
+                <td style="width: 33%">El alumno/a</td>
+                <td style="width: 33%">Responsable 2</td>
+            </tr>
+            <tr class="space"></tr>
+            <tr>
+                <td>Fdo.: {{ (responsible1.name + responsible1.surname)|title|truncate(truncate_limit, True, "", 0) }}</td>
+                <td>Fdo.: {{ (student.name + student.surname)|title|truncate(truncate_limit, True, "", 0) }}</td>
+                <td>Fdo.: {{ (responsible2.name + responsible2.surname)|title|truncate(truncate_limit, True, "", 0) }}</td>
+            </tr>
+        </table>
+
+        <div class="conditions">
+            Con la firma de este documento acepta las condiciones establecidas en <a href="https://matricula.iespuertodelacruz.es/condiciones">https://matricula.iespuertodelacruz.es/condiciones</a>
+        </div>
+
+    </div>
+
+</div>

@@ -2,14 +2,14 @@
     size: a4
     margin-left: 1cm
     margin-right: 1cm
-    margin-top: 3cm
+    margin-top: 2cm
     @top-center
         content: element(header)
 
-@page :first
-    margin-top: 5cm
-    @top-center
-        content: element(header_cover)
+// @page :first
+//     margin-top: 5cm
+//     @top-center
+//         content: element(header_cover)
 
 #header
     position: running(header)
@@ -50,8 +50,20 @@ h1, h2, h3, h4, h5, h6
 .field
     margin-right: 7mm
 
-#header-cover
+#header
+    #logo-school
+        position: absolute
+        top: -5mm
+        left: 0
+        width: 30mm
 
+    #logo-consejeria
+        position: absolute
+        top: -6mm
+        right: 0
+        width: 40mm
+
+#header-cover
     #logo-school
         position: absolute
         top: 3mm
@@ -166,15 +178,28 @@ h1, h2, h3, h4, h5, h6
 .page-break
     page-break-after: always
 
-#header
-    #logo-school
-        position: absolute
-        top: -10mm
-        left: 0
-        width: 40mm
+#auth
+    position: absolute
+    left: 0
+    right: 0
+    top: 103mm
 
-    #logo-consejeria
-        position: absolute
-        top: -10mm
-        right: 0
-        width: 50mm
+#extra
+    position: absolute
+    left: 0
+    right: 0
+    top: 157mm
+
+#signature
+    position: absolute
+    left: 0
+    right: 0
+    top: 219mm
+    .content
+        text-align: center
+        font-size: 11pt
+        .space
+            height: 10mm
+        .conditions
+            font-size: 9pt
+            margin-top: 3mm

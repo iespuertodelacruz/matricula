@@ -367,3 +367,37 @@ PageMaker, el cual incluye versiones de Lorem Ipsum.
         }
     },
 }
+
+AUTH_DATA = {
+    "pick": {
+        "nif1": "12345678Y",
+        "long_name1": "Pepe Sánchez Marrero",
+        "nif2": "87654321H",
+        "long_name2": "Antonio Con un Apellido Largo",
+        "nif3": "77777777T",
+        "long_name3": "Mary The Long Surname",
+        "nif4": "22222222R",
+        "long_name4": "Camile Boris Juvenil",
+    },
+}
+
+EXTRA_DATA = {
+    "auth_image_use": True,
+    "has_health_problem": True,
+    "health_problem": """El síndrome de Asperger (SA) es un conjunto de
+características mentales y
+conductuales que forma parte de los trastornos del espectro autista.
+Se encuadra dentro de los trastornos generalizados del desarrollo
+(CIE-10; Capítulo V; F84). La persona afectada muestra dificultades,
+de gravedad variable, en la interacción social y en la comunicación, así como
+actividades e intereses en áreas que suelen ser muy restringidas y en muchos
+casos estereotipias.
+Se diferencia del autismo infantil temprano que describió Leo Kanner y de otras
+formas menos específicas en que en el trastorno de Asperger no se observa
+retraso en el desarrollo del lenguaje, y no existe una perturbación
+clínicamente significativa en su adquisición. No hay retardo, por ejemplo, en
+la edad en que aparecen las primeras palabras y frases, aunque pueden existir
+particularidades cualitativas (por ejemplo, gramaticales) que llamen la
+atención, así como una preservación generalizada de la inteligencia.
+    """
+}

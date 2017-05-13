@@ -1,0 +1,20 @@
+<div id="extra" class="section">
+    <div class="title">Otra información de interés</div>
+
+    <table style="width: 60%">
+        <tr>
+            <td class="label">Autoriza uso de imagen:</td>
+            <td class="value">{{ extra.auth_image_use|boolean }}</td>
+            <td></td>
+            <td class="label">Presenta problemas de salud:</td>
+            <td class="value">{{ extra.has_health_problem|boolean }}</td>
+        </tr>
+    </table>
+
+    <table style="height: 37mm">
+        <tr>
+            <td class="value">{{ extra.health_problem|upper|truncate(600, True, "", 0) }}</td>
+        </tr>
+    </table>
+
+</div>

@@ -2,15 +2,9 @@
   size: a4;
   margin-left: 1cm;
   margin-right: 1cm;
-  margin-top: 3cm;
+  margin-top: 2cm;
   @top-center {
     content: element(header);
-  }
-}
-@page :first {
-  margin-top: 5cm;
-  @top-center {
-    content: element(header_cover);
   }
 }
 #header {
@@ -56,6 +50,18 @@ h6 {
 }
 .field {
   margin-right: 7mm;
+}
+#header #logo-school {
+  position: absolute;
+  top: -5mm;
+  left: 0;
+  width: 30mm;
+}
+#header #logo-consejeria {
+  position: absolute;
+  top: -6mm;
+  right: 0;
+  width: 40mm;
 }
 #header-cover #logo-school {
   position: absolute;
@@ -180,15 +186,32 @@ h6 {
 .page-break {
   page-break-after: always;
 }
-#header #logo-school {
+#auth {
   position: absolute;
-  top: -10mm;
   left: 0;
-  width: 40mm;
-}
-#header #logo-consejeria {
-  position: absolute;
-  top: -10mm;
   right: 0;
-  width: 50mm;
+  top: 103mm;
+}
+#extra {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 157mm;
+}
+#signature {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 219mm;
+}
+#signature .content {
+  text-align: center;
+  font-size: 11pt;
+}
+#signature .content .space {
+  height: 10mm;
+}
+#signature .content .conditions {
+  font-size: 9pt;
+  margin-top: 3mm;
 }
