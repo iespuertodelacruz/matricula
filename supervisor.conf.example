@@ -1,0 +1,13 @@
+[program:matricula]
+user = <username>
+environment = HOME="/home/<username>", USER="<username>"
+command = /home/<username>/matricula/run.sh
+stderr_logfile = /path/to/log/matricula.err.log
+stdout_logfile = /path/to/log/matricula.out.log
+autostart = true
+autorestart = false
+stopsignal = INT
+redirect_stderr = true
+startretries = 0
+killasagroup = true
+stopasagroup = true
