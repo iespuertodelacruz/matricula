@@ -13,7 +13,7 @@
 <h3>Documentación a entregar</h3>
 
 <ul>
-    <li><a href="{% url 'form' edulevel.code %}" target="blank">Impreso de matrícula</a> (imprimir 2 copias, preferiblemente a doble cara).</li>
+    <li><a href="{% url 'form' edulevel.code %}">Impreso de matrícula</a> (imprimir 2 copias, preferiblemente a doble cara).</li>
     <li><b>1 foto de carnet</b> de <i>{{ data.student.full_name|title }}</i> pegada a la esquina superior derecha del impreso de matrícula.</li>
     <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.student.full_name|title }}</i>.</li>
     {% if data.student.lastyear_studies %}
