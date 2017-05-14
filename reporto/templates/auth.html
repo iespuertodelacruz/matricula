@@ -1,11 +1,9 @@
 {% set truncate_limit = 80 %}
 
 <div id="auth" class="section">
-    <div class="title">Autorizaciones de salida</div>
 
-    {% if student.adult %}
-        El alumno/a es mayor de edad. No se muestra información sobre autorizaciones de salida.
-    {% else %}
+    {% if not student.adult %}
+        <div class="title">Autorizaciones de salida</div>
         <table>
             <tr>
                 <td class="value" style="width: 20%">{{ auth_pick.nif1|upper }}</td>
