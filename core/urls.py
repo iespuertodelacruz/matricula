@@ -54,7 +54,12 @@ urlpatterns = [
         name="summary"
     ),
     url(
-        r"^condiciones|conditions/$",
+        r"^condiciones/$",
+        views.conditions,
+        name="condiciones"
+    ),
+    url(
+        r"^conditions/$",
         views.conditions,
         name="conditions"
     ),
