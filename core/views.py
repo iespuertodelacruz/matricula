@@ -342,7 +342,7 @@ def form(request, edulevel_code):
     vt_edulevel = get_edulevel(edulevel_code, params["academic"])
 
     # signature date (with locale)
-    locale.setlocale(locale.LC_TIME, "es_ES")
+    locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
     signature_date = report.generation_time.strftime("%d de %B de %Y")
 
     report.render(
