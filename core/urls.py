@@ -48,4 +48,14 @@ urlpatterns = [
         views.auth_exit,
         name="auth_exit"
     ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/summary/$",
+        views.summary,
+        name="summary"
+    ),
+    url(
+        r"^conditions/$",
+        views.conditions,
+        name="conditions"
+    ),
 ]

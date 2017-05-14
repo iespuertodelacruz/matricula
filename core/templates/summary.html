@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content_left %}
+
+<h2>Resumen</h2>
+
+<p>
+    Éste es el último paso del asistente de generación de matrícula. Tenga en cuenta los siguientes puntos:
+</p>
+
+<h3>Documentación a entregar</h3>
+
+<ul>
+    <li><a href="{% url 'form' edulevel.code %}" target="blank">Impreso de matrícula</a> (imprimir 2 copias, preferiblemente a doble cara).</li>
+    <li><b>1 foto de carnet</b> de <i>{{ data.student.full_name|title }}</i> pegada a la esquina superior derecha del impreso de matrícula.</li>
+    <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.student.full_name|title }}</i>.</li>
+    {% if data.student.lastyear_studies %}
+        <li><b>Certificado de estudios</b> del centro de origen.</li>
+    {% endif %}
+    <li><b>Fotocopia de la tarjeta sanitaria</b> o cartilla de la seguridad social.</li>
+    {% if not data.student.adult %}
+        <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.responsible1.full_name|title }}</i>.</li>
+        {% if not data.responsible1.ignore_data %}
+            <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.responsible2.full_name|title }}</i>.</li>
+        {% endif %}
+    {% endif %}
+    <li>Fotocopia de la sentencia judicial que valida el <b>convenio regulador del régimen de visitas</b> (en caso de padres separados).</li>
+    {% with doc_url="docs/"|add:edulevel.enrollment_payment_doc %}
+        <li><a href="{% static doc_url %}" target="blank">Resguardo del pago de tasas de matrícula</a> (Original y copia) <b>{{ edulevel.cost }}€</b>.</li>
+    {% endwith %}
+</ul>
+
+<p>
+    <i class="fa fa-check-square-o"></i>
+    Con la firma del documento de matrícula <a href="{% url 'conditions' %}">acepta estas condiciones</a>.
+</p>
+
+<h3>Fecha de entrega de matrícula</h3>
+
+<p>
+    Recuerde que debe entregar la documentación en la secretaría del centro el próximo día <b>{{ edulevel.enrollment_date }}</b> en horario de <b>8:30h a 13:30h</b>.
+</p>
+
+<h3>Inscripción en el AMPA</h3>
+
+<p>
+    Si desea inscribirse en la Asociación de Madres y Padres de Alumnado (AMPA) debe <a href="{% static 'docs/ampa_form.pdf' %}" target="blank">rellenar el siguiente formulario</a> y entregarlo en la secretaría del centro.
+</p>
+
+{% endblock %}

@@ -1,4 +1,5 @@
 import datetime
+import json
 
 
 def json_dump_handler(data):
@@ -36,3 +37,14 @@ def calculate_schoolyear():
     today = datetime.date.today()
     ref_year = today.year - (today.month < 5)
     return "{}/{}".format(ref_year, ref_year+1)
+
+
+def load_session_data(session, sections):
+    data = {}
+    for s in sections:
+        if session.get(s):
+            v = json.loads(session[s])
+        else:
+            v = None
+        data[s] = v
+    return data

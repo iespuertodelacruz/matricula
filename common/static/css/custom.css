@@ -13,6 +13,9 @@ h5,
 h6 {
   font-family: "BebasNeue";
 }
+a {
+  font-weight: bold;
+}
 .navbar .row {
   padding-top: 10px;
   padding-bottom: 10px;

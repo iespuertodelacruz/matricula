@@ -16,3 +16,6 @@ class EduLevel(models.Model):
         verbose_name = "Nivel educativo"
         verbose_name_plural = "Niveles educativos"
         ordering = ["order", "code"]
+
+    def enrollment_payment_doc(self):
+        return f"enrollment_payment_{self.cost}.pdf"

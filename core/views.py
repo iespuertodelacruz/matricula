@@ -6,8 +6,7 @@ from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
 from common.test_data import ACADEMIC_DATA, AUTH_DATA, EXTRA_DATA
 from django.urls import reverse
 import json
-from common.utils import age, json_dump_handler, field_verbose, expand_choices
-from common.utils import calculate_schoolyear
+from common import utils
 from core.forms.router import get_formclass
 from django.conf import settings
 from core.forms.auth_forms import PickAuthForm, ExitAuthForm
@@ -46,12 +45,13 @@ def student(request, edulevel_code):
     if request.method == "POST":
         form = StudentForm(request.POST)
         if form.is_valid():
-            data = expand_choices(form)
-            data["age"] = age(data["birth_date"])
+            data = utils.expand_choices(form)
+            data["age"] = utils.age(data["birth_date"])
             data["adult"] = data["age"] >= 18
+            data["full_name"] = data["name"] + " " + data["surname"]
             request.session["student"] = json.dumps(
                 data,
-                default=json_dump_handler
+                default=utils.json_dump_handler
             )
             return HttpResponseRedirect(
                 reverse("academic", args=[edulevel_code])
@@ -84,7 +84,7 @@ def academic(request, edulevel_code):
         form = AcademicForm(request.POST)
         if form.is_valid():
             training_itinerary = form.cleaned_data.get("training_itinerary")
-            data = expand_choices(form)
+            data = utils.expand_choices(form)
             request.session["academic"] = json.dumps(data)
             if training_itinerary:
                 return HttpResponseRedirect(
@@ -131,7 +131,7 @@ def itinerary(request, edulevel_code, itinerary_code):
     if request.method == "POST":
         form = ItineraryForm(request.POST)
         if form.is_valid():
-            data = expand_choices(form)
+            data = utils.expand_choices(form)
             request.session["itinerary"] = json.dumps(data)
             if json.loads(request.session["student"])["adult"]:
                 return HttpResponseRedirect(
@@ -160,7 +160,7 @@ def itinerary(request, edulevel_code, itinerary_code):
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
             "prevent_exit": "false",
-            "itinerary": field_verbose(
+            "itinerary": utils.field_verbose(
                 AcademicForm.TRAINING_ITINERARY_CHOICES,
                 itinerary_code
             )
@@ -177,12 +177,13 @@ def family(request, edulevel_code, responsible_id):
             if form.cleaned_data.get("ignore_info"):
                 data = {"ignore_info": True}
             else:
-                data = expand_choices(form)
-                data["age"] = age(data["birth_date"])
+                data = utils.expand_choices(form)
+                data["age"] = utils.age(data["birth_date"])
+                data["full_name"] = data["name"] + " " + data["surname"]
             key = "responsible{}".format(responsible_id)
             request.session[key] = json.dumps(
                 data,
-                default=json_dump_handler
+                default=utils.json_dump_handler
             )
             if responsible_id == "1":
                 return HttpResponseRedirect(
@@ -221,7 +222,7 @@ def auth_pick(request, edulevel_code):
     if request.method == "POST":
         form = PickAuthForm(request.POST)
         if form.is_valid():
-            data = expand_choices(form)
+            data = utils.expand_choices(form)
             request.session["auth_pick"] = json.dumps(data)
             return HttpResponseRedirect(
                 reverse("auth_exit", args=[edulevel_code])
@@ -258,7 +259,7 @@ def auth_exit(request, edulevel_code):
     if request.method == "POST":
         form = ExitAuthForm(request.POST)
         if form.is_valid():
-            data = expand_choices(form)
+            data = utils.expand_choices(form)
             request.session["auth_exit"] = json.dumps(data)
             return HttpResponseRedirect(
                 reverse("extra", args=[edulevel_code])
@@ -286,10 +287,10 @@ def extra(request, edulevel_code):
     if request.method == "POST":
         form = ExtraForm(request.POST)
         if form.is_valid():
-            data = expand_choices(form)
+            data = utils.expand_choices(form)
             request.session["extra"] = json.dumps(data)
             return HttpResponseRedirect(
-                reverse("form", args=[edulevel_code])
+                reverse("summary", args=[edulevel_code])
             )
         else:
             valid_form = False
@@ -312,16 +313,27 @@ def extra(request, edulevel_code):
     )
 
 
+def summary(request, edulevel_code):
+    data = utils.load_session_data(request.session, SECTIONS)
+    return render(
+        request,
+        "summary.html",
+        {
+            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "prevent_exit": "false",
+            "data": data
+        }
+    )
+
+
+def conditions(request):
+    pass
+
+
 def form(request, edulevel_code):
     report = PdfReport("form.html", HttpResponse)
 
-    params = {}
-    for s in SECTIONS:
-        if request.session.get(s):
-            v = json.loads(request.session[s])
-        else:
-            v = None
-        params[s] = v
+    params = utils.load_session_data(request.session, SECTIONS)
     edulevel = EduLevel.objects.get(code=edulevel_code)
     # vocational training
     vt_edulevel = get_edulevel(edulevel_code, params["academic"])
@@ -329,11 +341,12 @@ def form(request, edulevel_code):
     # signature date (with locale)
     locale.setlocale(locale.LC_TIME, "es_ES")
     signature_date = report.generation_time.strftime("%d de %B de %Y")
+
     report.render(
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
-        school_year=calculate_schoolyear(),
+        school_year=utils.calculate_schoolyear(),
         signature_date=signature_date
     )
     return report.http_response()
