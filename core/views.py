@@ -14,6 +14,7 @@ from core.forms.auth_forms import PickAuthForm, ExitAuthForm
 from core.forms.extra_forms import ExtraForm
 from reporto.core import PdfReport
 from core.forms.academic_form_FP import get_edulevel
+import locale
 
 SECTIONS = [
     "student",
@@ -325,10 +326,14 @@ def form(request, edulevel_code):
     # vocational training
     vt_edulevel = get_edulevel(edulevel_code, params["academic"])
 
+    # signature date (with locale)
+    locale.setlocale(locale.LC_TIME, "es_ES")
+    signature_date = report.generation_time.strftime("%d de %B de %Y")
     report.render(
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
-        school_year=calculate_schoolyear()
+        school_year=calculate_schoolyear(),
+        signature_date=signature_date
     )
     return report.http_response()
