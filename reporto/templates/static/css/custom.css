@@ -109,7 +109,7 @@ h6 {
 }
 #header-cover #title {
   position: absolute;
-  top: 5mm;
+  top: 6mm;
   left: 55mm;
   font-family: BebasNeue;
   font-size: 20pt;
@@ -121,7 +121,7 @@ h6 {
 #header-cover #subtitle {
   width: 10cm;
   position: absolute;
-  top: 13mm;
+  top: 14mm;
   left: 55mm;
   font-size: 16pt;
   line-height: 5mm;
@@ -134,6 +134,14 @@ h6 {
   left: 14mm;
   font-family: BebasNeue;
   font-size: 16pt;
+}
+#header-cover #record .digit {
+  height: 6mm;
+  width: 6mm;
+  display: inline-block;
+  border: 1px solid #000;
+  margin: 0;
+  padding: 0;
 }
 .section .title {
   font-family: BebasNeue;
@@ -215,9 +223,6 @@ h6 {
   left: 0;
   right: 0;
   top: 157mm;
-}
-#extra #health-problem {
-  height: 37mm;
 }
 #signature {
   position: absolute;

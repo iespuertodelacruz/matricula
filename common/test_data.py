@@ -8,7 +8,7 @@ STUDENT_DATA = {
     "home_phone": "",
     "mobile_phone": "555555555",
     "email": "test@test.com",
-    "birth_date": "1/6/1985",
+    "birth_date": "1/6/2005",
     "birth_country": "Spain",
     "birth_province": "Testing",
     "birth_town": "Puerto de la Cruz",
