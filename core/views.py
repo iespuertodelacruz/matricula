@@ -71,8 +71,7 @@ def student(request, edulevel_code):
             "title": "Datos personales del alumno/a",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form,
-            "prevent_exit": "false"
+            "valid_form": valid_form
         }
     )
 
@@ -115,8 +114,7 @@ def academic(request, edulevel_code):
             "title": "Información académica",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form,
-            "prevent_exit": "false"
+            "valid_form": valid_form
         }
     )
 
@@ -159,7 +157,6 @@ def itinerary(request, edulevel_code, itinerary_code):
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
-            "prevent_exit": "false",
             "itinerary": utils.field_verbose(
                 AcademicForm.TRAINING_ITINERARY_CHOICES,
                 itinerary_code
@@ -211,8 +208,7 @@ def family(request, edulevel_code, responsible_id):
             "title": "Datos del responsable {}".format(responsible_id),
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form,
-            "prevent_exit": "false"
+            "valid_form": valid_form
         }
     )
 
@@ -248,8 +244,7 @@ autorizadas en el siguiente formulario. Máximo de 4 personas.
             """,
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form,
-            "prevent_exit": "false"
+            "valid_form": valid_form
         }
     )
 
@@ -276,8 +271,7 @@ def auth_exit(request, edulevel_code):
             "title": "Autorizaciones de salida",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form,
-            "prevent_exit": "false"
+            "valid_form": valid_form
         }
     )
 
@@ -307,8 +301,7 @@ def extra(request, edulevel_code):
             "title": "Otra información de interés",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form,
-            "prevent_exit": "false"
+            "valid_form": valid_form
         }
     )
 
@@ -320,7 +313,6 @@ def summary(request, edulevel_code):
         "summary.html",
         {
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "prevent_exit": "false",
             "data": data
         }
     )
