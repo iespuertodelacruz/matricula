@@ -14,7 +14,9 @@
         <tr>
             <td class="value" rowspan="2">{{ academic.access_via_label|upper|truncate(80, True, "", 0) }}</td>
             <td></td>
-            <td class="value" rowspan="3">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0) }}</td>
+            {% if academic.repeating_subjects %}
+                <td class="value" rowspan="3">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0) }}</td>
+            {% endif %}
         </tr>
         <tr>
             <td></td>

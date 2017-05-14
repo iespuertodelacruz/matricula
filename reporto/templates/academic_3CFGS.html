@@ -8,7 +8,9 @@
             </td>
         </tr>
         <tr>
-            <td class="value">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0)|replace("\r\n", "<br>") }}</td>
+            {% if academic.repeating_subjects %}
+                <td class="value">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0)|replace("\r\n", "<br>") }}</td>
+            {% endif %}
         </tr>
     </table>
 

@@ -216,6 +216,9 @@ h6 {
   right: 0;
   top: 157mm;
 }
+#extra #health-problem {
+  height: 37mm;
+}
 #signature {
   position: absolute;
   left: 0;
