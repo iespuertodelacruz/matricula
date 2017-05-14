@@ -19,3 +19,6 @@ class EduLevel(models.Model):
 
     def enrollment_payment_doc(self):
         return f"enrollment_payment_{self.cost}.pdf"
+
+    def is_vocational_training(self):
+        return self.code[1:] in ["CFGM", "CFGS"]

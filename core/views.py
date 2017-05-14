@@ -327,7 +327,10 @@ def summary(request, edulevel_code):
 
 
 def conditions(request):
-    pass
+    return render(
+        request,
+        "conditions.html"
+    )
 
 
 def form(request, edulevel_code):

@@ -43,10 +43,19 @@
     Recuerde que debe entregar la documentación en la secretaría del centro el próximo día <b>{{ edulevel.enrollment_date }}</b> en horario de <b>8:30h a 13:30h</b>.
 </p>
 
+{% if edulevel.is_vocational_training %}
+    <h3>Convalidación de módulos</h3>
+
+    <p>
+        Si desea convalidar módulos para su matrícula en ciclos de formación profesional, debe <a href="{% static 'docs/vt_recognition.pdf' %}" target="blank">rellenar el siguiente documento</a> y entregarlo en la secretaría del centro.
+    </p>
+{% endif %}
+
 <h3>Inscripción en el AMPA</h3>
 
 <p>
     Si desea inscribirse en la Asociación de Madres y Padres de Alumnado (AMPA) debe <a href="{% static 'docs/ampa_form.pdf' %}" target="blank">rellenar el siguiente formulario</a> y entregarlo en la secretaría del centro.
 </p>
+
 
 {% endblock %}
