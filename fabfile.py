@@ -10,4 +10,5 @@ def deploy():
             run("git pull")
             run("pip install -r requirements.txt")
             run("bower install")
+            run("python manage.py collectstatic --noinput")
             run("supervisorctl restart matricula")
