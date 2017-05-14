@@ -7,6 +7,12 @@
     content: element(header);
   }
 }
+@page :first {
+  margin-top: 5cm;
+  @top-center {
+    content: element(header_cover);
+  }
+}
 #header {
   position: running(header);
 }
@@ -177,14 +183,26 @@ h6 {
 .section .u90 {
   width: 90mm;
 }
+.page-break {
+  page-break-after: always;
+}
 #academic {
   position: absolute;
   left: 0;
   right: 0;
   top: 122mm;
 }
-.page-break {
-  page-break-after: always;
+#family #responsible1 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0mm;
+}
+#family #responsible2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 52mm;
 }
 #auth {
   position: absolute;
