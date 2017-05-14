@@ -20,11 +20,11 @@
             <tr class="space"></tr>
             <tr>
                 {% if not student.adult %}
-                    <td>Fdo.: {{ (responsible1.name + " " + responsible1.surname)|title|truncate(truncate_limit, True, "", 0) }}</td>
+                    <td>Fdo.: {{ responsible1.full_name|title|truncate(truncate_limit, True, "", 0) }}</td>
                 {% endif %}
-                <td>Fdo.: {{ (student.name + " " + student.surname)|title|truncate(truncate_limit, True, "", 0) }}</td>
+                <td>Fdo.: {{ student.full_name|title|truncate(truncate_limit, True, "", 0) }}</td>
                 {% if not student.adult and not responsible2.ignore_info %}
-                    <td>Fdo.: {{ (responsible2.name + " " + responsible2.surname)|title|truncate(truncate_limit, True, "", 0) }}</td>
+                    <td>Fdo.: {{ responsible2.full_name|title|truncate(truncate_limit, True, "", 0) }}</td>
                 {% endif %}
             </tr>
         </table>
