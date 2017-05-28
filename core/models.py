@@ -22,3 +22,6 @@ class EduLevel(models.Model):
 
     def is_vocational_training(self):
         return self.code[1:] in ["CFGM", "CFGS"]
+
+    def is_mandatory(self):
+        return self.code[1:] == "ESO" or self.code[-4::] == "PMAR"

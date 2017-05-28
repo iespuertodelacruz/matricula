@@ -251,8 +251,9 @@ autorizadas en el siguiente formulario. Máximo de 4 personas.
 
 def auth_exit(request, edulevel_code):
     valid_form = True
+    edulevel = EduLevel.objects.get(code=edulevel_code)
     if request.method == "POST":
-        form = ExitAuthForm(request.POST)
+        form = ExitAuthForm(edulevel.is_mandatory(), request.POST)
         if form.is_valid():
             data = utils.expand_choices(form)
             request.session["auth_exit"] = json.dumps(data)
@@ -262,7 +263,7 @@ def auth_exit(request, edulevel_code):
         else:
             valid_form = False
     else:
-        form = ExitAuthForm()
+        form = ExitAuthForm(edulevel.is_mandatory())
 
     return render(
         request,
@@ -270,7 +271,7 @@ def auth_exit(request, edulevel_code):
         {
             "title": "Autorizaciones de salida",
             "form": form,
-            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "edulevel": edulevel,
             "valid_form": valid_form
         }
     )

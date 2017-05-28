@@ -82,3 +82,8 @@ class ExitAuthForm(forms.Form):
             horario lectivo.
         """
     )
+
+    def __init__(self, mandatory, *args, **kwargs):
+        super(forms.Form, self).__init__(*args, **kwargs)
+        if mandatory:
+            self.fields.pop("exit_auth_last_lesson")
