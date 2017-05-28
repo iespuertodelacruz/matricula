@@ -169,6 +169,19 @@ class AcademicForm_2CIE_CCS(forms.Form):
 
     def clean(self):
         cleaned_data = super(AcademicForm_2CIE_CCS, self).clean()
+
+        core_subjects = []
+        for i in range(1, 3):
+            field = "core_subject_order{}".format(i)
+            value = cleaned_data.get(field)
+            if value in core_subjects:
+                self.add_error(
+                    field,
+                    "Materia repetida. Por favor, seleccione otra"
+                )
+            else:
+                core_subjects.append(value)
+
         specific_subjects2 = []
         for i in range(1, 10):
             field = "specific_subject2_order{}".format(i)
@@ -259,6 +272,19 @@ class AcademicForm_2CIE_TEC(forms.Form):
 
     def clean(self):
         cleaned_data = super(AcademicForm_2CIE_TEC, self).clean()
+
+        core_subjects = []
+        for i in range(1, 3):
+            field = "core_subject_order{}".format(i)
+            value = cleaned_data.get(field)
+            if value in core_subjects:
+                self.add_error(
+                    field,
+                    "Materia repetida. Por favor, seleccione otra"
+                )
+            else:
+                core_subjects.append(value)
+
         specific_subjects2 = []
         for i in range(1, 10):
             field = "specific_subject2_order{}".format(i)
