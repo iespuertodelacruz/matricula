@@ -48,10 +48,17 @@
                 <td class="value u30">{{ responsible1.age }} años</td>
                 <td></td>
                 <td></td>
-                <td class="label">Patria potestad:</td>
-                <td class="value u30">{{ responsible1.parental_auth|boolean }}</td>
-                <td class="label">Guarda custodia:</td>
-                <td class="value u30">{{ responsible1.children_custody|boolean }}</td>
+                {% if responsible1.separated or responsible2.separated %}
+                    <td class="label">Patria potestad:</td>
+                    <td class="value u30">{{ responsible1.parental_auth|boolean }}</td>
+                    <td class="label">Guarda custodia:</td>
+                    <td class="value u30">{{ responsible1.children_custody|boolean }}</td>
+                {% else %}
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                {% endif %}
             </tr>
         </table>
     {% endif %}

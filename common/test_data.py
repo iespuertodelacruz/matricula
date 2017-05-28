@@ -33,6 +33,7 @@ RESPONSIBLE1_DATA = {
     "email": "test@test.com",
     "birth_date": "1/6/1984",
     "job": "Carpintero pero además Informático y también otras cosas",
+    "separated": False,
     "parental_auth": True,
     "children_custody": False
 }
@@ -50,6 +51,7 @@ RESPONSIBLE2_DATA = {
     "email": "test@test.com",
     "birth_date": "1/6/1985",
     "job": "Scientist",
+    "separated": False,
     "parental_auth": True,
     "children_custody": True
 }

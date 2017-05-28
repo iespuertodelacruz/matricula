@@ -69,15 +69,22 @@ class ResponsibleForm(forms.Form):
         label="Profesión",
         required=False
     )
+    separated = forms.BooleanField(
+        label="Padres separados/divorciados",
+        required=False,
+        initial=False
+    )
     parental_auth = forms.BooleanField(
         label="Patria potestad",
         required=False,
-        initial=True
+        initial=True,
+        help_text="Indicar sólo en el caso de padres separados/divorciados"
     )
     children_custody = forms.BooleanField(
         label="Guarda custodia",
         required=False,
-        initial=True
+        initial=True,
+        help_text="Indicar sólo en el caso de padres separados/divorciados"
     )
 
     def clean(self):
