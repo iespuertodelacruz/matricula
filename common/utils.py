@@ -48,3 +48,18 @@ def load_session_data(session, sections):
             v = None
         data[s] = v
     return data
+
+
+def update_breadcrumbs(name, url, breadcrumbs_session):
+    breadcrumbs = json.loads(breadcrumbs_session)
+    already_inserted = False
+    for bc in breadcrumbs:
+        if bc["name"] == name:
+            bc["active"] = True
+            already_inserted = True
+        else:
+            bc["active"] = False
+    if not already_inserted:
+        breadcrumbs.append({"name": name, "url": url, "active": True})
+    breadcrumbs_session = json.dumps(breadcrumbs)
+    return breadcrumbs, breadcrumbs_session

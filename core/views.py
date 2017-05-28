@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from core.forms.student_form import StudentForm
 from .models import EduLevel
-from common.test_data import STUDENT_DATA, RESPONSIBLE1_DATA, RESPONSIBLE2_DATA
+from common.test_data import STUDENT_DATA, RESPONSIBLE_DATA
 from common.test_data import ACADEMIC_DATA, AUTH_DATA, EXTRA_DATA
 from django.urls import reverse
 import json
@@ -23,7 +23,7 @@ SECTIONS = [
     "responsible2",
     "auth_pick",
     "auth_exit",
-    "extra"
+    "extra",
 ]
 
 
@@ -32,6 +32,8 @@ def index(request):
 
     for s in SECTIONS:
         request.session[s] = None
+
+    request.session["breadcrumbs"] = "[]"
 
     return render(
         request,
@@ -53,16 +55,25 @@ def student(request, edulevel_code):
                 data,
                 default=utils.json_dump_handler
             )
+
             return HttpResponseRedirect(
                 reverse("academic", args=[edulevel_code])
             )
         else:
             valid_form = False
     else:
-        if settings.DEBUG:
+        if request.session["student"]:
+            form = StudentForm(json.loads(request.session["student"]))
+        elif settings.DEBUG:
             form = StudentForm(STUDENT_DATA)
         else:
             form = StudentForm()
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Alumno/a",
+        reverse("student", args=[edulevel_code]),
+        request.session["breadcrumbs"],
+    )
 
     return render(
         request,
@@ -71,7 +82,8 @@ def student(request, edulevel_code):
             "title": "Datos personales del alumno/a",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form
+            "valid_form": valid_form,
+            "breadcrumbs": breadcrumbs
         }
     )
 
@@ -102,10 +114,18 @@ def academic(request, edulevel_code):
         else:
             valid_form = False
     else:
-        if settings.DEBUG:
+        if request.session["academic"]:
+            form = AcademicForm(json.loads(request.session["academic"]))
+        elif settings.DEBUG:
             form = AcademicForm(ACADEMIC_DATA[edulevel_code]["global"])
         else:
             form = AcademicForm()
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Académico",
+        reverse("academic", args=[edulevel_code]),
+        request.session["breadcrumbs"]
+    )
 
     return render(
         request,
@@ -114,7 +134,8 @@ def academic(request, edulevel_code):
             "title": "Información académica",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form
+            "valid_form": valid_form,
+            "breadcrumbs": breadcrumbs
         }
     )
 
@@ -130,6 +151,7 @@ def itinerary(request, edulevel_code, itinerary_code):
         form = ItineraryForm(request.POST)
         if form.is_valid():
             data = utils.expand_choices(form)
+            data["itinerary_code"] = itinerary_code
             request.session["itinerary"] = json.dumps(data)
             if json.loads(request.session["student"])["adult"]:
                 return HttpResponseRedirect(
@@ -142,12 +164,20 @@ def itinerary(request, edulevel_code, itinerary_code):
         else:
             valid_form = False
     else:
-        if settings.DEBUG:
+        if request.session["itinerary"]:
+            form = ItineraryForm(json.loads(request.session["itinerary"]))
+        elif settings.DEBUG:
             form = ItineraryForm(
                 ACADEMIC_DATA[edulevel_code]["itinerary"][itinerary_code]
             )
         else:
             form = ItineraryForm()
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Itinerario",
+        reverse("itinerary", args=[edulevel_code, itinerary_code]),
+        request.session["breadcrumbs"]
+    )
 
     return render(
         request,
@@ -160,13 +190,15 @@ def itinerary(request, edulevel_code, itinerary_code):
             "itinerary": utils.field_verbose(
                 AcademicForm.TRAINING_ITINERARY_CHOICES,
                 itinerary_code
-            )
+            ),
+            "breadcrumbs": breadcrumbs
         }
     )
 
 
 def family(request, edulevel_code, responsible_id):
     valid_form = True
+    key = "responsible{}".format(responsible_id)
     ResponsibleForm = get_formclass("R" + responsible_id)
     if request.method == "POST":
         form = ResponsibleForm(request.POST)
@@ -177,7 +209,6 @@ def family(request, edulevel_code, responsible_id):
                 data = utils.expand_choices(form)
                 data["age"] = utils.age(data["birth_date"])
                 data["full_name"] = data["name"] + " " + data["surname"]
-            key = "responsible{}".format(responsible_id)
             request.session[key] = json.dumps(
                 data,
                 default=utils.json_dump_handler
@@ -193,13 +224,18 @@ def family(request, edulevel_code, responsible_id):
         else:
             valid_form = False
     else:
-        if settings.DEBUG:
-            if responsible_id == "1":
-                form = ResponsibleForm(RESPONSIBLE1_DATA)
-            elif responsible_id == "2":
-                form = ResponsibleForm(RESPONSIBLE2_DATA)
+        if request.session[key]:
+            form = ResponsibleForm(json.loads(request.session[key]))
+        elif settings.DEBUG:
+            form = ResponsibleForm(RESPONSIBLE_DATA[responsible_id])
         else:
             form = ResponsibleForm()
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Responsable " + responsible_id,
+        reverse("family", args=[edulevel_code, responsible_id]),
+        request.session["breadcrumbs"]
+    )
 
     return render(
         request,
@@ -208,7 +244,8 @@ def family(request, edulevel_code, responsible_id):
             "title": "Datos del responsable {}".format(responsible_id),
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form
+            "valid_form": valid_form,
+            "breadcrumbs": breadcrumbs
         }
     )
 
@@ -226,10 +263,18 @@ def auth_pick(request, edulevel_code):
         else:
             valid_form = False
     else:
-        if settings.DEBUG:
+        if request.session["auth_pick"]:
+            form = PickAuthForm(json.loads(request.session["auth_pick"]))
+        elif settings.DEBUG:
             form = PickAuthForm(AUTH_DATA["pick"])
         else:
             form = PickAuthForm()
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Recogida",
+        reverse("auth_pick", args=[edulevel_code]),
+        request.session["breadcrumbs"]
+    )
 
     return render(
         request,
@@ -244,7 +289,8 @@ autorizadas en el siguiente formulario. Máximo de 4 personas.
             """,
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form
+            "valid_form": valid_form,
+            "breadcrumbs": breadcrumbs
         }
     )
 
@@ -263,7 +309,16 @@ def auth_exit(request, edulevel_code):
         else:
             valid_form = False
     else:
-        form = ExitAuthForm(edulevel.is_mandatory())
+        if request.session["auth_exit"]:
+            form = ExitAuthForm(json.loads(request.session["auth_exit"]))
+        else:
+            form = ExitAuthForm(edulevel.is_mandatory())
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Salida",
+        reverse("auth_exit", args=[edulevel_code]),
+        request.session["breadcrumbs"]
+    )
 
     return render(
         request,
@@ -272,7 +327,8 @@ def auth_exit(request, edulevel_code):
             "title": "Autorizaciones de salida",
             "form": form,
             "edulevel": edulevel,
-            "valid_form": valid_form
+            "valid_form": valid_form,
+            "breadcrumbs": breadcrumbs
         }
     )
 
@@ -290,10 +346,18 @@ def extra(request, edulevel_code):
         else:
             valid_form = False
     else:
-        if settings.DEBUG:
+        if request.session["extra"]:
+            form = ExtraForm(json.loads(request.session["extra"]))
+        elif settings.DEBUG:
             form = ExtraForm(EXTRA_DATA)
         else:
             form = ExtraForm()
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Extra",
+        reverse("extra", args=[edulevel_code]),
+        request.session["breadcrumbs"]
+    )
 
     return render(
         request,
@@ -302,19 +366,28 @@ def extra(request, edulevel_code):
             "title": "Otra información de interés",
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "valid_form": valid_form
+            "valid_form": valid_form,
+            "breadcrumbs": breadcrumbs
         }
     )
 
 
 def summary(request, edulevel_code):
     data = utils.load_session_data(request.session, SECTIONS)
+
+    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        "Resumen",
+        reverse("summary", args=[edulevel_code]),
+        request.session["breadcrumbs"]
+    )
+
     return render(
         request,
         "summary.html",
         {
             "edulevel": EduLevel.objects.get(code=edulevel_code),
-            "data": data
+            "data": data,
+            "breadcrumbs": breadcrumbs
         }
     )
 

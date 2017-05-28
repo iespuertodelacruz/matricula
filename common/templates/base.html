@@ -26,6 +26,19 @@
         </nav>
 
         <div class="container main">
+            {% if breadcrumbs %}
+                <div class="row">
+                    <ol class="breadcrumb">
+                        {% for bc in breadcrumbs %}
+                            {% if bc.active %}
+                                <li class="active">{{ bc.name }}</li>
+                            {% else %}
+                                <li><a href="{{ bc.url }}">{{ bc.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% endif %}
             {% block content %}
                 <div class="row">
                     <div class="col-md-6">

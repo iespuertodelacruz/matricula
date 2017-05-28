@@ -21,39 +21,40 @@ STUDENT_DATA = {
     "lastyear_studies": "Computing"
 }
 
-RESPONSIBLE1_DATA = {
-    "name": "Frank ahora pongo un nombre que no cabe",
-    "surname": "Mayer esto es un super apellido larguísimo",
-    "link": "PAD",
-    "nif": "12345678Y",
-    "nie": "",
-    "passport": "",
-    "gender": "H",
-    "mobile_phone": "555555555",
-    "email": "test@test.com",
-    "birth_date": "1/6/1984",
-    "job": "Carpintero pero además Informático y también otras cosas",
-    "separated": False,
-    "parental_auth": True,
-    "children_custody": False
-}
-
-RESPONSIBLE2_DATA = {
-    "ignore_info": False,
-    "name": "Andrea",
-    "surname": "Magnet Press",
-    "link": "MAD",
-    "nif": "12345678Y",
-    "nie": "",
-    "passport": "",
-    "gender": "M",
-    "mobile_phone": "555555555",
-    "email": "test@test.com",
-    "birth_date": "1/6/1985",
-    "job": "Scientist",
-    "separated": False,
-    "parental_auth": True,
-    "children_custody": True
+RESPONSIBLE_DATA = {
+    "1": {
+        "name": "Frank ahora pongo un nombre que no cabe",
+        "surname": "Mayer esto es un super apellido larguísimo",
+        "link": "PAD",
+        "nif": "12345678Y",
+        "nie": "",
+        "passport": "",
+        "gender": "H",
+        "mobile_phone": "555555555",
+        "email": "test@test.com",
+        "birth_date": "1/6/1984",
+        "job": "Carpintero pero además Informático y también otras cosas",
+        "separated": False,
+        "parental_auth": True,
+        "children_custody": False
+    },
+    "2": {
+        "ignore_info": False,
+        "name": "Andrea",
+        "surname": "Magnet Press",
+        "link": "MAD",
+        "nif": "12345678Y",
+        "nie": "",
+        "passport": "",
+        "gender": "M",
+        "mobile_phone": "555555555",
+        "email": "test@test.com",
+        "birth_date": "1/6/1985",
+        "job": "Scientist",
+        "separated": False,
+        "parental_auth": True,
+        "children_custody": True
+    }
 }
 
 ACADEMIC_DATA = {
