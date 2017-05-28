@@ -4,10 +4,10 @@
     <table>
         <tr>
             <td class="label">Nombre:</td>
-            <td class="value u50" colspan="2">{{ student.name|upper }}</td>
+            <td class="value u50" colspan="2">{{ student.name|upper|truncate(20, True, "", 0) }}</td>
             <td></td>
             <td class="label">Apellidos:</td>
-            <td class="value" colspan="3">{{ student.surname|upper }}</td>
+            <td class="value" colspan="3">{{ student.surname|upper|truncate(38, True, "", 0) }}</td>
         </tr>
         <tr>
             {% if student.nif %}
@@ -55,17 +55,17 @@
         </tr>
         <tr>
             <td class="label">País nacim.:</td>
-            <td class="value u50" colspan="2">{{ student.birth_country|upper }}</td>
+            <td class="value u50" colspan="2">{{ student.birth_country|upper|truncate(20, True, "", 0) }}</td>
             <td></td>
             <td class="label">Prov. nacim.:</td>
-            <td class="value" colspan="3">{{ student.birth_province|upper }}</td>
+            <td class="value" colspan="3">{{ student.birth_province|upper|truncate(38, True, "", 0) }}</td>
         </tr>
         <tr>
             <td class="label">Nacionalidad:</td>
             <td class="value u50" colspan="2">{{ student.nationality|upper }}</td>
             <td></td>
             <td class="label">Loc. nacim.:</td>
-            <td class="value" colspan="3">{{ student.birth_town|upper }}</td>
+            <td class="value" colspan="3">{{ student.birth_town|upper|truncate(38, True, "", 0) }}</td>
         </tr>
         <tr>
             <td class="subtitle" colspan="8">
@@ -89,11 +89,11 @@
         </tr>
         <tr>
             <td class="label">Centro:</td>
-            <td class="value" colspan="5">{{ student.lastyear_institution|upper }}</td>
+            <td class="value" colspan="5">{{ student.lastyear_institution|upper|truncate(80, True, "", 0) }} }}</td>
         </tr>
         <tr>
             <td class="label">Estudios:</td>
-            <td class="value" colspan="8">{{ student.lastyear_studies|upper }}</td>
+            <td class="value" colspan="8">{{ student.lastyear_studies|upper|truncate(120, True, "", 0) }} }}</td>
         </tr>
     </table>
 
