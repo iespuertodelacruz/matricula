@@ -26,6 +26,9 @@
             <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.responsible2.full_name|title }}</i>.</li>
         {% endif %}
     {% endif %}
+    {% if data.extra.has_health_problem %}
+        <li><b>Informe médico correspondiente</b> ya que ha indicado algún problema de salud.</li>
+    {% endif %}
     {% if responsible1.separated or responsible2.separated %}
         <li>Fotocopia de la sentencia judicial que valida el <b>convenio regulador del régimen de visitas</b> (en caso de padres separados).</li>
     {% endif %}
