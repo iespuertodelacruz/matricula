@@ -69,7 +69,7 @@ def student(request, edulevel_code):
         else:
             form = StudentForm()
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Alumno/a",
         reverse("student", args=[edulevel_code]),
         request.session["breadcrumbs"],
@@ -121,7 +121,7 @@ def academic(request, edulevel_code):
         else:
             form = AcademicForm()
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Académico",
         reverse("academic", args=[edulevel_code]),
         request.session["breadcrumbs"]
@@ -173,7 +173,7 @@ def itinerary(request, edulevel_code, itinerary_code):
         else:
             form = ItineraryForm()
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Itinerario",
         reverse("itinerary", args=[edulevel_code, itinerary_code]),
         request.session["breadcrumbs"]
@@ -231,7 +231,7 @@ def family(request, edulevel_code, responsible_id):
         else:
             form = ResponsibleForm()
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Responsable " + responsible_id,
         reverse("family", args=[edulevel_code, responsible_id]),
         request.session["breadcrumbs"]
@@ -270,7 +270,7 @@ def auth_pick(request, edulevel_code):
         else:
             form = PickAuthForm()
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Recogida",
         reverse("auth_pick", args=[edulevel_code]),
         request.session["breadcrumbs"]
@@ -314,7 +314,7 @@ def auth_exit(request, edulevel_code):
         else:
             form = ExitAuthForm(edulevel.is_mandatory())
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Salida",
         reverse("auth_exit", args=[edulevel_code]),
         request.session["breadcrumbs"]
@@ -353,7 +353,7 @@ def extra(request, edulevel_code):
         else:
             form = ExtraForm()
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Extra",
         reverse("extra", args=[edulevel_code]),
         request.session["breadcrumbs"]
@@ -375,7 +375,7 @@ def extra(request, edulevel_code):
 def summary(request, edulevel_code):
     data = utils.load_session_data(request.session, SECTIONS)
 
-    breadcrumbs, request.session["breadcrumbs"] = utils.update_breadcrumbs(
+    breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Resumen",
         reverse("summary", args=[edulevel_code]),
         request.session["breadcrumbs"]
@@ -387,7 +387,8 @@ def summary(request, edulevel_code):
         {
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "data": data,
-            "breadcrumbs": breadcrumbs
+            "breadcrumbs": breadcrumbs,
+            "edulevels": EduLevel.objects.all()
         }
     )
 
@@ -419,3 +420,18 @@ def form(request, edulevel_code):
         signature_date=signature_date
     )
     return report.http_response()
+
+
+def change_edulevel(request, edulevel_code):
+    target_edulevel_id = request.POST["target_edulevel_id"]
+    target_edulevel = EduLevel.objects.get(pk=target_edulevel_id)
+    request.session["academic"] = None
+    request.session["itinerary"] = None
+    request.session["breadcrumbs"] = utils.update_breadcrumbs(
+        edulevel_code,
+        target_edulevel.code,
+        request.session["breadcrumbs"]
+    )
+    return HttpResponseRedirect(
+        reverse("academic", args=[target_edulevel.code])
+    )

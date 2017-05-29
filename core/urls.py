@@ -63,4 +63,9 @@ urlpatterns = [
         views.conditions,
         name="conditions"
     ),
+    url(
+        r"^change_edulevel/(?P<edulevel_code>[\da-zA-Z]+)/$",
+        views.change_edulevel,
+        name="change_edulevel"
+    ),
 ]

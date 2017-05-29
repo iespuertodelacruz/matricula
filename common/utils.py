@@ -50,7 +50,7 @@ def load_session_data(session, sections):
     return data
 
 
-def update_breadcrumbs(name, url, breadcrumbs_session):
+def add_breadcrumb(name, url, breadcrumbs_session):
     breadcrumbs = json.loads(breadcrumbs_session)
     already_inserted = False
     for bc in breadcrumbs:
@@ -60,6 +60,26 @@ def update_breadcrumbs(name, url, breadcrumbs_session):
         else:
             bc["active"] = False
     if not already_inserted:
-        breadcrumbs.append({"name": name, "url": url, "active": True})
+        if name == "Itinerario":
+            breadcrumbs.insert(2, {"name": name, "url": url, "active": True})
+        else:
+            breadcrumbs.append({"name": name, "url": url, "active": True})
     breadcrumbs_session = json.dumps(breadcrumbs)
     return breadcrumbs, breadcrumbs_session
+
+
+def update_breadcrumbs(source_edulevel_code,
+                       target_edulevel_code,
+                       breadcrumbs_session):
+    breadcrumbs = json.loads(breadcrumbs_session)
+    bc_to_remove = -1
+    for i, bc in enumerate(breadcrumbs):
+        if bc["name"] == "Itinerario":
+            bc_to_remove = i
+        else:
+            bc["url"] = bc["url"].replace(
+                source_edulevel_code, target_edulevel_code
+            )
+    if bc_to_remove != -1:
+        breadcrumbs.pop(bc_to_remove)
+    return json.dumps(breadcrumbs)
