@@ -1,4 +1,5 @@
 {% load static %}
+{% load cookielaw_tags %}
 
 <html>
     <head>
@@ -9,6 +10,7 @@
     </head>
 
     <body>
+        {% cookielaw_banner %}
         <nav class="navbar navbar-default">
             <div class="container">
                 <div class="row text-center">
@@ -63,6 +65,7 @@
     <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
     <script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
     <script src="{% static 'bower_components/jquery-ui/ui/i18n/datepicker-es.js' %}"></script>
+    <script src="{% static 'cookielaw/js/cookielaw.js' %}"</script>
     <script src="{% static 'js/custom.js' %}"></script>
 
 </html>
