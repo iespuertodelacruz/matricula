@@ -421,7 +421,9 @@ def form(request, edulevel_code):
         school_year=utils.calculate_schoolyear(),
         signature_date=signature_date
     )
-    return report.http_response()
+    report_name = "Matrícula-{}-{}".format(edulevel_code,
+                                           params["student"]["name"])
+    return report.http_response(report_name)
 
 
 def change_edulevel(request, edulevel_code):
