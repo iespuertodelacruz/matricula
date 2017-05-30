@@ -389,7 +389,8 @@ def summary(request, edulevel_code):
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "data": data,
             "breadcrumbs": breadcrumbs,
-            "edulevels": EduLevel.objects.all()
+            "edulevels": EduLevel.objects.all(),
+            "cancel_btn_msg": "Comenzar nueva matrícula"
         }
     )
 

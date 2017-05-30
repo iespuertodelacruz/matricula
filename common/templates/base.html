@@ -52,7 +52,7 @@
                         <h3>{{ edulevel.description }}</h3>
                         <h3>{{ itinerary }}</h3>
                         <h4>{{ edulevel.law }}</h4>
-                        <a id="new_application" href="#" role="button" class="btn btn-danger">Comenzar nueva matrícula</a>
+                        <a id="new_application" href="#" role="button" class="btn btn-danger">{{ cancel_btn_msg|default:"Cancelar matrícula y volver al listado inicial" }}</a>
                         {% block content_right %}
                         {% endblock %}
                     </div>
