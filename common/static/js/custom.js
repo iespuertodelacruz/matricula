@@ -18,7 +18,7 @@ new_application = function(event) {
   btn = $(this);
   if (btn.attr("href") === "#") {
     event.preventDefault();
-    $(this).html("Perderá todos los datos!<br>Pulse de nuevo si quiere continuar");
+    $(this).html("¡Perderá todos los datos!<br>Pulse de nuevo si quiere continuar");
     return $(this).attr("href", "/");
   } else {
     return window.location.href = "/";

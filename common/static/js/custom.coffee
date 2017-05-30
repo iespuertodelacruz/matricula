@@ -12,7 +12,7 @@ new_application = (event) ->
     btn = $(this)
     if btn.attr("href") == "#"
         event.preventDefault()
-        $(this).html("Perderá todos los datos!<br>Pulse de nuevo si quiere continuar")
+        $(this).html("¡Perderá todos los datos!<br>Pulse de nuevo si quiere continuar")
         $(this).attr("href", "/")
     else
         window.location.href = "/"
