@@ -124,47 +124,56 @@ class AcademicForm_2CIE_CCS(forms.Form):
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 1)",
-        help_text="Seleccione la materia que quiera cursar en 1er lugar"
+        help_text="Seleccione la materia que quiera cursar en 1er lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order2 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 2)",
-        help_text="Seleccione la materia que quiera cursar en 2do lugar"
+        help_text="Seleccione la materia que quiera cursar en 2do lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order3 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 3)",
-        help_text="Seleccione la materia que quiera cursar en 3er lugar"
+        help_text="Seleccione la materia que quiera cursar en 3er lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order4 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 4)",
-        help_text="Seleccione la materia que quiera cursar en 4º lugar"
+        help_text="Seleccione la materia que quiera cursar en 4º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order5 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 5)",
-        help_text="Seleccione la materia que quiera cursar en 5º lugar"
+        help_text="Seleccione la materia que quiera cursar en 5º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order6 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 6)",
-        help_text="Seleccione la materia que quiera cursar en 6º lugar"
+        help_text="Seleccione la materia que quiera cursar en 6º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order7 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 7)",
-        help_text="Seleccione la materia que quiera cursar en 7º lugar"
+        help_text="Seleccione la materia que quiera cursar en 7º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order8 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 8)",
-        help_text="Seleccione la materia que quiera cursar en 8º lugar"
+        help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order9 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 9)",
-        help_text="Seleccione la materia que quiera cursar en 9º lugar"
+        help_text="Seleccione la materia que quiera cursar en 9º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
 
     def clean(self):
@@ -227,47 +236,56 @@ class AcademicForm_2CIE_TEC(forms.Form):
     specific_subject2_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 1)",
-        help_text="Seleccione la materia que quiera cursar en 1er lugar"
+        help_text="Seleccione la materia que quiera cursar en 1er lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order2 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 2)",
-        help_text="Seleccione la materia que quiera cursar en 2do lugar"
+        help_text="Seleccione la materia que quiera cursar en 2do lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order3 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 3)",
-        help_text="Seleccione la materia que quiera cursar en 3er lugar"
+        help_text="Seleccione la materia que quiera cursar en 3er lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order4 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 4)",
-        help_text="Seleccione la materia que quiera cursar en 4º lugar"
+        help_text="Seleccione la materia que quiera cursar en 4º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order5 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 5)",
-        help_text="Seleccione la materia que quiera cursar en 5º lugar"
+        help_text="Seleccione la materia que quiera cursar en 5º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order6 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 6)",
-        help_text="Seleccione la materia que quiera cursar en 6º lugar"
+        help_text="Seleccione la materia que quiera cursar en 6º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order7 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 7)",
-        help_text="Seleccione la materia que quiera cursar en 7º lugar"
+        help_text="Seleccione la materia que quiera cursar en 7º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order8 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 8)",
-        help_text="Seleccione la materia que quiera cursar en 8º lugar"
+        help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject2_order9 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 9)",
-        help_text="Seleccione la materia que quiera cursar en 9º lugar"
+        help_text="Seleccione la materia que quiera cursar en 9º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
 
     def clean(self):

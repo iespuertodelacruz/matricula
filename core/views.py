@@ -209,10 +209,11 @@ def family(request, edulevel_code, responsible_id):
                 data = utils.expand_choices(form)
                 data["age"] = utils.age(data["birth_date"])
                 data["full_name"] = data["name"] + " " + data["surname"]
-            request.session[key] = json.dumps(
-                data,
-                default=utils.json_dump_handler
-            )
+                data["is_tutor"] = data["link"] in ["TUO", "TUA"]
+                request.session[key] = json.dumps(
+                    data,
+                    default=utils.json_dump_handler
+                )
             if responsible_id == "1":
                 return HttpResponseRedirect(
                     reverse("family", args=[edulevel_code, 2])

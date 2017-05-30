@@ -17,7 +17,7 @@ def expand_choices(form):
             value = dict(form.fields[k].choices)[v]
             label_key = k + "_label"
             r[label_key] = value
-        except:
+        except Exception:
             pass
     return r
 

@@ -24,27 +24,32 @@ class AcademicForm_3ESO(AcademicForm_ESO):
     specific_subject3_order1 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT3_CHOICES,
         label="MATERIA ESPECÍFICA 3 (Preferencia 1)",
-        help_text="Seleccione la materia que quiera cursar en 1er lugar"
+        help_text="Seleccione la materia que quiera cursar en 1er lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject3_order2 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT3_CHOICES,
         label="MATERIA ESPECÍFICA 3 (Preferencia 2)",
-        help_text="Seleccione la materia que quiera cursar en 2do lugar"
+        help_text="Seleccione la materia que quiera cursar en 2do lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject3_order3 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT3_CHOICES,
         label="MATERIA ESPECÍFICA 3 (Preferencia 3)",
-        help_text="Seleccione la materia que quiera cursar en 3er lugar"
+        help_text="Seleccione la materia que quiera cursar en 3er lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject3_order4 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT3_CHOICES,
         label="MATERIA ESPECÍFICA 3 (Preferencia 4)",
-        help_text="Seleccione la materia que quiera cursar en 4º lugar"
+        help_text="Seleccione la materia que quiera cursar en 4º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
     specific_subject3_order5 = forms.ChoiceField(
         choices=SPECIFIC_SUBJECT3_CHOICES,
         label="MATERIA ESPECÍFICA 3 (Preferencia 5)",
-        help_text="Seleccione la materia que quiera cursar en 5º lugar"
+        help_text="Seleccione la materia que quiera cursar en 5º lugar.<br>"
+                  "Cusará dos materias de las que se le asignen."
     )
 
     def clean(self):

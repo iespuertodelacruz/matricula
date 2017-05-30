@@ -126,12 +126,12 @@ class Responsible2Form(ResponsibleForm, UnknownResponsibleForm):
         self.fields["name"].required = False
         self.fields["surname"].required = False
         self.fields["birth_date"].required = False
+        self.fields["link"].required = False
 
     def clean(self):
-        cleaned_data = super(Responsible2Form, self).clean()
-        ignore_info = cleaned_data.get("ignore_info")
-        print(ignore_info)
+        ignore_info = self.cleaned_data.get("ignore_info")
         if not ignore_info:
+            cleaned_data = super(Responsible2Form, self).clean()
             if not cleaned_data.get("gender"):
                 self.add_error("gender", "Este campo es obligatorio")
             if not cleaned_data.get("name"):
