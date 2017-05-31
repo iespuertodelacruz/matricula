@@ -56,7 +56,8 @@ class StudentForm(forms.Form):
     birth_date = forms.DateField(
         label="Fecha de nacimiento",
         required=True,
-        widget=forms.TextInput(attrs={"class": "datepicker"})
+        widget=forms.TextInput(attrs={"class": "datepicker"}),
+        help_text="Formato de fecha: dd/mm/aaaa"
     )
     birth_country = forms.CharField(
         label="País de nacimiento",
