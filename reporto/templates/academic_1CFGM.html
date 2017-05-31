@@ -7,17 +7,17 @@
                 Método de acceso
             </td>
             <td style="width: 2%"></td>
-            {% if academic.repeating_subjects %}
+            {% if academic.remarks %}
                 <td class="subtitle" style="width: 48%">
-                    Módulos a cursar nuevamente - Alumnado repetidor
+                    Observaciones / Módulos a repetir
                 </td>
             {% endif %}
         </tr>
         <tr>
             <td class="value">{{ academic.access_via_label|upper|truncate(40, True, "", 0) }}</td>
             <td></td>
-            {% if academic.repeating_subjects %}
-                <td class="value" rowspan="2">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0) }}</td>
+            {% if academic.remarks %}
+                <td class="value" rowspan="2">{{ academic.remarks|truncate(800, True, "", 0) }}</td>
             {% endif %}
         </tr>
         <tr>

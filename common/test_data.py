@@ -285,7 +285,7 @@ ACADEMIC_DATA = {
     "1CFGM": {
         "global": {
             "topic": "ELE",
-            "repeating_subjects": """
+            "remarks": """
 Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
 texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde
 el año 1500, cuando un impresor (N. del T. persona que se dedica a la
@@ -303,7 +303,7 @@ PageMaker, el cual incluye versiones de Lorem Ipsum.
     "2CFGM": {
         "global": {
             "topic": "TEL",
-            "repeating_subjects": """
+            "remarks": """
 Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
 texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde
 el año 1500, cuando un impresor (N. del T. persona que se dedica a la
@@ -320,7 +320,7 @@ PageMaker, el cual incluye versiones de Lorem Ipsum.
     "1CFGS": {
         "global": {
             "topic": "ASR",
-            "repeating_subjects": """
+            "remarks": """
 Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
 texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde
 el año 1500, cuando un impresor (N. del T. persona que se dedica a la
@@ -338,7 +338,7 @@ PageMaker, el cual incluye versiones de Lorem Ipsum.
     "2CFGS": {
         "global": {
             "topic": "GIT",
-            "repeating_subjects": """
+            "remarks": """
 Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
 texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde
 el año 1500, cuando un impresor (N. del T. persona que se dedica a la
@@ -355,7 +355,7 @@ PageMaker, el cual incluye versiones de Lorem Ipsum.
     "3CFGS": {
         "global": {
             "topic": "DAM",
-            "repeating_subjects": """
+            "remarks": """
 Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de
 texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde
 el año 1500, cuando un impresor (N. del T. persona que se dedica a la

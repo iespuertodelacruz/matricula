@@ -1,4 +1,4 @@
-{% if academic.repeating_subjects %}
+{% if academic.remarks %}
 
     <div id="academic" class="section">
         <div class="title">Información académica</div>
@@ -6,11 +6,11 @@
         <table>
             <tr>
                 <td class="subtitle">
-                    Módulos a cursar nuevamente - Alumnado repetidor
+                    Observaciones / Módulos a repetir
                 </td>
             </tr>
             <tr>
-                <td class="value">{{ academic.repeating_subjects|upper|truncate(600, True, "", 0)|replace("\r\n", "<br>") }}</td>
+                <td class="value">{{ academic.remarks|truncate(800, True, "", 0) }}</td>
             </tr>
         </table>
 

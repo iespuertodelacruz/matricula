@@ -21,9 +21,10 @@ class AcademicForm_2FPB(AcademicForm_FPB):
 
 
 class AcademicForm_CF(forms.Form):
-    repeating_subjects = forms.CharField(
-        label="MÓDULOS A CURSAR NUEVAMENTE",
-        help_text="Sólo en el caso de alumnado repetidor",
+    remarks = forms.CharField(
+        label="OBSERVACIONES / MÓDULOS A REPETIR",
+        help_text="Indique aspectos específicos a tener en cuenta en su "
+                  "matrícula",
         widget=forms.Textarea,
         required=False
     )
