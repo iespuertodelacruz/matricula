@@ -51,6 +51,11 @@ def student(request, edulevel_code):
             data["age"] = utils.age(data["birth_date"])
             data["adult"] = data["age"] >= 18
             data["full_name"] = data["name"] + " " + data["surname"]
+            lyi = data["lastyear_institution"].upper()
+            data["attached_ceip"] = \
+                (lyi.find("SAN ANTONIO") != -1) or \
+                (lyi.find("TOMÁS DE IRIARTE") != -1) or \
+                (lyi.find("TOMAS DE IRIARTE") != -1)
             request.session["student"] = json.dumps(
                 data,
                 default=utils.json_dump_handler
