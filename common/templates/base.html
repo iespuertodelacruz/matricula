@@ -53,6 +53,9 @@
                         <h3>{{ itinerary }}</h3>
                         <h4>{{ edulevel.law }}</h4>
                         <a id="new_application" href="#" role="button" class="btn btn-danger">{{ cancel_btn_msg|default:"Cancelar matrícula y volver al listado inicial" }}</a>
+                        <div class="notify_errors">
+                        Si encuentra algún fallo, no dude en comunicarlo escribiendo al correo <code>info@iespuertodelacruz.es</code>    
+                        </div>
                         {% block content_right %}
                         {% endblock %}
                     </div>
