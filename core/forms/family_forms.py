@@ -1,5 +1,5 @@
 from django import forms
-from .formfields import NifField, NieField, NumericField
+from .formfields import NifField, NieField, NumericField, BirthDateField
 
 
 class ResponsibleForm(forms.Form):
@@ -60,7 +60,7 @@ class ResponsibleForm(forms.Form):
         required=False,
         help_text="Muy importante para las comunicaciones con el centro"
     )
-    birth_date = forms.DateField(
+    birth_date = BirthDateField(
         label="Fecha de nacimiento",
         required=True,
         widget=forms.TextInput(attrs={"class": "datepicker"}),

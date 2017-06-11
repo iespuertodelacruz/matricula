@@ -1,6 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 import re
+import datetime
 
 
 class NifField(forms.CharField):
@@ -20,4 +21,13 @@ class NumericField(forms.CharField):
         if value and not re.match("^\d+$", value):
             raise ValidationError(
                 "{} no es un valor válido para este campo".format(value)
+            )
+
+
+class BirthDateField(forms.DateField):
+    def validate(self, value):
+        delta = (datetime.date.today() - value).days / 365
+        if delta <= 10:
+            raise ValidationError(
+                "La fecha de nacimiento no parece correcta"
             )
