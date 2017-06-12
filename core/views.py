@@ -291,7 +291,8 @@ def auth_pick(request, edulevel_code):
 El alumnado menor de edad no puede salir del centro durante el período lectivo.
 En caso de que hubiera necesidad de recogerlo por algún motivo, sólo lo podrían
 hacer padre/madre/tutores legales, ó bien aquellas personas que fueran
-autorizadas en el siguiente formulario. Máximo de 4 personas.
+autorizadas en el siguiente formulario. Máximo de 4 personas. (No incluir aquí
+a los responsables).
             """,
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
