@@ -26,8 +26,9 @@ class NumericField(forms.CharField):
 
 class BirthDateField(forms.DateField):
     def validate(self, value):
-        delta = (datetime.date.today() - value).days / 365
-        if delta <= 10:
-            raise ValidationError(
-                "La fecha de nacimiento no parece correcta"
-            )
+        if value:
+            delta = (datetime.date.today() - value).days / 365
+            if delta <= 10:
+                raise ValidationError(
+                    "La fecha de nacimiento no parece correcta"
+                )
