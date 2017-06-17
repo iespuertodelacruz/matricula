@@ -32,3 +32,12 @@ class BirthDateField(forms.DateField):
                 raise ValidationError(
                     "La fecha de nacimiento no parece correcta"
                 )
+
+
+class SocialSecurityNumberField(forms.CharField):
+    def validate(self, value):
+        if value:
+            if not re.match(r"^[\w\d]+$", value):
+                    raise ValidationError(
+                        "Sólo puede contener números y letras"
+                    )

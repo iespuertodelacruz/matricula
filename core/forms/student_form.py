@@ -1,5 +1,9 @@
 from django import forms
-from .formfields import NifField, NieField, NumericField, BirthDateField
+from .formfields import (NifField,
+                         NieField,
+                         NumericField,
+                         BirthDateField,
+                         SocialSecurityNumberField)
 
 
 class StudentForm(forms.Form):
@@ -80,7 +84,7 @@ class StudentForm(forms.Form):
         max_length=64,
         initial="Española"
     )
-    social_security_number = NumericField(
+    social_security_number = SocialSecurityNumberField(
         label="Número de la seguridad social",
         max_length=32,
         required=False
