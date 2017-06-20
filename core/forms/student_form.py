@@ -125,9 +125,21 @@ class StudentForm(forms.Form):
         nif = cleaned_data.get("nif")
         nie = cleaned_data.get("nie")
         passport = cleaned_data.get("passport")
+        lastyear_studies = cleaned_data.get("lastyear_studies")
+        lastyear_institution = cleaned_data.get("lastyear_institution")
 
         if (not nif) and (not nie) and (not passport):
             msg = "Debe especificar NIF, NIE ó Pasaporte"
             self.add_error("nif", msg)
             self.add_error("nie", msg)
             self.add_error("passport", msg)
+
+        if lastyear_studies and not lastyear_institution:
+            msg = ("Indicó estudios realizados el curso pasado. Debe "
+                   "especificar centro de procedencia")
+            self.add_error("lastyear_institution", msg)
+
+        if not lastyear_studies and lastyear_institution:
+            msg = ("Indicó centro de procedencia. Debe especificar los "
+                   "estudios realizados")
+            self.add_error("lastyear_studies", msg)
