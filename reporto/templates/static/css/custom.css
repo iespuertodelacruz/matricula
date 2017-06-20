@@ -104,8 +104,8 @@ h6 {
 }
 #header-cover #register {
   position: absolute;
-  top: -23mm;
-  left: 100mm;
+  top: -22mm;
+  left: 98mm;
   line-height: 6mm;
 }
 #header-cover #title {
@@ -117,7 +117,7 @@ h6 {
   line-height: 7mm;
 }
 #header-cover #title .edulevel {
-  font-size: 30pt;
+  font-size: 27pt;
 }
 #header-cover #subtitle {
   width: 10cm;
