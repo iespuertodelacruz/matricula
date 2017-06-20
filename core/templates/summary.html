@@ -16,7 +16,7 @@
     <li><a class="btn btn-success btn" href="{% url 'form' edulevel.code %}" role='button'>Impreso de matrícula</a> (imprimir 2 copias, preferiblemente a doble cara).</li>
     <li><b>1 fotografía de carnet a color</b> de <i>{{ data.student.full_name|title }}</i> pegada a la esquina superior derecha del impreso de matrícula. No vale fotocopia a color.</li>
     <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.student.full_name|title }}</i>.</li>
-    {% if data.student.lastyear_studies and not data.student.attached_ceip %}
+    {% if not data.student.attached_ceip %}
         <li><b>Certificado de estudios</b> del centro de origen.</li>
     {% endif %}
     <li><b>Fotocopia de la tarjeta sanitaria</b> o cartilla de la seguridad social.</li>
@@ -35,7 +35,9 @@
     {% if data.responsible1.is_tutor or data.responsible2.is_tutor %}
         <li><b>Fotocopia del documento de disponer de la tutela</b> de {{ data.student.full_name|title }}</li>.
     {% else %}
-        <li><b>Fotocopia del libro de familia</b>.</li>
+        {% if not data.student.adult %}
+            <li><b>Fotocopia del libro de familia</b>.</li>
+        {% endif %}
     {% endif %}
     {% with doc_url="docs/"|add:edulevel.enrollment_payment_doc %}
         <li><a href="{% static doc_url %}" target="blank">Instrucciones para el pago de las tasas de matrícula</a> (Original y copia) <b>{{ edulevel.cost }}€</b>. También se puede pagar a través de internet por <em>Línea Abierta</em> o sin tarjeta de crédito en <em>cajeros ingresadores.</em></li>
@@ -50,7 +52,8 @@
 <h3>Fecha de entrega de matrícula</h3>
 
 <p>
-    Recuerde que debe entregar la documentación en la secretaría del centro el próximo día <b>{{ edulevel.enrollment_date }}</b> en horario de <b>8:30h a 13:30h</b>.
+    Recuerde que debe entregar la documentación en la secretaría del centro el próximo día <b>{{ edulevel.enrollment_date }}</b> en horario de <b>8:30h a 13:30h</b>.<br><br>
+    Se irá atendiendo por orden de llegada, y habrá un <em>"coja su turno"</em> para que no se produzcan aglomeraciones.
 </p>
 
 {% if edulevel.is_vocational_training %}
