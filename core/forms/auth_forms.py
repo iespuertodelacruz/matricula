@@ -1,42 +1,37 @@
 from django import forms
-from .formfields import NifField
 
 
 class PickAuthForm(forms.Form):
-    nif1 = NifField(
-        label="NIF (Persona 1)",
+    nif1 = forms.CharField(
+        label="NIF/NIE/Pasaporte (Persona 1)",
         max_length=32,
-        help_text="El NIF es el DNI incluyendo la letra final",
         required=False
     )
     long_name1 = forms.CharField(
         label="NOMBRE Y APELLIDOS (Persona 1)",
         required=False
     )
-    nif2 = NifField(
-        label="NIF (Persona 2)",
+    nif2 = forms.CharField(
+        label="NIF/NIE/Pasaporte (Persona 2)",
         max_length=32,
-        help_text="El NIF es el DNI incluyendo la letra final",
         required=False
     )
     long_name2 = forms.CharField(
         label="NOMBRE Y APELLIDOS (Persona 2)",
         required=False
     )
-    nif3 = NifField(
-        label="NIF (Persona 3)",
+    nif3 = forms.CharField(
+        label="NIF/NIE/Pasaporte (Persona 3)",
         max_length=32,
-        help_text="El NIF es el DNI incluyendo la letra final",
         required=False
     )
     long_name3 = forms.CharField(
         label="NOMBRE Y APELLIDOS (Persona 3)",
         required=False
     )
-    nif4 = NifField(
-        label="NIF (Persona 4)",
+    nif4 = forms.CharField(
+        label="NIF/NIE/Pasaporte (Persona 4)",
         max_length=32,
-        help_text="El NIF es el DNI incluyendo la letra final",
         required=False
     )
     long_name4 = forms.CharField(
