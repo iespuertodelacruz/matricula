@@ -16,7 +16,7 @@ LOGGING = {
     },
     "handlers": {
         "logfile": {
-            "level": "DEBUG",
+            "level": "ERROR",
             "formatter": "verbose",
             "class": "logging.handlers.RotatingFileHandler",
             "filename": "matricula.log",
@@ -27,7 +27,7 @@ LOGGING = {
     "loggers": {
         "django": {
             "handlers": ["logfile"],
-            "level": "DEBUG",
+            "level": "ERROR",
             "propagate": True,
         },
     },
