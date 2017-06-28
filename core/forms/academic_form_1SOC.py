@@ -33,7 +33,6 @@ class AcademicForm_1SOC_HUM(forms.Form):
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
         ("SGA", "Alemán"),
-        ("ECO", "Economía"),
         ("DAI", "Dibujo Artístico I")),
         key=lambda x: x[1]
     )
@@ -66,16 +65,11 @@ class AcademicForm_1SOC_HUM(forms.Form):
         label="MATERIA ESPECÍFICA 2 (Preferencia 4)",
         help_text="Seleccione la materia que quiera cursar en 4º lugar"
     )
-    specific_subject2_order5 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 5)",
-        help_text="Seleccione la materia que quiera cursar en 5º lugar"
-    )
 
     def clean(self):
         cleaned_data = super(AcademicForm_1SOC_HUM, self).clean()
         specific_subjects2 = []
-        for i in range(1, 6):
+        for i in range(1, 5):
             field = "specific_subject2_order{}".format(i)
             value = cleaned_data.get(field)
             if value in specific_subjects2:
@@ -92,9 +86,7 @@ class AcademicForm_1SOC_SOC(forms.Form):
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
         ("SGA", "Alemán"),
-        ("ECO", "Economía"),
-        ("GRI", "Griego I"),
-        ("LIE", "Literatura Universal")),
+        ("DAI", "Dibujo artístico I")),
         key=lambda x: x[1]
     )
 
@@ -118,21 +110,11 @@ class AcademicForm_1SOC_SOC(forms.Form):
         label="MATERIA ESPECÍFICA 2 (Preferencia 4)",
         help_text="Seleccione la materia que quiera cursar en 4º lugar"
     )
-    specific_subject2_order5 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 5)",
-        help_text="Seleccione la materia que quiera cursar en 5º lugar"
-    )
-    specific_subject2_order6 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 6)",
-        help_text="Seleccione la materia que quiera cursar en 6º lugar"
-    )
 
     def clean(self):
         cleaned_data = super(AcademicForm_1SOC_SOC, self).clean()
         specific_subjects2 = []
-        for i in range(1, 7):
+        for i in range(1, 5):
             field = "specific_subject2_order{}".format(i)
             value = cleaned_data.get(field)
             if value in specific_subjects2:

@@ -106,8 +106,7 @@ class AcademicForm_2CIE_CCS(forms.Form):
         ("SGA", "Alemán"),
         ("SGN", "Francés"),
         ("TFL", "Tecnologías de la información y la comunicación II"),
-        ("TII", "Tecnología Industrial II"),
-        ("DBT", "Dibujo Técnico II")),
+        ("TII", "Tecnología Industrial II")),
         key=lambda x: x[1]
     )
 
@@ -169,12 +168,6 @@ class AcademicForm_2CIE_CCS(forms.Form):
         help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
                   "Cusará dos materias de las que se le asignen."
     )
-    specific_subject2_order9 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 9)",
-        help_text="Seleccione la materia que quiera cursar en 9º lugar.<br>"
-                  "Cusará dos materias de las que se le asignen."
-    )
 
     def clean(self):
         cleaned_data = super(AcademicForm_2CIE_CCS, self).clean()
@@ -192,7 +185,7 @@ class AcademicForm_2CIE_CCS(forms.Form):
                 core_subjects.append(value)
 
         specific_subjects2 = []
-        for i in range(1, 10):
+        for i in range(1, 9):
             field = "specific_subject2_order{}".format(i)
             value = cleaned_data.get(field)
             if value in specific_subjects2:
@@ -218,8 +211,7 @@ class AcademicForm_2CIE_TEC(forms.Form):
         ("SGA", "Alemán"),
         ("SGN", "Francés"),
         ("TFL", "Tecnologías de la información y la comunicación II"),
-        ("TII", "Tecnología Industrial II"),
-        ("GEO", "Geología")),
+        ("TII", "Tecnología Industrial II")),
         key=lambda x: x[1]
     )
 
@@ -281,12 +273,6 @@ class AcademicForm_2CIE_TEC(forms.Form):
         help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
                   "Cusará dos materias de las que se le asignen."
     )
-    specific_subject2_order9 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 9)",
-        help_text="Seleccione la materia que quiera cursar en 9º lugar.<br>"
-                  "Cusará dos materias de las que se le asignen."
-    )
 
     def clean(self):
         cleaned_data = super(AcademicForm_2CIE_TEC, self).clean()
@@ -304,7 +290,7 @@ class AcademicForm_2CIE_TEC(forms.Form):
                 core_subjects.append(value)
 
         specific_subjects2 = []
-        for i in range(1, 10):
+        for i in range(1, 9):
             field = "specific_subject2_order{}".format(i)
             value = cleaned_data.get(field)
             if value in specific_subjects2:

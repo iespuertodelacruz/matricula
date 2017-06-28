@@ -146,14 +146,12 @@ ACADEMIC_DATA = {
                 "specific_subject2_order2": "SGG",
                 "specific_subject2_order3": "SGA",
                 "specific_subject2_order4": "TNI",
-                "specific_subject2_order5": "DBT",
             },
             "TEC": {
                 "specific_subject2_order1": "CUF",
                 "specific_subject2_order2": "SGG",
                 "specific_subject2_order3": "SGA",
                 "specific_subject2_order4": "TNI",
-                "specific_subject2_order5": "BIG",
             }
         }
     },
@@ -169,16 +167,13 @@ ACADEMIC_DATA = {
                 "specific_subject2_order1": "CUF",
                 "specific_subject2_order2": "SGG",
                 "specific_subject2_order3": "SGA",
-                "specific_subject2_order4": "ECO",
-                "specific_subject2_order5": "DAI",
+                "specific_subject2_order4": "DAI",
             },
             "SOC": {
                 "specific_subject2_order1": "CUF",
                 "specific_subject2_order2": "SGG",
                 "specific_subject2_order3": "SGA",
-                "specific_subject2_order4": "ECO",
-                "specific_subject2_order5": "GRI",
-                "specific_subject2_order6": "LIE",
+                "specific_subject2_order4": "DAI",
             }
         }
     },
@@ -208,7 +203,6 @@ ACADEMIC_DATA = {
                 "specific_subject2_order6": "SGN",
                 "specific_subject2_order7": "TFL",
                 "specific_subject2_order8": "TII",
-                "specific_subject2_order9": "DBT",
             },
             "TEC": {
                 "core_subject_order1": "DB2",
@@ -221,7 +215,6 @@ ACADEMIC_DATA = {
                 "specific_subject2_order6": "SGN",
                 "specific_subject2_order7": "TFL",
                 "specific_subject2_order8": "TII",
-                "specific_subject2_order9": "GEO",
             },
         }
     },
@@ -253,7 +246,6 @@ ACADEMIC_DATA = {
                 "specific_subject2_order6": "SGA",
                 "specific_subject2_order7": "SGN",
                 "specific_subject2_order8": "TFL",
-                "specific_subject2_order9": "ECN",
             },
             "SOC": {
                 "core_subject_order1": "ECN",
@@ -267,8 +259,6 @@ ACADEMIC_DATA = {
                 "specific_subject2_order6": "SGA",
                 "specific_subject2_order7": "SGN",
                 "specific_subject2_order8": "TFL",
-                "specific_subject2_order9": "GR2",
-                "specific_subject2_order10": "HAR",
             }
         }
     },

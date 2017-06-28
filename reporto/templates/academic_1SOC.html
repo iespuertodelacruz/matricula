@@ -59,17 +59,6 @@
                 <td class="label">4ª</td>
                 <td class="value" colspan="2">{{ itinerary.specific_subject2_order4_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
-            <tr>
-                <td></td>
-                <td colspan="2"></td>
-                <td></td>
-                <td></td>
-                <td colspan="2"></td>
-                <td></td>
-                <td class="label">5ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order5_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
-            </tr>
-
         {% else %}
             {% set truncate_limit = 38 %}
 
@@ -110,21 +99,6 @@
                 <td class="label">4ª</td>
                 <td class="value" colspan="2">{{ itinerary.specific_subject2_order4_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
-            <tr>
-                <td></td>
-                <td colspan="2"></td>
-                <td></td>
-                <td class="label">5ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order5_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="2"></td>
-                <td></td>
-                <td class="label">6ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order6_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
-            </tr>
-
         {% endif %}
     </table>
 
