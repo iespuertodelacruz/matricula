@@ -3,10 +3,13 @@ $ ->
     $("#new_application").on("click", new_application)
 
 init_datepickers = ->
+    current_year = new Date().getFullYear()
+    min_year = current_year - 75
+    max_year = current_year - 10
     $(".datepicker").datepicker
         changeMonth: true,
         changeYear: true,
-        yearRange: "1960:2015"
+        yearRange: "#{min_year}:#{max_year}"
 
 new_application = (event) ->
     btn = $(this)

@@ -6,10 +6,14 @@ $(function() {
 });
 
 init_datepickers = function() {
+  var current_year, max_year, min_year;
+  current_year = new Date().getFullYear();
+  min_year = current_year - 75;
+  max_year = current_year - 10;
   return $(".datepicker").datepicker({
     changeMonth: true,
     changeYear: true,
-    yearRange: "1960:2015"
+    yearRange: min_year + ":" + max_year
   });
 };
 
