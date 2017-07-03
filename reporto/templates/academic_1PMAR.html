@@ -5,14 +5,13 @@
 
     <table>
         <tr>
-            <td class="subtitle" colspan="3" style="width: 50%">
+            <td class="subtitle" style="width: 50%">
                 Materia específica
             </td>
             <td style="width: 50%"></td>
         </tr>
         <tr>
-            <td class="label">X</td>
-            <td class="value" colspan="2">{{ academic.specific_subject_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+            <td class="value">{{ academic.specific_subject_label|upper }}</td>
             <td></td>
         </tr>
     </table>
