@@ -7,97 +7,89 @@
             {% set truncate_limit = 23 %}
 
             <tr>
-                <td class="subtitle" colspan="3" style="width: 32%">
-                    Materia específica 1
-                </td>
-                <td style="width: 2%"></td>
-                <td class="subtitle" colspan="3" style="width: 32%">
+                <td class="subtitle" colspan="2" style="width: 32%">
                     Troncal de opción
                 </td>
                 <td style="width: 2%"></td>
-                <td class="subtitle" colspan="3" style="width: 32%">
+                <td class="subtitle" style="width: 32%">
+                    Materia específica 1
+                </td>
+                <td style="width: 2%"></td>
+                <td class="subtitle" colspan="2" style="width: 32%">
                     Materia específica 2
                 </td>
             </tr>
             <tr>
-                <td class="label">X</td>
-                <td class="value" colspan="2">{{ academic.specific_subject1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="label">1ª</td>
+                <td class="value">{{ itinerary.core_subject_order1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td></td>
+                <td class="value">{{ academic.specific_subject1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
                 <td></td>
                 <td class="label">1ª</td>
-                <td class="value" colspan="2">{{ itinerary.core_subject_order1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+            </tr>
+            <tr>
+                <td class="label">2ª</td>
+                <td class="value">{{ itinerary.core_subject_order2_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
                 <td></td>
-                <td class="label">1ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td></td>
+                <td></td>
+                <td class="label">2ª</td>
+                <td class="value">{{ itinerary.specific_subject2_order2_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td colspan="2"></td>
-                <td></td>
-                <td class="label">2ª</td>
-                <td class="value" colspan="2">{{ itinerary.core_subject_order2_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
-                <td></td>
-                <td class="label">2ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order2_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="2"></td>
                 <td></td>
                 <td></td>
-                <td colspan="2"></td>
+                <td></td>
                 <td></td>
                 <td class="label">3ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order3_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order3_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td colspan="2"></td>
                 <td></td>
                 <td></td>
-                <td colspan="2"></td>
+                <td></td>
                 <td></td>
                 <td class="label">4ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order4_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order4_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
         {% else %}
             {% set truncate_limit = 38 %}
 
             <tr>
-                <td class="subtitle" colspan="3" style="width: 49%">
+                <td class="subtitle" style="width: 48%">
                     Materia específica 1
                 </td>
-                <td style="width: 1%"></td>
-                <td class="subtitle" colspan="3" style="width: 49%">
+                <td style="width: 4%"></td>
+                <td class="subtitle" colspan="2" style="width: 48%">
                     Materia específica 2
                 </td>
             </tr>
             <tr>
-                <td class="label">X</td>
-                <td class="value" colspan="2">{{ academic.specific_subject1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ academic.specific_subject1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
                 <td></td>
                 <td class="label">1ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order1_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td colspan="2"></td>
                 <td></td>
                 <td class="label">2ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order2_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order2_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td colspan="2"></td>
                 <td></td>
                 <td class="label">3ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order3_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order3_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
             <tr>
                 <td></td>
-                <td colspan="2"></td>
                 <td></td>
                 <td class="label">4ª</td>
-                <td class="value" colspan="2">{{ itinerary.specific_subject2_order4_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                <td class="value">{{ itinerary.specific_subject2_order4_label|upper|truncate(truncate_limit, True, "", 0) }}</td>
             </tr>
         {% endif %}
     </table>
