@@ -206,10 +206,10 @@ def family(request, edulevel_code, responsible_id):
             else:
                 data = utils.expand_choices(form)
                 data = utils.add_fields_to_responsible(data)
-                request.session[key] = json.dumps(
-                    data,
-                    default=utils.json_dump_handler
-                )
+            request.session[key] = json.dumps(
+                data,
+                default=utils.json_dump_handler
+            )
             if responsible_id == "1":
                 return HttpResponseRedirect(
                     reverse("family", args=[edulevel_code, 2])
@@ -249,10 +249,7 @@ def family(request, edulevel_code, responsible_id):
 
 def auth_pick(request, edulevel_code):
     valid_form = True
-    responsibles_ids = (
-        json.loads(request.session["responsible1"])["id_value"],
-        json.loads(request.session["responsible2"])["id_value"],
-    )
+    responsibles_ids = utils.get_responsibles_ids(request.session)
     if request.method == "POST":
         form = PickAuthForm(responsibles_ids, request.POST)
         if form.is_valid():

@@ -120,3 +120,15 @@ def add_fields_to_responsible(data):
         data["id_label"] = "Pasaporte"
         data["id_value"] = data["passport"]
     return data
+
+
+def get_responsibles_ids(session):
+    try:
+        r1_id = session["responsible1"]["id_value"]
+    except:
+        r1_id = None
+    try:
+        r2_id = session["responsible2"]["id_value"]
+    except:
+        r2_id = None
+    return (r1_id, r2_id)

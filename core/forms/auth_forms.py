@@ -45,7 +45,7 @@ class PickAuthForm(forms.Form):
 
     def clean(self):
         cleaned_data = super(PickAuthForm, self).clean()
-        for i in range(5):
+        for i in range(1, 5):
             id_field = "id{}".format(i)
             id_value = cleaned_data.get(id_field)
             long_name_field = "long_name{}".format(i)
