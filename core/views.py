@@ -48,14 +48,7 @@ def student(request, edulevel_code):
         form = StudentForm(request.POST)
         if form.is_valid():
             data = utils.expand_choices(form)
-            data["age"] = utils.age(data["birth_date"])
-            data["adult"] = data["age"] >= 18
-            data["full_name"] = data["name"] + " " + data["surname"]
-            lyi = data["lastyear_institution"].upper()
-            data["attached_ceip"] = \
-                (lyi.find("SAN ANTONIO") != -1) or \
-                (lyi.find("TOMÁS DE IRIARTE") != -1) or \
-                (lyi.find("TOMAS DE IRIARTE") != -1)
+            data = utils.add_fields_to_student(data)
             request.session["student"] = json.dumps(
                 data,
                 default=utils.json_dump_handler
@@ -212,9 +205,7 @@ def family(request, edulevel_code, responsible_id):
                 data = {"ignore_info": True}
             else:
                 data = utils.expand_choices(form)
-                data["age"] = utils.age(data["birth_date"])
-                data["full_name"] = data["name"] + " " + data["surname"]
-                data["is_tutor"] = data["link"] in ["TUO", "TUA"]
+                data = utils.add_fields_to_responsible(data)
                 request.session[key] = json.dumps(
                     data,
                     default=utils.json_dump_handler
@@ -258,8 +249,12 @@ def family(request, edulevel_code, responsible_id):
 
 def auth_pick(request, edulevel_code):
     valid_form = True
+    responsibles_ids = (
+        json.loads(request.session["responsible1"])["id_value"],
+        json.loads(request.session["responsible2"])["id_value"],
+    )
     if request.method == "POST":
-        form = PickAuthForm(request.POST)
+        form = PickAuthForm(responsibles_ids, request.POST)
         if form.is_valid():
             data = utils.expand_choices(form)
             request.session["auth_pick"] = json.dumps(data)
@@ -270,11 +265,17 @@ def auth_pick(request, edulevel_code):
             valid_form = False
     else:
         if request.session["auth_pick"]:
-            form = PickAuthForm(json.loads(request.session["auth_pick"]))
+            form = PickAuthForm(
+                responsibles_ids,
+                json.loads(request.session["auth_pick"])
+            )
         elif settings.DEBUG:
-            form = PickAuthForm(AUTH_DATA["pick"])
+            form = PickAuthForm(
+                responsibles_ids,
+                AUTH_DATA["pick"]
+            )
         else:
-            form = PickAuthForm()
+            form = PickAuthForm(responsibles_ids)
 
     breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Recogida",
@@ -290,9 +291,9 @@ def auth_pick(request, edulevel_code):
             "description": """
 El alumnado menor de edad no puede salir del centro durante el período lectivo.
 En caso de que hubiera necesidad de recogerlo por algún motivo, sólo lo podrían
-hacer padre/madre/tutores legales, ó bien aquellas personas que fueran
-autorizadas en el siguiente formulario. Máximo de 4 personas. (No incluir aquí
-a los responsables).
+hacer padre/madre/tutores legales, ó bien aquellas personas mayores de edad que
+fueran autorizadas en el siguiente formulario. Máximo de 4 personas.
+(No incluir aquí a los responsables).
             """,
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),

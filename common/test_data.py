@@ -363,13 +363,13 @@ PageMaker, el cual incluye versiones de Lorem Ipsum.
 
 AUTH_DATA = {
     "pick": {
-        "nif1": "12345678Y",
+        "id1": "87654321Y",
         "long_name1": "Pepe Sánchez Marrero",
-        "nif2": "87654321H",
+        "id2": "87654321H",
         "long_name2": "Antonio Con un Apellido Largo",
-        "nif3": "77777777T",
+        "id3": "77777777T",
         "long_name3": "Mary The Long Surname",
-        "nif4": "22222222R",
+        "id4": "22222222R",
         "long_name4": "Camile Boris Juvenil",
     },
 }

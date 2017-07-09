@@ -10,16 +10,8 @@
             <td class="value" colspan="3">{{ student.surname|upper|truncate(38, True, "", 0) }}</td>
         </tr>
         <tr>
-            {% if student.nif %}
-                <td class="label">NIF:</td>
-                <td class="value u30">{{ student.nif|upper }}</td>
-            {% elif student.nie %}
-                <td class="label">NIE:</td>
-                <td class="value">{{ student.nie|upper }}</td>
-            {% elif student.passport %}
-                <td class="label">Pasaporte:</td>
-                <td class="value">{{ student.passport|upper }}</td>
-            {% endif %}
+            <td class="label">{{ student.id_label }}:</td>
+            <td class="value u30">{{ student.id_value|upper }}</td>
             <td></td>
             <td></td>
             <td class="label">Nº Seg. Social</td>

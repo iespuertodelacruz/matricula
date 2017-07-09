@@ -2,7 +2,7 @@ from django import forms
 
 
 class PickAuthForm(forms.Form):
-    nif1 = forms.CharField(
+    id1 = forms.CharField(
         label="NIF/NIE/Pasaporte (Persona 1)",
         max_length=32,
         required=False
@@ -11,7 +11,7 @@ class PickAuthForm(forms.Form):
         label="NOMBRE Y APELLIDOS (Persona 1)",
         required=False
     )
-    nif2 = forms.CharField(
+    id2 = forms.CharField(
         label="NIF/NIE/Pasaporte (Persona 2)",
         max_length=32,
         required=False
@@ -20,7 +20,7 @@ class PickAuthForm(forms.Form):
         label="NOMBRE Y APELLIDOS (Persona 2)",
         required=False
     )
-    nif3 = forms.CharField(
+    id3 = forms.CharField(
         label="NIF/NIE/Pasaporte (Persona 3)",
         max_length=32,
         required=False
@@ -29,7 +29,7 @@ class PickAuthForm(forms.Form):
         label="NOMBRE Y APELLIDOS (Persona 3)",
         required=False
     )
-    nif4 = forms.CharField(
+    id4 = forms.CharField(
         label="NIF/NIE/Pasaporte (Persona 4)",
         max_length=32,
         required=False
@@ -39,22 +39,32 @@ class PickAuthForm(forms.Form):
         required=False
     )
 
+    def __init__(self, responsibles_ids, *args, **kwargs):
+        self.responsibles_ids = responsibles_ids
+        super(forms.Form, self).__init__(*args, **kwargs)
+
     def clean(self):
         cleaned_data = super(PickAuthForm, self).clean()
         for i in range(5):
-            nif_field = "nif{}".format(i)
-            nif = cleaned_data.get(nif_field)
+            id_field = "id{}".format(i)
+            id_value = cleaned_data.get(id_field)
             long_name_field = "long_name{}".format(i)
             long_name = cleaned_data.get(long_name_field)
-            if nif and not long_name:
+            if id_value and not long_name:
                 self.add_error(
                     long_name_field,
                     "Debe especificar nombre y apellidos"
                 )
-            if not nif and long_name:
+            if not id_value and long_name:
                 self.add_error(
-                    nif_field,
+                    id_field,
                     "Debe especificar el NIF"
+                )
+            if id_value in self.responsibles_ids:
+                self.add_error(
+                    id_field,
+                    ("No puede poner a los responsables como personas "
+                     "autorizadas")
                 )
 
 

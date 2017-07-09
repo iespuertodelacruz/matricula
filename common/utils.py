@@ -83,3 +83,40 @@ def update_breadcrumbs(source_edulevel_code,
     if bc_to_remove != -1:
         breadcrumbs.pop(bc_to_remove)
     return json.dumps(breadcrumbs)
+
+
+def add_fields_to_student(data):
+    data["age"] = age(data["birth_date"])
+    data["adult"] = data["age"] >= 18
+    data["full_name"] = data["name"] + " " + data["surname"]
+    lyi = data["lastyear_institution"].upper()
+    data["attached_ceip"] = \
+        (lyi.find("SAN ANTONIO") != -1) or \
+        (lyi.find("TOMÁS DE IRIARTE") != -1) or \
+        (lyi.find("TOMAS DE IRIARTE") != -1)
+    if data["nif"]:
+        data["id_label"] = "NIF"
+        data["id_value"] = data["nif"]
+    elif data["nie"]:
+        data["id_label"] = "NIE"
+        data["id_value"] = data["nie"]
+    elif data["passport"]:
+        data["id_label"] = "Pasaporte"
+        data["id_value"] = data["passport"]
+    return data
+
+
+def add_fields_to_responsible(data):
+    data["age"] = age(data["birth_date"])
+    data["full_name"] = data["name"] + " " + data["surname"]
+    data["is_tutor"] = data["link"] in ["TUO", "TUA"]
+    if data["nif"]:
+        data["id_label"] = "NIF"
+        data["id_value"] = data["nif"]
+    elif data["nie"]:
+        data["id_label"] = "NIE"
+        data["id_value"] = data["nie"]
+    elif data["passport"]:
+        data["id_label"] = "Pasaporte"
+        data["id_value"] = data["passport"]
+    return data
