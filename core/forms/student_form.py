@@ -119,6 +119,11 @@ class StudentForm(forms.Form):
                   "otro centro",
         required=False
     )
+    repeater = forms.BooleanField(
+        label="Repetidor/a",
+        required=False,
+        help_text="Indique si repite curso"
+    )
 
     def clean(self):
         cleaned_data = super(StudentForm, self).clean()
