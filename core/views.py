@@ -315,7 +315,10 @@ def auth_exit(request, edulevel_code):
             valid_form = False
     else:
         if request.session["auth_exit"]:
-            form = ExitAuthForm(json.loads(request.session["auth_exit"]))
+            form = ExitAuthForm(
+                edulevel.is_mandatory(),
+                json.loads(request.session["auth_exit"])
+            )
         else:
             form = ExitAuthForm(edulevel.is_mandatory())
 
