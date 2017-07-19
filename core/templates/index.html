@@ -5,11 +5,13 @@
 <div class="row">
     <table class="table table-striped table-hover">
         <thead>
-            <th></th>            
-            <th></th>            
-            <th></th>            
-            <th>Coste</th>            
-            <th>Fecha de matrícula</th>            
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Coste</th>
+            {% if not empty_all_enrollment_dates %}
+                <th>Fecha de matrícula</th>
+            {% endif %}
         </thead>
 
         {% for level in edu_levels %}
@@ -18,7 +20,9 @@
                 <td>{{ level.law }}</td>
                 <td>{{ level.description }}</td>
                 <td>{{ level.cost }}€</td>
-                <td>{{ level.enrollment_date|default:"---" }}</td>
+                {% if not empty_all_enrollment_dates %}
+                    <td>{{ level.enrollment_date|default:"---" }}</td>
+                {% endif %}
             </tr>
         {% endfor %}
     </table>

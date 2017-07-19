@@ -29,6 +29,7 @@ SECTIONS = [
 
 def index(request):
     edu_levels = EduLevel.objects.all()
+    empty_all_enrollment_dates = EduLevel.empty_all_enrollment_dates()
 
     for s in SECTIONS:
         request.session[s] = None
@@ -38,7 +39,10 @@ def index(request):
     return render(
         request,
         "index.html",
-        {"edu_levels": edu_levels}
+        {
+            "edu_levels": edu_levels,
+            "empty_all_enrollment_dates": empty_all_enrollment_dates
+        }
     )
 
 
