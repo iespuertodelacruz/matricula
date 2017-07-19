@@ -74,19 +74,21 @@
             <td class="label">Cód. postal:</td>
             <td class="value" colspan="3">{{ student.zipcode }}</td>
         </tr>
-        <tr>
-            <td class="subtitle" colspan="8">
-                Estudios realizados el curso anterior, sólo en caso de otro centro
-            </td>
-        </tr>
-        <tr>
-            <td class="label">Centro:</td>
-            <td class="value" colspan="5">{{ student.lastyear_institution|upper|truncate(80, True, "", 0) }}</td>
-        </tr>
-        <tr>
-            <td class="label">Estudios:</td>
-            <td class="value" colspan="8">{{ student.lastyear_studies|upper|truncate(120, True, "", 0) }}</td>
-        </tr>
+        {% if student.lastyear_in_other_institution %}
+            <tr>
+                <td class="subtitle" colspan="8">
+                    Estudios realizados el curso anterior, sólo en caso de otro centro
+                </td>
+            </tr>
+            <tr>
+                <td class="label">Centro:</td>
+                <td class="value" colspan="5">{{ student.lastyear_institution|upper|truncate(80, True, "", 0) }}</td>
+            </tr>
+            <tr>
+                <td class="label">Estudios:</td>
+                <td class="value" colspan="8">{{ student.lastyear_studies|upper|truncate(120, True, "", 0) }}</td>
+            </tr>
+        {% endif %}
     </table>
 
 </div>

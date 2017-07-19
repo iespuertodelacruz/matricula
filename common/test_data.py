@@ -17,8 +17,9 @@ STUDENT_DATA = {
     "address": "Street Chrome, 10",
     "zipcode": "54321",
     "hometown": "Puerto de la Cruz",
-    "lastyear_institution": "IES Puerto de la Cruz - Telesforo Bravo",
-    "lastyear_studies": "Computing"
+    "lastyear_in_other_institution": True,
+    "lastyear_institution": "IES Los Realejos",
+    "lastyear_studies": "Corte y Confección"
 }
 
 RESPONSIBLE_DATA = {

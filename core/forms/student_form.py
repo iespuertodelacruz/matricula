@@ -105,6 +105,11 @@ class StudentForm(forms.Form):
         help_text="Domicilio durante el curso escolar",
         initial="Puerto de la Cruz"
     )
+    lastyear_in_other_institution = forms.BooleanField(
+        label="Marque esta casilla si estudió el curso pasado en otro centro",
+        required=False,
+        initial=False
+    )
     lastyear_institution = forms.CharField(
         label="Centro de procedencia",
         max_length=256,
@@ -132,6 +137,9 @@ class StudentForm(forms.Form):
         passport = cleaned_data.get("passport")
         lastyear_studies = cleaned_data.get("lastyear_studies")
         lastyear_institution = cleaned_data.get("lastyear_institution")
+        lastyear_in_other_institution = cleaned_data.get(
+            "lastyear_in_other_institution"
+        )
 
         if (not nif) and (not nie) and (not passport):
             msg = "Debe especificar NIF, NIE ó Pasaporte"
@@ -139,12 +147,22 @@ class StudentForm(forms.Form):
             self.add_error("nie", msg)
             self.add_error("passport", msg)
 
-        if lastyear_studies and not lastyear_institution:
-            msg = ("Indicó estudios realizados el curso pasado. Debe "
-                   "especificar centro de procedencia")
+        if lastyear_in_other_institution and not lastyear_institution:
+            msg = ("Indicó que estudió el curso pasado en otro centro. "
+                   "Debe especificar centro de procedencia")
             self.add_error("lastyear_institution", msg)
 
-        if not lastyear_studies and lastyear_institution:
-            msg = ("Indicó centro de procedencia. Debe especificar los "
-                   "estudios realizados")
+        if lastyear_in_other_institution and not lastyear_studies:
+            msg = ("Indicó que estudió el curso pasado en otro centro. "
+                   "Debe especificar los estudios realizados")
+            self.add_error("lastyear_studies", msg)
+
+        if not lastyear_in_other_institution and lastyear_institution:
+            msg = ("Indicó que NO estudió el curso pasado en otro centro. "
+                   "Debe borrar centro de procedencia")
+            self.add_error("lastyear_institution", msg)
+
+        if not lastyear_in_other_institution and lastyear_studies:
+            msg = ("Indicó que NO estudió el curso pasado en otro centro. "
+                   "Debe borrar los estudios realizados")
             self.add_error("lastyear_studies", msg)
