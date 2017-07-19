@@ -66,13 +66,13 @@
         </tr>
         <tr>
             <td class="label">Dirección:</td>
-            <td class="value" colspan="5">{{ student.address|upper }}</td>
-            <td class="label">Cód. postal:</td>
-            <td class="value" colspan="3">{{ student.zipcode }}</td>
+            <td class="value" colspan="9">{{ student.address|upper|truncate(75, True, "", 0) }}</td>
         </tr>
         <tr>
             <td class="label">Municipio:</td>
-            <td class="value" colspan="4">{{ student.hometown|upper }}</td>
+            <td class="value" colspan="5">{{ student.hometown|upper|truncate(50, True, "", 0) }}</td>
+            <td class="label">Cód. postal:</td>
+            <td class="value" colspan="3">{{ student.zipcode }}</td>
         </tr>
         <tr>
             <td class="subtitle" colspan="8">
