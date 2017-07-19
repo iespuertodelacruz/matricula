@@ -6,14 +6,20 @@ import datetime
 
 class NifField(forms.CharField):
     def validate(self, value):
-        if value and not re.match("^(\d{8}[A-Za-z])$", value):
+        if value and not re.match("^(\d{8}-?[A-Za-z])$", value):
             raise ValidationError("{} no es un NIF válido".format(value))
+
+    def clean(self, value):
+        return value.replace("-", "")
 
 
 class NieField(forms.CharField):
     def validate(self, value):
-        if value and not re.match("^[A-Za-z]\d{7}[A-Za-z]$", value):
+        if value and not re.match("^[A-Za-z]\d{7}-?[A-Za-z]$", value):
             raise ValidationError("{} no es un NIE válido".format(value))
+
+    def clean(self, value):
+        return value.replace("-", "")
 
 
 class NumericField(forms.CharField):
