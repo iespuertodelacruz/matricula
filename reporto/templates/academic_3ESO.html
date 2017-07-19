@@ -1,6 +1,6 @@
 {% set truncate_limit1 = 60 %}
 {% set truncate_limit2 = 12 %}
-{% set truncate_limit3 = 34 %}
+{% set truncate_limit3 = 25 %}
 
 <div id="academic" class="section">
     <div class="title">Información académica</div>
@@ -59,7 +59,7 @@
             <td></td>
             <td></td>
             <td class="label">4ª</td>
-            <td class="value" colspan="2">{{ academic.specific_subject3_order4_label|upper }}</td>
+            <td class="value" colspan="2">{{ academic.specific_subject3_order4_label|upper|truncate(truncate_limit3, True, "", 0) }}</td>
         </tr>
         <tr>
             <td></td>
@@ -69,7 +69,7 @@
             <td></td>
             <td></td>
             <td class="label">5ª</td>
-            <td class="value" colspan="2">{{ academic.specific_subject3_order5_label|upper }}</td>
+            <td class="value" colspan="2">{{ academic.specific_subject3_order5_label|upper|truncate(truncate_limit3, True, "", 0) }}</td>
         </tr>
     </table>
 
