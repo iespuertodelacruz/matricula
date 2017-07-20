@@ -27,7 +27,7 @@ class AcademicForm_1CIE_CCS(forms.Form):
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
-        ("SGA", "Alemán"),
+        ("SGT", "Alemán"),
         ("TNI", "Tecnología Industrial I")),
         key=lambda x: x[1]
     )
@@ -72,7 +72,7 @@ class AcademicForm_1CIE_TEC(forms.Form):
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
-        ("SGA", "Alemán"),
+        ("SGT", "Alemán"),
         ("TNI", "Tecnología Industrial I")),
         key=lambda x: x[1]
     )

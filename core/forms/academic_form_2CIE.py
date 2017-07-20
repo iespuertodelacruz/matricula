@@ -8,12 +8,12 @@ class AcademicForm_2CIE(forms.Form):
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT1_CHOICES = sorted((
-        ("ACF", "Acondicionamiento físico"),
-        ("AYS", "Antropología y Sociología"),
-        ("MTA", "La mitología y las artes"),
+        ("ACM", "Acondicionamiento físico"),
+        ("ATR", "Antropología y Sociología"),
+        ("LAM", "La mitología y las artes"),
         ("FOT", "Fotografía"),
         ("MYS", "Música y Sociedad"),
-        ("TLA", "Técnicas de laboratorio"),
+        ("TIA", "Técnicas de laboratorio"),
         ("RLG", "Religión"),
         ("LCA", "Literatura Canaria"),
         ("HIC", "Historia de Canarias"),
@@ -99,12 +99,12 @@ class AcademicForm_2CIE_CCS(forms.Form):
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("CTM", "Ciencias de la Tierra y el Medioambiente"),
+        ("CLB", "Ciencias de la Tierra y el Medioambiente"),
         ("HFI", "Historia de la filosofía"),
         ("IYS", "Imagen y Sonido"),
         ("PSI", "Psicología"),
-        ("SGA", "Alemán"),
-        ("SGN", "Francés"),
+        ("SGJ", "Alemán"),
+        ("SGX", "Francés"),
         ("TFL", "Tecnologías de la información y la comunicación II"),
         ("TII", "Tecnología Industrial II")),
         key=lambda x: x[1]
@@ -199,17 +199,17 @@ class AcademicForm_2CIE_CCS(forms.Form):
 
 class AcademicForm_2CIE_TEC(forms.Form):
     CORE_SUBJECT_CHOICES = sorted((
-        ("DB2", "Dibujo Técnico II"),
+        ("DBC", "Dibujo Técnico II"),
         ("QUI", "Química")),
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("CTM", "Ciencias de la Tierra y el Medioambiente"),
+        ("CLB", "Ciencias de la Tierra y el Medioambiente"),
         ("HFI", "Historia de la filosofía"),
         ("IYS", "Imagen y Sonido"),
         ("PSI", "Psicología"),
-        ("SGA", "Alemán"),
-        ("SGN", "Francés"),
+        ("SGJ", "Alemán"),
+        ("SGX", "Francés"),
         ("TFL", "Tecnologías de la información y la comunicación II"),
         ("TII", "Tecnología Industrial II")),
         key=lambda x: x[1]

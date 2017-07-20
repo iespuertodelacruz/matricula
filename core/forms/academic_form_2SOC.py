@@ -8,12 +8,12 @@ class AcademicForm_2SOC(forms.Form):
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT1_CHOICES = sorted((
-        ("ACF", "Acondicionamiento físico"),
-        ("AYS", "Antropología y Sociología"),
-        ("MTA", "La mitología y las artes"),
+        ("ACM", "Acondicionamiento físico"),
+        ("ATR", "Antropología y Sociología"),
+        ("LAM", "La mitología y las artes"),
         ("FOT", "Fotografía"),
         ("MYS", "Música y Sociedad"),
-        ("TLA", "Técnicas de laboratorio"),
+        ("TIA", "Técnicas de laboratorio"),
         ("RLG", "Religión"),
         ("LCA", "Literatura Canaria"),
         ("HIC", "Historia de Canarias"),
@@ -94,20 +94,20 @@ class AcademicForm_2SOC(forms.Form):
 
 class AcademicForm_2SOC_HUM(forms.Form):
     CORE_SUBJECT_CHOICES = sorted((
-        ("GEO", "Geografía"),
-        ("GR2", "Griego II"),
+        ("GER", "Geografía"),
+        ("GRE", "Griego II"),
         ("HFI", "Historia de la Filosofía"),
         ("HAR", "Historia del Arte")),
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("DA2", "Dibujo Artístico II"),
+        ("DII", "Dibujo Artístico II"),
         ("FUE", "Fundamentos de administración y gestión"),
         ("HFI", "Historia de la Filosofía"),
-        ("HMD", "Historia de la música y la danza"),
+        ("HTZ", "Historia de la música y la danza"),
         ("PSI", "Psicología"),
-        ("SGA", "Alemán"),
-        ("SGN", "Francés"),
+        ("SGJ", "Alemán"),
+        ("SGX", "Francés"),
         ("TFL", "Tecnologías de la información y la comunicación II")),
         key=lambda x: x[1]
     )
@@ -213,18 +213,18 @@ class AcademicForm_2SOC_HUM(forms.Form):
 class AcademicForm_2SOC_SOC(forms.Form):
     CORE_SUBJECT_CHOICES = sorted((
         ("ECN", "Economía de la empresa"),
-        ("GEO", "Geografía"),
+        ("GER", "Geografía"),
         ("HFI", "Historia de la Filosofía")),
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("DA2", "Dibujo Artístico II"),
+        ("DII", "Dibujo Artístico II"),
         ("FUE", "Fundamentos de administración y gestión"),
         ("HFI", "Historia de la Filosofía"),
-        ("HMD", "Historia de la música y la danza"),
+        ("HTZ", "Historia de la música y la danza"),
         ("PSI", "Psicología"),
-        ("SGA", "Alemán"),
-        ("SGN", "Francés"),
+        ("SGJ", "Alemán"),
+        ("SGX", "Francés"),
         ("TFL", "Tecnologías de la información y la comunicación II")),
         key=lambda x: x[1]
     )

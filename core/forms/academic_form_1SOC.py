@@ -25,14 +25,14 @@ class AcademicForm_1SOC(forms.Form):
 
 class AcademicForm_1SOC_HUM(forms.Form):
     CORE_SUBJECT_CHOICES = sorted((
-        ("GRI", "Griego I"),
+        ("GRO", "Griego I"),
         ("LIE", "Literatura Universal")),
         key=lambda x: x[1]
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
-        ("SGA", "Alemán"),
+        ("SGT", "Alemán"),
         ("DAI", "Dibujo Artístico I")),
         key=lambda x: x[1]
     )
@@ -85,7 +85,7 @@ class AcademicForm_1SOC_SOC(forms.Form):
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CUF", "Cultura científica"),
         ("SGG", "Francés"),
-        ("SGA", "Alemán"),
+        ("SGT", "Alemán"),
         ("DAI", "Dibujo artístico I")),
         key=lambda x: x[1]
     )
