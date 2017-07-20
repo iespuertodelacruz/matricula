@@ -70,6 +70,14 @@ h1, h2, h3, h4, h5, h6
         line-height: 90%
         left: 70mm
         top: 0mm
+    .page-counter
+        counter-increment: page
+        content: "Pág. " counter(page) " de " counter(pages)
+        position: absolute
+        right: 14mm
+        top: 9mm
+        font-size: 9pt
+
 
 #header-cover
     #logo-school
@@ -143,6 +151,13 @@ h1, h2, h3, h4, h5, h6
         line-height: 90%
         right: 10mm
         top: 25mm
+    .page-counter
+        counter-increment: page
+        content: "Pág. " counter(page) " de " counter(pages)
+        position: absolute
+        left: 55mm
+        top: 2mm
+        font-size: 9pt
 
 .section
     margin-top: 3mm

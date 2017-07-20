@@ -77,6 +77,14 @@ h6 {
   left: 70mm;
   top: 0mm;
 }
+#header .page-counter {
+  counter-increment: page;
+  content: "Pág. " counter(page) " de " counter(pages);
+  position: absolute;
+  right: 14mm;
+  top: 9mm;
+  font-size: 9pt;
+}
 #header-cover #logo-school {
   position: absolute;
   top: 3mm;
@@ -157,6 +165,14 @@ h6 {
   line-height: 90%;
   right: 10mm;
   top: 25mm;
+}
+#header-cover .page-counter {
+  counter-increment: page;
+  content: "Pág. " counter(page) " de " counter(pages);
+  position: absolute;
+  left: 55mm;
+  top: 2mm;
+  font-size: 9pt;
 }
 .section {
   margin-top: 3mm;
