@@ -404,7 +404,8 @@ def summary(request, edulevel_code):
             "data": data,
             "breadcrumbs": breadcrumbs,
             "edulevels": EduLevel.objects.all(),
-            "cancel_btn_msg": "Comenzar nueva matrícula"
+            "cancel_btn_msg": "Comenzar nueva matrícula",
+            "empty_all_enrollment_dates": EduLevel.empty_all_enrollment_dates()
         }
     )
 
@@ -447,15 +448,22 @@ def form(request, edulevel_code):
         signature_date=signature_date,
         copy_target="interesado"
     )
+
     payment_doc = os.path.join(
         settings.BASE_DIR,
         f"common/static/docs/{edulevel.enrollment_payment_doc()}"
+    )
+
+    documentation = PdfReport("documentation.html")
+    documentation.render(
+        **params,
     )
 
     merger = PdfFileMerger()
     merger.append(school_copy.output_filename)
     merger.append(applicant_copy.output_filename)
     merger.append(payment_doc)
+    merger.append(documentation.output_filename)
 
     report_name = "Matrícula-{}-{}".format(edulevel_code,
                                            params["student"]["name"])
@@ -464,6 +472,7 @@ def form(request, edulevel_code):
     response = HttpResponse(open(report_filename, "rb"))
     os.remove(school_copy.output_filename)
     os.remove(applicant_copy.output_filename)
+    os.remove(documentation.output_filename)
     os.remove(report_filename)
     response["Content-Type"] = "application/pdf"
     response["Content-Disposition"] = \

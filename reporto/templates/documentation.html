@@ -1,0 +1,34 @@
+{% block body %}
+
+<h1>Documentación a entregar</h1>
+
+<ul>
+    <li><b>2 fotografías de carnet a color</b> de <i>{{ student.full_name|title }}</i> pegadas en la esquina superior derecha de los impresos de matrícula. No vale fotocopia a color.</li>
+    <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ student.full_name|title }}</i>.</li>
+    {% if not student.attached_ceip %}
+        <li><b>Certificado de estudios</b> del centro de origen.</li>
+    {% endif %}
+    <li><b>Fotocopia de la tarjeta sanitaria</b> o cartilla de la seguridad social.</li>
+    {% if not student.adult %}
+        <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ responsible1.full_name|title }}</i>.</li>
+        {% if not responsible1.ignore_data %}
+            <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ responsible2.full_name|title }}</i>.</li>
+        {% endif %}
+    {% endif %}
+    {% if extra.has_health_problem %}
+        <li><b>Informe médico correspondiente</b> ya que ha indicado algún problema de salud.</li>
+    {% endif %}
+    {% if responsible1.separated or responsible2.separated %}
+        <li>Fotocopia de la <b>sentencia judicial que valida el convenio regulador del régimen de visitas</b>.</li>
+    {% endif %}
+    {% if responsible1.is_tutor or responsible2.is_tutor %}
+        <li><b>Fotocopia del documento de disponer de la tutela</b> de {{ student.full_name|title }}</li>.
+    {% else %}
+        {% if not student.adult %}
+            <li><b>Fotocopia del libro de familia</b>.</li>
+        {% endif %}
+    {% endif %}
+</ul>
+
+
+{% endblock %}
