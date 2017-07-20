@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 
 {% block body %}
-    
+
     {% include "header_cover.html" %}
+    {% include "header.html" %}
+
     {% include "student.html" %}
     {% include "academic_{}.html".format(edulevel.code) %}
-    {% include "header.html" %}
     {% include "family.html" %}
     {% include "auth.html" %}
     {% include "extra.html" %}

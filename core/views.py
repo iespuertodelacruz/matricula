@@ -14,6 +14,9 @@ from core.forms.extra_forms import ExtraForm
 from reporto.core import PdfReport
 from core.forms.academic_form_FP import get_edulevel
 import locale
+from PyPDF2 import PdfFileMerger
+import uuid
+import os
 
 SECTIONS = [
     "student",
@@ -414,27 +417,58 @@ def conditions(request):
 
 
 def form(request, edulevel_code):
-    report = PdfReport("form.html", HttpResponse)
-
     params = utils.load_session_data(request.session, SECTIONS)
     edulevel = EduLevel.objects.get(code=edulevel_code)
     # vocational training
     vt_edulevel = get_edulevel(edulevel_code, params["academic"])
 
+    school_copy = PdfReport("form.html")
     # signature date (with locale)
     locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
-    signature_date = report.generation_time.strftime("%d de %B de %Y")
-
-    report.render(
+    signature_date = school_copy.generation_time.strftime("%d de %B de %Y")
+    school_copy.render(
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
         school_year=utils.calculate_schoolyear(),
-        signature_date=signature_date
+        signature_date=signature_date,
+        copy_target="centro"
     )
+
+    applicant_copy = PdfReport("form.html")
+    # signature date (with locale)
+    locale.setlocale(locale.LC_TIME, "es_ES.UTF-8")
+    signature_date = applicant_copy.generation_time.strftime("%d de %B de %Y")
+    applicant_copy.render(
+        **params,
+        edulevel=edulevel,
+        vt_edulevel=vt_edulevel,
+        school_year=utils.calculate_schoolyear(),
+        signature_date=signature_date,
+        copy_target="interesado"
+    )
+    payment_doc = os.path.join(
+        settings.BASE_DIR,
+        f"common/static/docs/{edulevel.enrollment_payment_doc()}"
+    )
+
+    merger = PdfFileMerger()
+    merger.append(school_copy.output_filename)
+    merger.append(applicant_copy.output_filename)
+    merger.append(payment_doc)
+
     report_name = "Matrícula-{}-{}".format(edulevel_code,
                                            params["student"]["name"])
-    return report.http_response(report_name)
+    report_filename = "/tmp/" + str(uuid.uuid4()) + ".pdf"
+    merger.write(report_filename)
+    response = HttpResponse(open(report_filename, "rb"))
+    os.remove(school_copy.output_filename)
+    os.remove(applicant_copy.output_filename)
+    os.remove(report_filename)
+    response["Content-Type"] = "application/pdf"
+    response["Content-Disposition"] = \
+        "attachment; filename='{}.pdf'".format(report_name)
+    return response
 
 
 def change_edulevel(request, edulevel_code):

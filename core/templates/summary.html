@@ -13,8 +13,8 @@
 <h3>Documentación a entregar</h3>
 
 <ul>
-    <li><a class="btn btn-success btn" href="{% url 'form' edulevel.code %}" role='button'>Impreso de matrícula</a> (imprimir 2 copias, preferiblemente a doble cara).</li>
-    <li><b>1 fotografía de carnet a color</b> de <i>{{ data.student.full_name|title }}</i> pegada a la esquina superior derecha del impreso de matrícula. No vale fotocopia a color.</li>
+    <li><a class="btn btn-success btn" href="{% url 'form' edulevel.code %}" role='button'>Impreso de matrícula</a></li>
+    <li><b>2 fotografías de carnet a color</b> de <i>{{ data.student.full_name|title }}</i> pegadas en la esquina superior derecha de los impresos de matrícula. No vale fotocopia a color.</li>
     <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ data.student.full_name|title }}</i>.</li>
     {% if not data.student.attached_ceip %}
         <li><b>Certificado de estudios</b> del centro de origen.</li>
@@ -39,9 +39,6 @@
             <li><b>Fotocopia del libro de familia</b>.</li>
         {% endif %}
     {% endif %}
-    {% with doc_url="docs/"|add:edulevel.enrollment_payment_doc %}
-        <li><a href="{% static doc_url %}" target="blank">Instrucciones para el pago de las tasas de matrícula</a> (Original y copia) <b>{{ edulevel.cost }}€</b>. También se puede pagar a través de internet por <em>Línea Abierta</em> o sin tarjeta de crédito en <em>cajeros ingresadores.</em></li>
-    {% endwith %}
 </ul>
 
 <p>

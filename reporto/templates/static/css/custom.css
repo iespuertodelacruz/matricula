@@ -70,6 +70,13 @@ h6 {
   right: 0;
   width: 40mm;
 }
+#header .copy {
+  position: absolute;
+  color: #595959;
+  line-height: 90%;
+  left: 70mm;
+  top: 0mm;
+}
 #header-cover #logo-school {
   position: absolute;
   top: 3mm;
@@ -143,6 +150,13 @@ h6 {
   border: 1px solid #000;
   margin: 0;
   padding: 0;
+}
+#header-cover .copy {
+  position: absolute;
+  color: #595959;
+  line-height: 90%;
+  right: 10mm;
+  top: 25mm;
 }
 .section {
   margin-top: 3mm;
