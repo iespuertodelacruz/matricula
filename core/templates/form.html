@@ -6,7 +6,9 @@
 
 <h2>{{ title }}</h2>
 
-<p class="description">{{ description }}</p>
+{% if description %}
+    <p class="description">{{ description }}</p>
+{% endif %}
 
 {% include "form_error.html" %}
 

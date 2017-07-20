@@ -132,6 +132,17 @@ def academic(request, edulevel_code):
         request.session["breadcrumbs"]
     )
 
+    edulevel = EduLevel.objects.get(code=edulevel_code)
+    if edulevel.is_vocational_training():
+        description = None
+    else:
+        description = """
+            Queremos aclarar que las elecciones de materias no son
+            definitivas, y por lo tanto, pueden cambiar, en función de
+            la disponibilidad asignada por la Dirección General de Personal
+            ó de las ratios del alumnado, entre otros factores.
+        """
+
     return render(
         request,
         "form.html",
@@ -140,7 +151,8 @@ def academic(request, edulevel_code):
             "form": form,
             "edulevel": EduLevel.objects.get(code=edulevel_code),
             "valid_form": valid_form,
-            "breadcrumbs": breadcrumbs
+            "breadcrumbs": breadcrumbs,
+            "description": description
         }
     )
 
@@ -184,6 +196,16 @@ def itinerary(request, edulevel_code, itinerary_code):
         request.session["breadcrumbs"]
     )
 
+    edulevel = EduLevel.objects.get(code=edulevel_code)
+    if edulevel.is_vocational_training():
+        description = None
+    else:
+        description = """
+            Queremos aclarar que las elecciones de materias no son
+            definitivas, y por lo tanto, pueden cambiar, en función de
+            la disponibilidad asignada por la Dirección General de Personal
+            ó de las ratios del alumnado, entre otros factores.
+        """
     return render(
         request,
         "form.html",
@@ -196,7 +218,8 @@ def itinerary(request, edulevel_code, itinerary_code):
                 AcademicForm.TRAINING_ITINERARY_CHOICES,
                 itinerary_code
             ),
-            "breadcrumbs": breadcrumbs
+            "breadcrumbs": breadcrumbs,
+            "description": description
         }
     )
 
