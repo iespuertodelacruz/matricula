@@ -1,0 +1,54 @@
+<div class="section">
+    {% if not student.adult %}
+        <div class="title">Datos personales del Responsable {{ responsible.id }}</div>
+        {% if responsible.ignore_info %}
+            Se desconocen los datos de este responsable.
+        {% else %}
+            <table>
+                <tr>
+                    <td class="label">Nombre:</td>
+                    <td class="value">{{ responsible.name|upper|truncate(20, True, "", 0) }}</td>
+                    <td></td>
+                    <td class="label">Apellidos:</td>
+                    <td class="value" colspan="3">{{ responsible.surname|upper|truncate(38, True, "", 0) }}</td>
+                </tr>
+                <tr>
+                    <td class="label">{{ responsible.id_label }}:</td>
+                    <td class="value">{{ responsible.id_value|upper }}</td>
+                    <td></td>
+                    <td class="label">Profesión:</td>
+                    <td class="value" colspan="3">{{ responsible.job|upper|truncate(38, True, "", 0) }}</td>
+                </tr>
+                <tr>
+                    <td class="label" style="width: 10%">Sexo:</td>
+                    <td class="value" style="width: 30%">{{ responsible.gender_label|upper }}</td>
+                    <td style="width: 2%"></td>
+                    <td class="label" style="width: 10%">Vínculo:</td>
+                    <td class="value" style="width: 16%">{{ responsible.link_label|upper }}</td>
+                    <td class="label" style="width: 16%">Teléfono móvil:</td>
+                    <td class="value" style="width: 16%">{{ responsible.mobile_phone }}</td>
+                </tr>
+                <tr>
+                    <td class="label">F. Nac.:</td>
+                    <td class="value">{{ responsible.birth_date }}</td>
+                    <td></td>
+                    <td class="label">Email:</td>
+                    <td class="value" colspan="3">{{ responsible.email }}</td>
+                </tr>
+                <tr>
+                    <td class="label">Edad:</td>
+                    <td class="value">{{ responsible.age }} años</td>
+                    <td></td>
+                    {% if responsible1.separated or responsible2.separated %}
+                        <td class="label">Patria potestad:</td>
+                        <td class="value">{{ responsible.parental_auth|boolean }}</td>
+                        <td class="label">Guarda custodia:</td>
+                        <td class="value">{{ responsible.children_custody|boolean }}</td>
+                    {% else %}
+                        <td colspan="4">Los responsables NO han indicado divorcio ni separación</td>
+                    {% endif %}
+                </tr>
+            </table>
+        {% endif %}
+    {% endif %}
+</div>

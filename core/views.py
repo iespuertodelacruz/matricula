@@ -236,6 +236,7 @@ def family(request, edulevel_code, responsible_id):
             else:
                 data = utils.expand_choices(form)
                 data = utils.add_fields_to_responsible(data)
+            data["id"] = responsible_id
             request.session[key] = json.dumps(
                 data,
                 default=utils.json_dump_handler
