@@ -5,11 +5,22 @@
     {% if not student.adult %}
         <div class="title">Autorizaciones de salida</div>
         <table>
+            <thead>
+                <td>NIF/Pasaporte</td>
+                <td></td>
+                <td>Nombre</td>
+                <td></td>
+                <td>Teléfono</td>
+            </thead>
             {% if auth_pick.id1 %}
                 <tr>
                     <td class="value" style="width: 20%">{{ auth_pick.id1|upper }}</td>
                     <td style="width: 2%"></td>
                     <td class="value">{{ auth_pick.long_name1|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                    <td style="width: 2%"></td>
+                    {% if auth_pick.phone1 %}
+                        <td class="value phone">{{ auth_pick.phone1 }}</td>
+                    {% endif %}
                 </tr>
             {% endif %}
             {% if auth_pick.id2 %}
@@ -17,6 +28,10 @@
                     <td class="value" style="width: 20%">{{ auth_pick.id2|upper }}</td>
                     <td style="width: 2%"></td>
                     <td class="value">{{ auth_pick.long_name2|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                    <td style="width: 2%"></td>
+                    {% if auth_pick.phone2 %}
+                        <td class="value phone">{{ auth_pick.phone2 }}</td>
+                    {% endif %}
                 </tr>
             {% endif %}
             {% if auth_pick.id3 %}
@@ -24,6 +39,10 @@
                     <td class="value" style="width: 20%">{{ auth_pick.id3|upper }}</td>
                     <td style="width: 2%"></td>
                     <td class="value">{{ auth_pick.long_name3|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                    <td style="width: 2%"></td>
+                    {% if auth_pick.phone3 %}
+                        <td class="value phone">{{ auth_pick.phone3 }}</td>
+                    {% endif %}
                 </tr>
             {% endif %}
             {% if auth_pick.id4 %}
@@ -31,6 +50,10 @@
                     <td class="value" style="width: 20%">{{ auth_pick.id4|upper }}</td>
                     <td style="width: 2%"></td>
                     <td class="value">{{ auth_pick.long_name4|upper|truncate(truncate_limit, True, "", 0) }}</td>
+                    <td style="width: 2%"></td>
+                    {% if auth_pick.phone4 %}
+                        <td class="value phone">{{ auth_pick.phone4 }}</td>
+                    {% endif %}
                 </tr>
             {% endif %}
         </table>

@@ -11,6 +11,11 @@ class PickAuthForm(forms.Form):
         label="NOMBRE Y APELLIDOS (Persona 1)",
         required=False
     )
+    phone1 = forms.CharField(
+        label="TELÉFONO (Persona 1)",
+        max_length=9,
+        required=False
+    )
     id2 = forms.CharField(
         label="NIF/NIE/Pasaporte (Persona 2)",
         max_length=32,
@@ -18,6 +23,11 @@ class PickAuthForm(forms.Form):
     )
     long_name2 = forms.CharField(
         label="NOMBRE Y APELLIDOS (Persona 2)",
+        required=False
+    )
+    phone2 = forms.CharField(
+        label="TELÉFONO (Persona 2)",
+        max_length=9,
         required=False
     )
     id3 = forms.CharField(
@@ -29,6 +39,11 @@ class PickAuthForm(forms.Form):
         label="NOMBRE Y APELLIDOS (Persona 3)",
         required=False
     )
+    phone3 = forms.CharField(
+        label="TELÉFONO (Persona 3)",
+        max_length=9,
+        required=False
+    )
     id4 = forms.CharField(
         label="NIF/NIE/Pasaporte (Persona 4)",
         max_length=32,
@@ -36,6 +51,11 @@ class PickAuthForm(forms.Form):
     )
     long_name4 = forms.CharField(
         label="NOMBRE Y APELLIDOS (Persona 4)",
+        required=False
+    )
+    phone4 = forms.CharField(
+        label="TELÉFONO (Persona 4)",
+        max_length=9,
         required=False
     )
 

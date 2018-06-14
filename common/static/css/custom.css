@@ -187,22 +187,30 @@ a {
   border: 1px solid rgba(174,110,226,0.63);
 }
 #div_id_nif1,
-#div_id_long_name1 {
+#div_id_long_name1,
+#div_id_id1,
+#div_id_phone1 {
   background-color: rgba(250,246,215,0.63);
   border: 1px solid rgba(234,218,91,0.63);
 }
 #div_id_nif2,
-#div_id_long_name2 {
+#div_id_long_name2,
+#div_id_id2,
+#div_id_phone2 {
   background-color: rgba(230,240,250,0.63);
   border: 1px solid rgba(110,168,226,0.63);
 }
 #div_id_nif3,
-#div_id_long_name3 {
+#div_id_long_name3,
+#div_id_id3,
+#div_id_phone3 {
   background-color: rgba(230,250,236,0.63);
   border: 1px solid rgba(110,226,145,0.63);
 }
 #div_id_nif4,
-#div_id_long_name4 {
+#div_id_long_name4,
+#div_id_id4,
+#div_id_phone4 {
   background-color: rgba(241,230,250,0.63);
   border: 1px solid rgba(174,110,226,0.63);
 }

@@ -366,12 +366,16 @@ AUTH_DATA = {
     "pick": {
         "id1": "87654321Y",
         "long_name1": "Pepe Sánchez Marrero",
+        "phone1": "675438999",
         "id2": "87654321H",
         "long_name2": "Antonio Con un Apellido Largo",
+        "phone2": "665417542",
         "id3": "77777777T",
         "long_name3": "Mary The Long Surname",
+        "phone3": "681786759",
         "id4": "22222222R",
         "long_name4": "Camile Boris Juvenil",
+        "phone4": "617682912"
     },
 }
 
