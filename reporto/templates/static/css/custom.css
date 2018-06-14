@@ -110,7 +110,7 @@ h6 {
 #header-cover #order-id {
   position: absolute;
   width: 40mm;
-  height: 20mm;
+  height: 22mm;
   left: 55mm;
   top: -20mm;
   text-align: center;
@@ -171,7 +171,7 @@ h6 {
   content: "Pág. " counter(page) " de " counter(pages);
   position: absolute;
   left: 55mm;
-  top: 2mm;
+  top: 2.5mm;
   font-size: 9pt;
 }
 .section {
