@@ -10,7 +10,8 @@ class NifField(forms.CharField):
             raise ValidationError("{} no es un NIF válido".format(value))
 
     def clean(self, value):
-        return value.replace("-", "")
+        if value:
+            return value.replace("-", "")
 
 
 class NieField(forms.CharField):
@@ -19,7 +20,8 @@ class NieField(forms.CharField):
             raise ValidationError("{} no es un NIE válido".format(value))
 
     def clean(self, value):
-        return value.replace("-", "")
+        if value:
+            return value.replace("-", "")
 
 
 class NumericField(forms.CharField):
