@@ -5,13 +5,15 @@
     {% if not student.adult %}
         <div class="title">Autorizaciones de salida</div>
         <table>
-            <thead>
-                <td>NIF/Pasaporte</td>
-                <td></td>
-                <td>Nombre</td>
-                <td></td>
-                <td>Teléfono</td>
-            </thead>
+            {% if auth_pick.id1 or auth_pick.id2 or auth_pick.id3 or auth_pick.id4 %}
+                <thead>
+                    <td>NIF/Pasaporte</td>
+                    <td></td>
+                    <td>Nombre</td>
+                    <td></td>
+                    <td>Teléfono</td>
+                </thead>
+            {% endif %}
             {% if auth_pick.id1 %}
                 <tr>
                     <td class="value" style="width: 20%">{{ auth_pick.id1|upper }}</td>
