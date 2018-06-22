@@ -26,6 +26,12 @@ class EduLevel(models.Model):
     def is_mandatory(self):
         return self.code[1:] == "ESO" or self.code[-4::] == "PMAR"
 
+    def is_bachillerato(self):
+        return self.code[1:] in ["CIE", "SOC"]
+
+    def allow_multi_enrollment(self):
+        return self.is_mandatory() or self.is_bachillerato()
+
     @staticmethod
     def empty_all_enrollment_dates():
         return len(EduLevel.objects.filter(enrollment_date__isnull=False)) == 0

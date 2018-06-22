@@ -43,33 +43,35 @@
     <p>Los módulos de <em>FOL</em> y <em>Empresa e iniciativa emprendedora</em> se convalidan con calificación 5.</p>
 {% endif %}
 
-<h3>Multimatrícula</h3>
+{% if edulevel.allow_multi_enrollment %}
+    <h3>Multimatrícula</h3>
 
-<ul>
-    <li>Si el alumno/a se va a matricular en <b>ESO</b> y ha suspendido en junio tres o más materias, o bien ha suspendido Lengua y Matemáticas de forma simultánea, deberá hacer multimatrícula por si repite.</li>
-    <li>Si el alumno/a se va a matricular en <b>Bachillerato</b> y ha suspendido en junio tres o más materias, deberá hacer multimatrícula por si repite.</li>
-</ul>
+    <ul>
+        <li>Si el alumno/a se va a matricular en <b>ESO</b> y ha suspendido en junio tres o más materias, o bien ha suspendido Lengua y Matemáticas de forma simultánea, deberá hacer multimatrícula por si repite.</li>
+        <li>Si el alumno/a se va a matricular en <b>Bachillerato</b> y ha suspendido en junio tres o más materias, deberá hacer multimatrícula por si repite.</li>
+    </ul>
 
-Seleccione el nivel para que el que quiera hacer multimatrícula, y <b>no pierda los datos ya introducidos</b>:
+    Seleccione el nivel para que el que quiera hacer multimatrícula, y <b>no pierda los datos ya introducidos</b>:
 
-<form action="/change_edulevel/{{ edulevel.code }}/" method="post">
-    {% csrf_token %}
-    <div class="row">
-        <div class="col-md-4">
-            <select class="form-control" name="target_edulevel_id">
-                {% for e in edulevels %}
-                    <option value="{{ e.id }}">{{ e }}</option>
-                {% endfor %}
-            </select>
+    <form action="/change_edulevel/{{ edulevel.code }}/" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-control" name="target_edulevel_id">
+                    {% for e in edulevels %}
+                        <option value="{{ e.id }}">{{ e }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-floppy-o"></i>
+                    Hacer multimatrícula
+                </button>
+            </div>
         </div>
-        <div class="col-md-6">
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-floppy-o"></i>
-                Hacer multimatrícula
-            </button>
-        </div>
-    </div>
-</form>
+    </form>    
+{% endif %}
 
 <i class="fa fa-exclamation-triangle"></i> Sólo se pagará 1 matrícula con el mayor importe de las dos multimatrículas (en caso de ser diferentes), y se entregarán ambas el día que corresponde a la de mayor nivel educativo.
 
