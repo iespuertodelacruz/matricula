@@ -288,7 +288,7 @@ creación de las hojas "Letraset", las cuales contenian pasajes de Lorem
 Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus
 PageMaker, el cual incluye versiones de Lorem Ipsum.
             """,
-            "access_via": "TEC"
+            "access_via": "ESO"
         }
     },
     "2CFGM": {
@@ -323,7 +323,7 @@ creación de las hojas "Letraset", las cuales contenian pasajes de Lorem
 Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus
 PageMaker, el cual incluye versiones de Lorem Ipsum.
             """,
-            "access_via": "TEC"
+            "access_via": "UNI"
         }
     },
     "2CFGS": {

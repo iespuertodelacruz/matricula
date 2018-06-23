@@ -24,7 +24,8 @@ class AcademicForm_CF(forms.Form):
     remarks = forms.CharField(
         label="OBSERVACIONES / MÓDULOS A REPETIR",
         help_text="Indique aspectos específicos a tener en cuenta en su "
-                  "matrícula",
+                  "matrícula. También explique los detalles en caso de haber "
+                  "marcado 'Otras situaciones' en el método de acceso.",
         widget=forms.Textarea,
         required=False
     )
@@ -76,12 +77,14 @@ class AcademicForm_Access_CFGM(forms.Form):
     # http://todofp.es/todofp/sobre-fp/informacion-general/
     # sistema-educativo-fp/como-accedo.html
     ACCESS_VIA_CHOICES = (
-        ("ESO", "Educación Secundaria Obligatoria"),
+        ("ESO", "Graduado en ESO o equivalente"),
+        ("PCP", "Con los módulos obligatorios de PCPI superados"),
+        ("PAC", "Prueba de acceso a ciclo formativo de grado medio"),
+        ("EXT", "Convalidación/Homologación de estudios extranjeros"),
+        ("BAC", "Bachillerato"),
         ("FPB", "Formación Profesional Básica"),
-        ("TEC", "Técnico, Técnico Auxiliar o equivalente"),
-        ("BUP", "Segundo curso de BUP"),
-        ("PAC", "Prueba de acceso a grado medio"),
-        ("U25", "Prueba de acceso a la Universidad (>25)")
+        ("UNI", "Con titulación universitaria"),
+        ("OTR", "Otras situaciones")
     )
 
     access_via = forms.ChoiceField(
@@ -94,14 +97,12 @@ class AcademicForm_Access_CFGS(forms.Form):
     # http://todofp.es/todofp/sobre-fp/informacion-general/
     # sistema-educativo-fp/como-accedo.html
     ACCESS_VIA_CHOICES = (
-        ("BAC", "Bachillerato"),
-        ("EXP", "Segundo curso de bachillerato experimental"),
-        ("CGM", "Formación Profesional de Grado Medio"),
-        ("TEC", "Técnico Superior, Técnico Expecialista o equivalente"),
-        ("COU", "COU"),
-        ("UNI", "Titulación Universitaria"),
-        ("PAC", "Prueba de acceso a grado superior"),
-        ("U25", "Prueba de acceso a la Universidad (>25)")
+        ("BAC", "Bachillerato o equivalente"),
+        ("PAC", "Prueba de acceso a ciclo formativo de grado superior"),
+        ("EXT", "Convalidación/Homologación de estudios extranjeros"),
+        ("UNI", "Con titulación universitaria"),
+        ("TFP", "Con título de Técnico de Formación Profesional"),
+        ("OTR", "Otras situaciones")
     )
 
     access_via = forms.ChoiceField(
