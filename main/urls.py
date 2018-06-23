@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from .views import handler404 as hdl404
+from .views import handler500 as hdl500
 
 urlpatterns = [
     url(r"^", include("core.urls")),
+    url(r"^404", hdl404),
+    url(r"^500", hdl500),
     url(r"^admin/", admin.site.urls),
 ]
+
+# overwrite default handlers
+handler404 = hdl404
+handler500 = hdl500
