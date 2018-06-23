@@ -3,10 +3,10 @@
 
 <html>
     <head>
-        <link rel="stylesheet" href="{% static 'bower_components/bootstrap/dist/css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'bower_components/jquery-ui/themes/base/jquery-ui.min.css' %}">
-        <link rel="stylesheet" href="{% static 'bower_components/font-awesome/css/font-awesome.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+        <link rel="stylesheet" href="/static/dist/vendor/bootstrap/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/dist/vendor/jquery-ui-dist/jquery-ui.min.css">
+        <link rel="stylesheet" href="/static/dist/vendor/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/static/dist/css/{{ css.custom }}">
     </head>
 
     <body>
@@ -68,10 +68,10 @@
         </div>
     </body>
 
-    <script src="{% static 'bower_components/jquery/dist/jquery.min.js' %}"></script>
-    <script src="{% static 'bower_components/jquery-ui/jquery-ui.min.js' %}"></script>
-    <script src="{% static 'bower_components/jquery-ui/ui/i18n/datepicker-es.js' %}"></script>
+    <script src="/static/dist/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/static/dist/vendor/jquery-ui-dist/jquery-ui.min.js"></script>
+    <script src="/static/dist/vendor/jquery-ui/ui/i18n/datepicker-es.js"></script>
     <script src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
-    <script src="{% static 'js/custom.js' %}"></script>
+    <script src="/static/dist/js/{{ js.custom }}"></script>
 
 </html>

@@ -2,4 +2,6 @@ pycache
 *.pyc
 db.sqlite3
 .DS_Store
-common/static/bower_components
+node_modules
+common/static/dist
+.tmp

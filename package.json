@@ -1,0 +1,24 @@
+{
+	"name": "matricula",
+	"version": "1.0.0",
+	"description": "Aplicación de matrícula del IES Puerto de la Cruz",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:iespuertodelacruz/matricula.git"
+	},
+	"author": "Sergio Delgado Quintero",
+	"license": "ISC",
+	"homepage": "https://matricula.iespuertodelacruz.es",
+	"dependencies": {
+		"bootstrap": "^3.3.7",
+		"font-awesome": "^4.7.0",
+		"gulp": "^4.0.0",
+		"gulp-clean": "^0.4.0",
+		"gulp-rev": "^8.1.1",
+		"gulp-sass": "^4.0.1",
+		"gulp-watch": "^5.0.0",
+		"jquery": "^3.2.1",
+		"jquery-ui": "^1.12.1",
+		"jquery-ui-dist": "^1.12.1"
+	}
+}
