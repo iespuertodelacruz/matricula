@@ -1,7 +1,7 @@
 var gulp = require("gulp"),
     rev = require("gulp-rev"),
-    clean = require("gulp-clean"),
-    sass = require("gulp-sass");
+    sass = require("gulp-sass"),
+    del = require("del");
 
 var dist_css_path = "./common/static/dist/css/",
     dist_js_path = "./common/static/dist/js/",
@@ -12,18 +12,15 @@ var dist_css_path = "./common/static/dist/css/",
     tmp_path = "./.tmp";
 
 gulp.task("clean-styles", function() {
-    return gulp.src(dist_css_path + "**/*.css", {read: false})
-        .pipe(clean());
+    return del(dist_css_path + "**/*.css");
 });
 
 gulp.task("clean-scripts", function() {
-    return gulp.src(dist_js_path + "**/*.js", {read: false})
-        .pipe(clean());
+    return del(dist_js_path + "**/*.js");
 });
 
 gulp.task("clean-vendor", function() {
-    return gulp.src(dist_vendor_path, {read: false})
-        .pipe(clean());
+    return del(dist_vendor_path + "**/*");
 });
 
 gulp.task("styles", function() {
