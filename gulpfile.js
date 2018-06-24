@@ -25,9 +25,9 @@ var assets_paths = {
         "source": base_assets_path + "fonts/",
         "target": base_dist_path + "fonts/"
     },
-    "docs": {
-        "source": base_assets_path + "docs/",
-        "target": base_dist_path + "docs/"
+    "files": {
+        "source": base_assets_path + "files/",
+        "target": base_dist_path + "files/"
     },
     "vendor": {
         "source": "./node_modules/",
@@ -51,8 +51,8 @@ gulp.task("clean-fonts", function() {
     return del(assets_paths["fonts"]["target"] + "**/*");
 });
 
-gulp.task("clean-docs", function() {
-    return del(assets_paths["docs"]["target"] + "**/*");
+gulp.task("clean-files", function() {
+    return del(assets_paths["files"]["target"] + "**/*");
 });
 
 gulp.task("clean-vendor", function() {
@@ -93,12 +93,12 @@ gulp.task("build-fonts", function() {
         .pipe(gulp.dest(assets_paths["fonts"]["target"]));
 });
 
-gulp.task("build-docs", function() {
-    return gulp.src(assets_paths["docs"]["source"] + "**/*")
+gulp.task("build-files", function() {
+    return gulp.src(assets_paths["files"]["source"] + "**/*")
         .pipe(rev())
-        .pipe(gulp.dest(assets_paths["docs"]["target"]))
+        .pipe(gulp.dest(assets_paths["files"]["target"]))
         .pipe(rev.manifest())
-        .pipe(gulp.dest(assets_paths["docs"]["target"]));
+        .pipe(gulp.dest(assets_paths["files"]["target"]));
 });
 
 gulp.task("build-vendor", function() {
@@ -169,7 +169,7 @@ gulp.task("dist",
             "clean-scripts",
             "clean-images",
             "clean-fonts",
-            "clean-docs",
+            "clean-files",
             "clean-vendor"
         ),
         gulp.parallel(
@@ -177,7 +177,7 @@ gulp.task("dist",
             "build-scripts",
             "build-images",
             "build-fonts",
-            "build-docs",
+            "build-files",
             "build-vendor"
         )
     )

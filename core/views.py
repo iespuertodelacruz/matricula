@@ -474,8 +474,9 @@ def form(request, edulevel_code):
     )
 
     payment_doc = os.path.join(
-        settings.BASE_DIR,
-        f"common/static/docs/{edulevel.enrollment_payment_doc()}"
+        os.path.dirname(__file__),
+        "docs",
+        edulevel.enrollment_payment_doc()
     )
 
     documentation = PdfReport("documentation.html")
