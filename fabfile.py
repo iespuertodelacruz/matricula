@@ -9,6 +9,7 @@ def deploy():
         with cd("~/matricula"):
             run("git pull")
             run("pip install -r requirements.txt")
-            run("gulp build")
+            run("npm install")
+            run("gulp dist")
             run("python manage.py collectstatic --noinput")
             run("supervisorctl restart matricula")

@@ -1,28 +1,37 @@
 var gulp = require("gulp"),
     rev = require("gulp-rev"),
     sass = require("gulp-sass"),
+    concat = require("gulp-concat"),
     del = require("del");
 
-var assets_base_dir = "./common/static/",
-    dist_base_dir = "./common/static/dist/",
+var base_assets_path = "./common/static/",
+    base_dist_path = "./common/static/dist/",
     tmp_path = "./.tmp";
 
 var assets_paths = {
     "styles": {
-        "source": assets_base_dir + "css/",
-        "target": dist_base_dir + "css/"
+        "source": base_assets_path + "css/",
+        "target": base_dist_path + "css/"
     },
     "scripts": {
-        "source": assets_base_dir + "js/",
-        "target": dist_base_dir + "js/"
+        "source": base_assets_path + "js/",
+        "target": base_dist_path + "js/"
     },
     "images": {
-        "source": assets_base_dir + "img/",
-        "target": dist_base_dir + "img/"
+        "source": base_assets_path + "img/",
+        "target": base_dist_path + "img/"
+    },
+    "fonts": {
+        "source": base_assets_path + "fonts/",
+        "target": base_dist_path + "fonts/"
+    },
+    "docs": {
+        "source": base_assets_path + "docs/",
+        "target": base_dist_path + "docs/"
     },
     "vendor": {
         "source": "./node_modules/",
-        "target": dist_base_dir + "vendor/"
+        "target": base_dist_path + "vendor/"
     }
 };
 
@@ -36,6 +45,14 @@ gulp.task("clean-scripts", function() {
 
 gulp.task("clean-images", function() {
     return del(assets_paths["images"]["target"] + "**/*");
+});
+
+gulp.task("clean-fonts", function() {
+    return del(assets_paths["fonts"]["target"] + "**/*");
+});
+
+gulp.task("clean-docs", function() {
+    return del(assets_paths["docs"]["target"] + "**/*");
 });
 
 gulp.task("clean-vendor", function() {
@@ -68,9 +85,62 @@ gulp.task("build-images", function() {
         .pipe(gulp.dest(assets_paths["images"]["target"]));
 });
 
+gulp.task("build-fonts", function() {
+    return gulp.src(assets_paths["fonts"]["source"] + "**/*")
+        .pipe(rev())
+        .pipe(gulp.dest(assets_paths["fonts"]["target"]))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest(assets_paths["fonts"]["target"]));
+});
+
+gulp.task("build-docs", function() {
+    return gulp.src(assets_paths["docs"]["source"] + "**/*")
+        .pipe(rev())
+        .pipe(gulp.dest(assets_paths["docs"]["target"]))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest(assets_paths["docs"]["target"]));
+});
+
 gulp.task("build-vendor", function() {
-    return gulp.src(assets_paths["vendor"]["source"] + "**/*.*")
-        .pipe(gulp.dest(assets_paths["vendor"]["target"]));
+    pth = assets_paths["vendor"]["source"]
+
+    files = [
+        pth + "bootstrap/dist/css/bootstrap.min.css",
+        pth + "jquery-ui-dist/jquery-ui.min.css",
+        pth + "font-awesome/css/font-awesome.min.css"
+    ]
+
+    gulp.src(files)
+        .pipe(concat("vendor.css"))
+        .pipe(gulp.dest(tmp_path))
+        .pipe(rev())
+        .pipe(gulp.dest(assets_paths["vendor"]["target"] + "css"))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest(assets_paths["vendor"]["target"] + "css"));
+
+    files = [
+        pth + "jquery/dist/jquery.min.js",
+        pth + "jquery-ui-dist/jquery-ui.min.js",
+        pth + "jquery-ui/ui/i18n/datepicker-es.js"
+    ]
+
+    gulp.src(files)
+        .pipe(concat("vendor.js"))
+        .pipe(gulp.dest(tmp_path))
+        .pipe(rev())
+        .pipe(gulp.dest(assets_paths["vendor"]["target"] + "js"))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest(assets_paths["vendor"]["target"] + "js"));
+
+    files = [
+        pth + "font-awesome/fonts/fontawesome-webfont.ttf",
+        pth + "font-awesome/fonts/fontawesome-webfont.woff",
+        pth + "font-awesome/fonts/fontawesome-webfont.woff2"
+    ]
+
+    return gulp.src(files)
+        .pipe(gulp.dest(assets_paths["vendor"]["target"] + "fonts"));
+
 });
 
 gulp.task("watch", function() {
@@ -86,13 +156,29 @@ gulp.task("watch", function() {
         assets_paths["images"]["source"] + "**/*",
         gulp.series("clean-images", "build-images")
     );
+    gulp.watch(
+        assets_paths["fonts"]["source"] + "**/*",
+        gulp.series("clean-fonts", "build-fonts")
+    );
 });
 
-gulp.task("build", gulp.series(
-    gulp.parallel("clean-styles", "clean-scripts", "clean-images"),
-    gulp.parallel("build-styles", "build-scripts", "build-images")
-));
-
-gulp.task("update-vendor", gulp.series(
-    "clean-vendor", "build-vendor"
-));
+gulp.task("dist",
+    gulp.series(
+        gulp.parallel(
+            "clean-styles",
+            "clean-scripts",
+            "clean-images",
+            "clean-fonts",
+            "clean-docs",
+            "clean-vendor"
+        ),
+        gulp.parallel(
+            "build-styles",
+            "build-scripts",
+            "build-images",
+            "build-fonts",
+            "build-docs",
+            "build-vendor"
+        )
+    )
+);

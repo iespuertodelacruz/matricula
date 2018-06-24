@@ -3,16 +3,20 @@ from django.conf import settings
 import json
 
 
+ASSETS = ("css", "js", "img", "fonts", "docs", "vendor/css", "vendor/js")
+BASE_ASSETS_PATH = os.path.join(settings.BASE_DIR, "common/static/dist/")
+STATIC_DIST_URL = "/static/dist/"
+
+
 def glob(request):
     context = {"assets": {}}
-    for asset in ("css", "js", "img"):
+    for asset in ASSETS:
         manifest_path = os.path.join(
-            settings.BASE_DIR,
-            "common/static/dist/" + asset,
-            "rev-manifest.json"
+            BASE_ASSETS_PATH, asset, "rev-manifest.json"
         )
         with open(manifest_path) as f:
-            tmp = json.load(f)
-        context["assets"] = dict(**context["assets"], **tmp)
+            manifest_json = json.load(f)
+        for k, v in manifest_json.items():
+            context["assets"][k] = os.path.join(STATIC_DIST_URL, asset, v)
 
     return context

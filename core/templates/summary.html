@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% load static %}
+{% load core_extras %}
 
 {% block content_left %}
 
@@ -37,7 +38,7 @@
     <h3>Convalidación de módulos</h3>
 
     <p>
-        Si desea convalidar/homologar módulos para su matrícula en ciclos de formación profesional, debe <a href="{% static 'docs/vt_recognition.pdf' %}" target="blank">rellenar el siguiente documento</a> y entregarlo en la secretaría del centro.
+        Si desea convalidar/homologar módulos para su matrícula en ciclos de formación profesional, debe <a href="{{ assets|get_key:'vt_recognition.pdf' }}" target="blank">rellenar el siguiente documento</a> y entregarlo en la secretaría del centro.
     </p>
 
     <p>Los módulos de <em>FOL</em> y <em>Empresa e iniciativa emprendedora</em> se convalidan con calificación 5.</p>
@@ -78,7 +79,7 @@
 <h3>Inscripción en el AMPA</h3>
 
 <p>
-    Si desea inscribirse en la Asociación de Madres y Padres de Alumnado (AMPA) debe <a href="{% static 'docs/ampa_form.pdf' %}" target="blank">rellenar el siguiente formulario</a>, hacer el pago correspondiente según especifica el documento, y entregar la documentación en el puesto del AMPA que estará todos los días de matrícula en el hall de entrada al instituto.
+    Si desea inscribirse en la Asociación de Madres y Padres de Alumnado (AMPA) debe <a href="{{ assets|get_key:'ampa_form.pdf' }}" target="blank">rellenar el siguiente formulario</a>, hacer el pago correspondiente según especifica el documento, y entregar la documentación en el puesto del AMPA que estará todos los días de matrícula en el hall de entrada al instituto.
 </p>
 
 {% endblock %}
