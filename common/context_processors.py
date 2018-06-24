@@ -3,7 +3,7 @@ from django.conf import settings
 import json
 
 
-ASSETS = ("css", "js", "img", "fonts", "docs", "vendor/css", "vendor/js")
+ASSETS = ("css", "js", "img", "fonts", "files", "vendor/css", "vendor/js")
 BASE_ASSETS_PATH = os.path.join(settings.BASE_DIR, "common/static/dist/")
 STATIC_DIST_URL = "/static/dist/"
 
