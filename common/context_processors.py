@@ -4,8 +4,8 @@ import json
 
 
 def glob(request):
-    d = {}
-    for asset in ("css", "js"):
+    context = {"assets": {}}
+    for asset in ("css", "js", "img"):
         manifest_path = os.path.join(
             settings.BASE_DIR,
             "common/static/dist/" + asset,
@@ -13,6 +13,6 @@ def glob(request):
         )
         with open(manifest_path) as f:
             tmp = json.load(f)
-        d[asset] = {os.path.splitext(k)[0]: v for k, v in tmp.items()}
+        context["assets"] = dict(**context["assets"], **tmp)
 
-    return d
+    return context

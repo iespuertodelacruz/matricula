@@ -3,59 +3,96 @@ var gulp = require("gulp"),
     sass = require("gulp-sass"),
     del = require("del");
 
-var dist_css_path = "./common/static/dist/css/",
-    dist_js_path = "./common/static/dist/js/",
-    dist_vendor_path = "./common/static/dist/vendor/",
-    css_path = "./common/static/css/",
-    js_path = "./common/static/js/",
-    vendor_path = "./node_modules/",
+var assets_base_dir = "./common/static/",
+    dist_base_dir = "./common/static/dist/",
     tmp_path = "./.tmp";
 
+var assets_paths = {
+    "styles": {
+        "source": assets_base_dir + "css/",
+        "target": dist_base_dir + "css/"
+    },
+    "scripts": {
+        "source": assets_base_dir + "js/",
+        "target": dist_base_dir + "js/"
+    },
+    "images": {
+        "source": assets_base_dir + "img/",
+        "target": dist_base_dir + "img/"
+    },
+    "vendor": {
+        "source": "./node_modules/",
+        "target": dist_base_dir + "vendor/"
+    }
+};
+
 gulp.task("clean-styles", function() {
-    return del(dist_css_path + "**/*.css");
+    return del(assets_paths["styles"]["target"] + "**/*.css");
 });
 
 gulp.task("clean-scripts", function() {
-    return del(dist_js_path + "**/*.js");
+    return del(assets_paths["scripts"]["target"] + "**/*.js");
+});
+
+gulp.task("clean-images", function() {
+    return del(assets_paths["images"]["target"] + "**/*");
 });
 
 gulp.task("clean-vendor", function() {
-    return del(dist_vendor_path + "**/*");
+    return del(assets_paths["vendor"]["target"] + "**/*");
 });
 
-gulp.task("styles", function() {
-    return gulp.src(css_path + "**/*.scss")
+gulp.task("build-styles", function() {
+    return gulp.src(assets_paths["styles"]["source"] + "**/*.scss")
         .pipe(sass())
         .pipe(gulp.dest(tmp_path))
         .pipe(rev())
-        .pipe(gulp.dest(dist_css_path))
+        .pipe(gulp.dest(assets_paths["styles"]["target"]))
         .pipe(rev.manifest())
-        .pipe(gulp.dest(dist_css_path));
+        .pipe(gulp.dest(assets_paths["styles"]["target"]));
 });
 
-gulp.task("scripts", function() {
-    return gulp.src(js_path + "**/*.js")
+gulp.task("build-scripts", function() {
+    return gulp.src(assets_paths["scripts"]["source"] + "**/*.js")
         .pipe(rev())
-        .pipe(gulp.dest(dist_js_path))
+        .pipe(gulp.dest(assets_paths["scripts"]["target"]))
         .pipe(rev.manifest())
-        .pipe(gulp.dest(dist_js_path));
+        .pipe(gulp.dest(assets_paths["scripts"]["target"]));
 });
 
-gulp.task("vendor", function() {
-    return gulp.src(vendor_path + "**/*.*")
-        .pipe(gulp.dest(dist_vendor_path));
+gulp.task("build-images", function() {
+    return gulp.src(assets_paths["images"]["source"] + "**/*")
+        .pipe(rev())
+        .pipe(gulp.dest(assets_paths["images"]["target"]))
+        .pipe(rev.manifest())
+        .pipe(gulp.dest(assets_paths["images"]["target"]));
+});
+
+gulp.task("build-vendor", function() {
+    return gulp.src(assets_paths["vendor"]["source"] + "**/*.*")
+        .pipe(gulp.dest(assets_paths["vendor"]["target"]));
 });
 
 gulp.task("watch", function() {
-    gulp.watch(css_path + "**/*.scss", gulp.series("clean-styles", "styles"));
-    gulp.watch(js_path + "**/*.js", gulp.series("clean-scripts", "scripts"));
+    gulp.watch(
+        assets_paths["styles"]["source"] + "**/*.scss",
+        gulp.series("clean-styles", "build-styles")
+    );
+    gulp.watch(
+        assets_paths["scripts"]["source"] + "**/*.js",
+        gulp.series("clean-scripts", "build-scripts")
+    );
+    gulp.watch(
+        assets_paths["images"]["source"] + "**/*",
+        gulp.series("clean-images", "build-images")
+    );
 });
 
 gulp.task("build", gulp.series(
-    gulp.parallel("clean-styles", "clean-scripts"),
-    gulp.parallel("styles", "scripts")
+    gulp.parallel("clean-styles", "clean-scripts", "clean-images"),
+    gulp.parallel("build-styles", "build-scripts", "build-images")
 ));
 
 gulp.task("update-vendor", gulp.series(
-    "clean-vendor", "vendor"
+    "clean-vendor", "build-vendor"
 ));

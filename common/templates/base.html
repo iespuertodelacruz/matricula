@@ -1,12 +1,13 @@
 {% load static %}
 {% load cookielaw_tags %}
+{% load core_extras %}
 
 <html>
     <head>
         <link rel="stylesheet" href="/static/dist/vendor/bootstrap/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="/static/dist/vendor/jquery-ui-dist/jquery-ui.min.css">
         <link rel="stylesheet" href="/static/dist/vendor/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/static/dist/css/{{ css.custom }}">
+        <link rel="stylesheet" href="/static/dist/css/{{ assets|get_key:'custom.css' }}">
     </head>
 
     <body>
@@ -15,13 +16,17 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-3">
-                        <a href="http://www.iespuertodelacruz.es"><img src="{% static 'img/Logotipo_IES.png' %}"></a>
+                        <a href="http://www.iespuertodelacruz.es">
+                            <img src="/static/dist/img/{{ assets|get_key:'Logotipo_IES.png' }}">
+                        </a>
                     </div>
                     <div class="col-md-6">
                         <a href="/"><h1>Aplicación de matrícula</h1></a>
                     </div>
                     <div class="col-md-3">
-                        <a href="http://www.gobiernodecanarias.org/educacion"><img src="{% static 'img/Logotipo_CONSEJERIA.png' %}"></a>
+                        <a href="http://www.gobiernodecanarias.org/educacion">
+                            <img src="/static/dist/img/{{ assets|get_key:'Logotipo_CONSEJERIA.png' }}">
+                        </a>
                     </div>
                 </div>
             </div>
@@ -63,7 +68,9 @@
             {% endblock %}
         </div>
 
-        <div class="footer">
+        <div class="footer"
+            style="background: url('/static/dist/img/{{ assets|get_key:'background.png' }}')"
+        >
             <p>Hecho con <i class="fa fa-heart-o"></i> por Sergio Delgado Quintero</p>
         </div>
     </body>
@@ -72,6 +79,6 @@
     <script src="/static/dist/vendor/jquery-ui-dist/jquery-ui.min.js"></script>
     <script src="/static/dist/vendor/jquery-ui/ui/i18n/datepicker-es.js"></script>
     <script src="{% static 'cookielaw/js/cookielaw.js' %}"></script>
-    <script src="/static/dist/js/{{ js.custom }}"></script>
+    <script src="/static/dist/js/{{ assets|get_key:'custom.js' }}"></script>
 
 </html>
