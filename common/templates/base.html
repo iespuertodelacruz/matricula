@@ -8,16 +8,16 @@
 
         <link rel="stylesheet" href="{{ assets|get_key:'vendor.css' }}">
         <link rel="stylesheet" href="{{ assets|get_key:'custom.css' }}">
+    
+        <style>
+            @font-face {
+                src: url("{{ assets|get_key:'BebasNeue.otf' }}");
+            }
+            .footer {
+                background: url("{{ assets|get_key:'background.png' }}");
+            }
+        </style>
     </head>
-
-    <style>
-        @font-face {
-            src: url("{{ assets|get_key:'BebasNeue.otf' }}");
-        }
-        .footer {
-            background: url("{{ assets|get_key:'background.png' }}");
-        }
-    </style>
 
     <body>
         {% cookielaw_banner %}
