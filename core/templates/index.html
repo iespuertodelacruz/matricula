@@ -16,7 +16,15 @@
 
         {% for level in edu_levels %}
             <tr>
-                <td><a href="m/{{ level.code }}/">{{ level.code }}</a></td>
+                <td>
+                    <a href=
+                    {% if level.allow_multi_enrollment and level.enrollment_date %}
+                        "{% url 'multi_enrollment' level.code %}"
+                    {% else %}
+                        "{% url 'student' level.code %}"
+                    {% endif %}
+                    >{{ level.code }}</a>
+                </td>
                 <td>{{ level.law }}</td>
                 <td>{{ level.description }}</td>
                 <td>{{ level.cost }}€</td>

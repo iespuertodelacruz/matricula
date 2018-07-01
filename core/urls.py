@@ -8,9 +8,14 @@ urlpatterns = [
         name="index"
     ),
     url(
-        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/$",
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/student/$",
         views.student,
         name="student"
+    ),
+    url(
+        r"^m/(?P<edulevel_code>[\da-zA-Z]+)/multi_enrollment/$",
+        views.multi_enrollment,
+        name="multi_enrollment"
     ),
     url(
         r"^m/(?P<edulevel_code>[\da-zA-Z]+)/academic/$",

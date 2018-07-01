@@ -49,6 +49,17 @@ def index(request):
     )
 
 
+def multi_enrollment(request, edulevel_code):
+    edulevel = EduLevel.objects.get(code=edulevel_code)
+    return render(
+        request,
+        "multi_enrollment.html",
+        {
+            "edulevel": edulevel,
+        }
+    )
+
+
 def student(request, edulevel_code):
     valid_form = True
     edulevel = EduLevel.objects.get(code=edulevel_code)

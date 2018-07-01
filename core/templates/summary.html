@@ -54,7 +54,7 @@
 
     Antes de hacer multimatrícula, <a href="{% url 'form' edulevel.code %}">imprima su matrícula actual</a>. A continuación, seleccione el nivel para que el que quiera hacer multimatrícula, y <b>no pierda los datos ya introducidos</b>:
 
-    <form action="/change_edulevel/{{ edulevel.code }}/" method="post">
+    <form action="{% url 'change_edulevel' edulevel.code %}" method="post">
         {% csrf_token %}
         <div class="row">
             <div class="col-md-4">

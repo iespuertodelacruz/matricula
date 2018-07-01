@@ -33,7 +33,7 @@ class EduLevel(models.Model):
         return self.code[1:] in ["CIE", "SOC"]
 
     def allow_multi_enrollment(self):
-        return self.is_mandatory() or self.code in ["1CIE", "1SOC"]
+        return self.is_ESO() or self.code in ["1CIE", "1SOC"]
 
     @staticmethod
     def empty_all_enrollment_dates():
