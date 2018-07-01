@@ -130,6 +130,12 @@ class StudentForm(forms.Form):
         help_text="Indique si repite curso"
     )
 
+    def __init__(self, *args, **kwargs):
+        edulevel = kwargs.pop("edulevel", None)
+        super(StudentForm, self).__init__(*args, **kwargs)
+        if edulevel and edulevel.is_ESO():
+            self.fields["lastyear_in_other_institution"].initial = True
+
     def clean(self):
         cleaned_data = super(StudentForm, self).clean()
         nif = cleaned_data.get("nif")

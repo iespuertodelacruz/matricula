@@ -51,6 +51,8 @@ def index(request):
 
 def student(request, edulevel_code):
     valid_form = True
+    edulevel = EduLevel.objects.get(code=edulevel_code)
+
     if request.method == "POST":
         form = StudentForm(request.POST)
         if form.is_valid():
@@ -72,7 +74,7 @@ def student(request, edulevel_code):
         elif settings.DEBUG:
             form = StudentForm(STUDENT_DATA)
         else:
-            form = StudentForm()
+            form = StudentForm(edulevel=edulevel)
 
     breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
         "Alumno/a",
@@ -86,7 +88,7 @@ def student(request, edulevel_code):
         {
             "title": "Datos personales del alumno/a",
             "form": form,
-            "edulevel": EduLevel.objects.get(code=edulevel_code),
+            "edulevel": edulevel,
             "valid_form": valid_form,
             "breadcrumbs": breadcrumbs
         }

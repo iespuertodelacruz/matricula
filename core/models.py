@@ -23,8 +23,11 @@ class EduLevel(models.Model):
     def is_vocational_training(self):
         return self.code[1:] in ["CFGM", "CFGS"]
 
-    def is_mandatory(self):
+    def is_ESO(self):
         return self.code[1:] == "ESO" or self.code[-4::] == "PMAR"
+
+    def is_mandatory(self):
+        return self.is_ESO()
 
     def is_bachillerato(self):
         return self.code[1:] in ["CIE", "SOC"]
