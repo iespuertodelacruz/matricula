@@ -82,8 +82,8 @@ def student(request, edulevel_code):
     else:
         if request.session["student"]:
             form = StudentForm(json.loads(request.session["student"]))
-        # elif settings.DEBUG:
-        #     form = StudentForm(STUDENT_DATA)
+        elif settings.DEBUG:
+            form = StudentForm(STUDENT_DATA)
         else:
             form = StudentForm(edulevel=edulevel)
 
