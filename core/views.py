@@ -495,6 +495,7 @@ def form(request, edulevel_code):
     documentation = PdfReport("documentation.html")
     documentation.render(
         **params,
+        edulevel=edulevel
     )
 
     merger = PdfFileMerger()
