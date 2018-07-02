@@ -1,7 +1,9 @@
 <div id="header-cover">
     <img id="logo-school" src="{{ root }}/static/img/Logotipo_IES.png">
     <img id="logo-consejeria" src="{{ root }}/static/img/Logotipo_CONSEJERIA.png">
-    <span id="profile-pic">Foto</span>
+    {% if copy_target == "centro" %}
+        <span id="profile-pic">Foto</span>
+    {% endif %}
     <span id="order-id">Número de orden</span>
     <div id="register">
         <b>Fecha de recepción:</b>
