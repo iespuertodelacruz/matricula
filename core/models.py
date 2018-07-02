@@ -38,3 +38,6 @@ class EduLevel(models.Model):
     @staticmethod
     def empty_all_enrollment_dates():
         return len(EduLevel.objects.filter(enrollment_date__isnull=False)) == 0
+
+    def is_first_course(self):
+        return self.code[0] == "1"

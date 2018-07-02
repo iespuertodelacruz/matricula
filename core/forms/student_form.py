@@ -133,7 +133,7 @@ class StudentForm(forms.Form):
     def __init__(self, *args, **kwargs):
         edulevel = kwargs.pop("edulevel", None)
         super(StudentForm, self).__init__(*args, **kwargs)
-        if edulevel and edulevel.is_ESO():
+        if edulevel and edulevel.is_first_course():
             self.fields["lastyear_in_other_institution"].initial = True
 
     def clean(self):
