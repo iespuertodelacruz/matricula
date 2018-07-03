@@ -41,3 +41,6 @@ class EduLevel(models.Model):
 
     def is_first_course(self):
         return self.code[0] == "1"
+
+    def is_FPB(self):
+        return self.code[1:] == "FPB"
