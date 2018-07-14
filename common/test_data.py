@@ -44,7 +44,7 @@ RESPONSIBLE_DATA = {
         "name": "Andrea",
         "surname": "Magnet Press",
         "link": "MAD",
-        "nif": "12345678Y",
+        "nif": "87654321P",
         "nie": "",
         "passport": "",
         "gender": "M",

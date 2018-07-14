@@ -60,7 +60,7 @@ class PickAuthForm(forms.Form):
     )
 
     def __init__(self, responsibles_ids, *args, **kwargs):
-        self.responsibles_ids = responsibles_ids
+        self.responsibles_ids = [id.upper() for id in responsibles_ids]
         super(forms.Form, self).__init__(*args, **kwargs)
 
     def clean(self):
@@ -80,11 +80,12 @@ class PickAuthForm(forms.Form):
                     id_field,
                     "Debe especificar el NIF"
                 )
-            if id_value in self.responsibles_ids:
+            if id_value.upper() in self.responsibles_ids:
                 self.add_error(
                     id_field,
                     ("No puede poner a los responsables como personas "
-                     "autorizadas")
+                     "autorizadas. Ya están autorizados por defecto al ser "
+                     "los responsables del menor")
                 )
 
 

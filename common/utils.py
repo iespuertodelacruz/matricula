@@ -124,11 +124,13 @@ def add_fields_to_responsible(data):
 
 def get_responsibles_ids(session):
     try:
-        r1_id = session["responsible1"]["id_value"]
+        r1 = json.loads(session["responsible1"])
+        r1_id = r1["id_value"]
     except:
         r1_id = None
     try:
-        r2_id = session["responsible2"]["id_value"]
+        r2 = json.loads(session["responsible2"])
+        r2_id = r2["id_value"]
     except:
         r2_id = None
     return (r1_id, r2_id)
