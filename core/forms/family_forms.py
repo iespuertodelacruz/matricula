@@ -102,6 +102,15 @@ class ResponsibleForm(forms.Form):
             self.add_error("nie", msg)
             self.add_error("passport", msg)
 
+        gender = cleaned_data.get("gender")
+        link = cleaned_data.get("link")
+
+        if gender == "H" and link in ["MAD", "TUA"] or \
+           gender == "M" and link in ["PAD", "TUO"]:
+            msg = ("Parece no coincidir el vínculo del alumno/a con el género "
+                   "del responsable")
+            self.add_error("link", msg)
+
         return cleaned_data
 
 
