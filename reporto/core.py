@@ -35,8 +35,12 @@ class PdfReport():
         kwargs["generation_time"] = self.generation_time
         kwargs["root"] = TEMPLATES_DIR
         self.rendered_template = self.template.render(kwargs)
-        with open(rendered_filename, 'w') as f:
-            f.write(self.rendered_template)
+        # Estas dos líneas no funcionan así en producción. Todavía no le he
+        # encontrado la explicación. Tiene que ver con el encoding.
+        # with open(rendered_filename, 'w') as f:
+        #     f.write(self.rendered_template)
+        with open(rendered_filename, 'wb') as f:
+            f.write(self.rendered_template.encode('utf-8'))
         os.system(f'prince {rendered_filename} -o {self.output_filename}')
         os.remove(rendered_filename)
 
