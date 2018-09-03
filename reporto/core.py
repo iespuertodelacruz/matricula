@@ -35,8 +35,10 @@ class PdfReport():
         kwargs["generation_time"] = self.generation_time
         kwargs["root"] = TEMPLATES_DIR
         self.rendered_template = self.template.render(kwargs)
-        # Estas dos líneas no funcionan así en producción. Todavía no le he
-        # encontrado la explicación. Tiene que ver con el encoding.
+        # Estas dos líneas no funcionan así en producción. El problema viene
+        # con uwsgi ya que no exporta las variables de entorno LC_ALL y LANG
+        # Habría que incluirlas en el fichero de configuración de uwsgi.
+        # Ejemplo: https://gist.github.com/davesque/4477301
         # with open(rendered_filename, 'w') as f:
         #     f.write(self.rendered_template)
         with open(rendered_filename, 'wb') as f:
