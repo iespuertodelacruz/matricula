@@ -6,6 +6,6 @@ node_modules
 common/static/dist
 .tmp
 .vscode
-*.log
+*.log*
 local_settings.py
 bower_components
