@@ -60,7 +60,7 @@ class PickAuthForm(forms.Form):
     )
 
     def __init__(self, responsibles_ids, *args, **kwargs):
-        self.responsibles_ids = [id.upper() for id in responsibles_ids]
+        self.responsibles_ids = [id.upper() for id in responsibles_ids if id]
         super(forms.Form, self).__init__(*args, **kwargs)
 
     def clean(self):

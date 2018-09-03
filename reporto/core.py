@@ -1,5 +1,4 @@
 from jinja2 import Environment, FileSystemLoader
-from subprocess import Popen, PIPE
 import uuid
 import os
 import datetime
@@ -30,14 +29,16 @@ class PdfReport():
         output_filename: in case you want to save the output (optional)
         """
         self.output_filename = kwargs.get("output_filename", None) or \
-            RENDERED_FILES_DIR + str(uuid.uuid4()) + ".pdf"
+            os.path.join(RENDERED_FILES_DIR, str(uuid.uuid4()) + '.pdf')
+        rendered_filename = \
+            os.path.join(RENDERED_FILES_DIR, str(uuid.uuid4()) + '.html')
         kwargs["generation_time"] = self.generation_time
         kwargs["root"] = TEMPLATES_DIR
         self.rendered_template = self.template.render(kwargs)
-        p = Popen(["prince", "-", self.output_filename], stdin=PIPE)
-        p.stdin.write(self.rendered_template.encode("utf-8"))
-        p.stdin.close()
-        p.communicate()
+        with open(rendered_filename, 'w') as f:
+            f.write(self.rendered_template)
+        os.system(f'prince {rendered_filename} -o {self.output_filename}')
+        os.remove(rendered_filename)
 
     def http_response(self, output_filename=None, delete=True):
         """
