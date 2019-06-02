@@ -10,10 +10,10 @@ class AcademicForm_2CIE(forms.Form):
     SPECIFIC_SUBJECT1_CHOICES = sorted((
         ("ACM", "Acondicionamiento físico"),
         ("ATR", "Antropología y Sociología"),
-        ("LAM", "La mitología y las artes"),
+        ("BES", "Bioestadística"),
+        ("BHU", "Biología humana"),
         ("FOT", "Fotografía"),
-        ("MYS", "Música y Sociedad"),
-        ("TIA", "Técnicas de laboratorio"),
+        ("LAM", "La mitología y las artes"),
         ("RLG", "Religión"),
         ("LCA", "Literatura Canaria"),
         ("HIC", "Historia de Canarias"),
