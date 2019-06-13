@@ -515,7 +515,7 @@ def form(request, edulevel_code):
     os.remove(report_filename)
     response["Content-Type"] = "application/pdf"
     response["Content-Disposition"] = \
-        "attachment; filename='{}.pdf'".format(report_name)
+        "attachment; filename={}.pdf".format(report_name)
     return response
 
 
