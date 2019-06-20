@@ -17,8 +17,8 @@
             <li><b>Fotocopia del NIF/NIE/Pasaporte</b> (según corresponda) de <i>{{ responsible2.full_name|title }}</i>.</li>
         {% endif %}
     {% endif %}
-    {% if edulevel.is_FPB and student.lastyear_in_other_institution %}
-        <li><b>Consejo orientador</b> con derivación a Formación Profesional Básica</li>
+    {% if edulevel.is_FPB() and student.lastyear_in_other_institution %}
+        <li><b>Consejo orientador</b> con derivación a Formación Profesional Básica.</li>
     {% endif %}
     {% if extra.has_health_problem %}
         <li><b>Informe médico correspondiente</b> ya que ha indicado algún problema de salud.</li>
