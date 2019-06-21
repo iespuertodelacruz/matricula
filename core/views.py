@@ -43,6 +43,7 @@ def index(request):
         request,
         "index.html",
         {
+            'is_regular_enroll_period': utils.is_regular_enroll_period(),
             "edu_levels": edu_levels,
             "empty_all_enrollment_dates": empty_all_enrollment_dates
         }
@@ -442,6 +443,7 @@ def summary(request, edulevel_code):
             "breadcrumbs": breadcrumbs,
             "edulevels": EduLevel.objects.all(),
             "cancel_btn_msg": "Comenzar nueva matrícula",
+            'is_regular_enroll_period': utils.is_regular_enroll_period(),
             "empty_all_enrollment_dates": EduLevel.empty_all_enrollment_dates()
         }
     )

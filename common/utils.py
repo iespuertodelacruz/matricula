@@ -39,6 +39,12 @@ def calculate_schoolyear():
     return "{}/{}".format(ref_year, ref_year+1)
 
 
+def is_regular_enroll_period():
+    today = datetime.date.today()
+    # la matrícula ordinaria es entre junio y agosto (ambos inclusive)
+    return 6 <= today.month <= 8
+
+
 def load_session_data(session, sections):
     data = {}
     for s in sections:

@@ -26,12 +26,12 @@
 
 <p>
     Recuerde que debe entregar la documentación en la secretaría del centro
-    {% if not empty_all_enrollment_dates %}
+    {% if is_regular_enroll_period %}
         el próximo día <b>{{ edulevel.enrollment_date }}</b> en horario de <b>8:30h a 13:00h</b>
+        <br><br>
+        Se irá atendiendo por orden de llegada, y habrá un <em>"coja su turno"</em> para que no se produzcan aglomeraciones
     {% endif %}
     .
-    <br><br>
-    Se irá atendiendo por orden de llegada, y habrá un <em>"coja su turno"</em> para que no se produzcan aglomeraciones.
 </p>
 
 {% if edulevel.is_vocational_training %}
@@ -44,7 +44,7 @@
     <p>Los módulos de <em>FOL</em> y <em>Empresa e iniciativa emprendedora</em> se convalidan con calificación 5.</p>
 {% endif %}
 
-{% if edulevel.allow_multi_enrollment %}
+{% if edulevel.allow_multi_enrollment and is_regular_enroll_period %}
     <h3>Multimatrícula</h3>
 
     <ul>

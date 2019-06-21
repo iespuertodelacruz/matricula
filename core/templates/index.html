@@ -2,10 +2,12 @@
 
 {% block content %}
 
-<div class="alert alert-info" role="alert">
-    <i class="fa fa-info-circle"></i>
-    Acceda al nivel al que cree que va a promocionar.
-</div>
+{% if is_regular_enroll_period %}
+    <div class="alert alert-info" role="alert">
+        <i class="fa fa-info-circle"></i>
+        Acceda al nivel al que cree que va a promocionar.
+    </div>
+{% endif %}
 
 <div class="row">
     <table class="table table-striped table-hover">
@@ -14,7 +16,7 @@
             <th></th>
             <th></th>
             <th>Coste</th>
-            {% if not empty_all_enrollment_dates %}
+            {% if is_regular_enroll_period %}
                 <th>Fecha de matrícula</th>
             {% endif %}
         </thead>
@@ -23,7 +25,7 @@
             <tr>
                 <td>
                     <a href=
-                    {% if level.allow_multi_enrollment and level.enrollment_date %}
+                    {% if level.allow_multi_enrollment and level.enrollment_date and is_regular_enroll_period %}
                         "{% url 'multi_enrollment' level.code %}"
                     {% else %}
                         "{% url 'student' level.code %}"
@@ -33,7 +35,7 @@
                 <td>{{ level.law }}</td>
                 <td>{{ level.description }}</td>
                 <td>{{ level.cost }}€</td>
-                {% if not empty_all_enrollment_dates %}
+                {% if is_regular_enroll_period %}
                     <td>{{ level.enrollment_date|default:"---" }}</td>
                 {% endif %}
             </tr>
