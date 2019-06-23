@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -44,3 +46,28 @@ class EduLevel(models.Model):
 
     def is_FPB(self):
         return self.code[1:] == "FPB"
+
+
+class Config(models.Model):
+    regular_enroll_start_date = models.DateField(
+        verbose_name='Fecha de comienzo de matrícula ordinaria')
+    regular_enroll_end_date = models.DateField(
+        verbose_name='Fecha de finalización de matrícula ordinaria')
+    exist_ampa = models.BooleanField(verbose_name='¿Existe AMPA?')
+
+    def __str__(self):
+        return 'Configuración general de la aplicación'
+
+    def is_regular_enroll_period(self):
+        today = datetime.date.today()
+        return self.regular_enroll_start_date <= \
+            today <= \
+            self.regular_enroll_end_date
+
+    def get_schoolyear(self):
+        today = datetime.date.today()
+        if today >= self.regular_enroll_start_date:
+            ref_year = today.year
+        else:
+            ref_year = today.year - 1
+        return "{}/{}".format(ref_year, ref_year+1)

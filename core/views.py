@@ -1,22 +1,25 @@
-from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
-from core.forms.student_form import StudentForm
-from .models import EduLevel
-from common.test_data import STUDENT_DATA, RESPONSIBLE_DATA
-from common.test_data import ACADEMIC_DATA, AUTH_DATA, EXTRA_DATA
-from django.urls import reverse
 import json
-from common import utils
-from core.forms.router import get_formclass
-from django.conf import settings
-from core.forms.auth_forms import PickAuthForm, ExitAuthForm
-from core.forms.extra_forms import ExtraForm
-from reporto.core import PdfReport
-from core.forms.academic_form_FP import get_edulevel
 import locale
-from PyPDF2 import PdfFileMerger
-import uuid
 import os
+import uuid
+
+from django.conf import settings
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.urls import reverse
+from PyPDF2 import PdfFileMerger
+
+from common import utils
+from common.test_data import (ACADEMIC_DATA, AUTH_DATA, EXTRA_DATA,
+                              RESPONSIBLE_DATA, STUDENT_DATA)
+from core.forms.academic_form_FP import get_edulevel
+from core.forms.auth_forms import ExitAuthForm, PickAuthForm
+from core.forms.extra_forms import ExtraForm
+from core.forms.router import get_formclass
+from core.forms.student_form import StudentForm
+from reporto.core import PdfReport
+
+from .models import EduLevel, Config
 
 SECTIONS = [
     "student",
@@ -32,7 +35,7 @@ SECTIONS = [
 
 def index(request):
     edu_levels = EduLevel.objects.all()
-    empty_all_enrollment_dates = EduLevel.empty_all_enrollment_dates()
+    config = Config.objects.first()
 
     for s in SECTIONS:
         request.session[s] = None
@@ -43,9 +46,8 @@ def index(request):
         request,
         "index.html",
         {
-            'is_regular_enroll_period': utils.is_regular_enroll_period(),
+            'config': config,
             "edu_levels": edu_levels,
-            "empty_all_enrollment_dates": empty_all_enrollment_dates
         }
     )
 
@@ -426,6 +428,7 @@ def extra(request, edulevel_code):
 
 
 def summary(request, edulevel_code):
+    config = Config.objects.first()
     data = utils.load_session_data(request.session, SECTIONS)
 
     breadcrumbs, request.session["breadcrumbs"] = utils.add_breadcrumb(
@@ -443,8 +446,7 @@ def summary(request, edulevel_code):
             "breadcrumbs": breadcrumbs,
             "edulevels": EduLevel.objects.all(),
             "cancel_btn_msg": "Comenzar nueva matrícula",
-            'is_regular_enroll_period': utils.is_regular_enroll_period(),
-            "empty_all_enrollment_dates": EduLevel.empty_all_enrollment_dates()
+            'config': config
         }
     )
 
@@ -457,6 +459,7 @@ def conditions(request):
 
 
 def form(request, edulevel_code):
+    config = Config.objects.first()
     params = utils.load_session_data(request.session, SECTIONS)
     edulevel = EduLevel.objects.get(code=edulevel_code)
     # vocational training
@@ -470,7 +473,7 @@ def form(request, edulevel_code):
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
-        school_year=utils.calculate_schoolyear(),
+        config=config,
         signature_date=signature_date,
         copy_target="centro"
     )
@@ -483,7 +486,7 @@ def form(request, edulevel_code):
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
-        school_year=utils.calculate_schoolyear(),
+        config=config,
         signature_date=signature_date,
         copy_target="interesado"
     )

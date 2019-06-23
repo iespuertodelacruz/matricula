@@ -33,18 +33,6 @@ def field_verbose(choices, key):
     return dict(choices)[key]
 
 
-def calculate_schoolyear():
-    today = datetime.date.today()
-    ref_year = today.year - (today.month < 5)
-    return "{}/{}".format(ref_year, ref_year+1)
-
-
-def is_regular_enroll_period():
-    today = datetime.date.today()
-    # la matrícula ordinaria es entre junio y agosto (ambos inclusive)
-    return 6 <= today.month <= 8
-
-
 def load_session_data(session, sections):
     data = {}
     for s in sections:
@@ -132,11 +120,11 @@ def get_responsibles_ids(session):
     try:
         r1 = json.loads(session["responsible1"])
         r1_id = r1["id_value"]
-    except:
+    except Exception:
         r1_id = None
     try:
         r2 = json.loads(session["responsible2"])
         r2_id = r2["id_value"]
-    except:
+    except Exception:
         r2_id = None
     return (r1_id, r2_id)

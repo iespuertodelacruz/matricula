@@ -26,7 +26,7 @@
 
 <p>
     Recuerde que debe entregar la documentación en la secretaría del centro
-    {% if is_regular_enroll_period %}
+    {% if config.is_regular_enroll_period %}
         el próximo día <b>{{ edulevel.enrollment_date }}</b> en horario de <b>8:30h a 13:00h</b>
         <br><br>
         Se irá atendiendo por orden de llegada, y habrá un <em>"coja su turno"</em> para que no se produzcan aglomeraciones
@@ -44,7 +44,7 @@
     <p>Los módulos de <em>FOL</em> y <em>Empresa e iniciativa emprendedora</em> se convalidan con calificación 5.</p>
 {% endif %}
 
-{% if edulevel.allow_multi_enrollment and is_regular_enroll_period %}
+{% if edulevel.allow_multi_enrollment and config.is_regular_enroll_period %}
     <h3>Multimatrícula</h3>
 
     <ul>
@@ -78,10 +78,12 @@
     </div>
 {% endif %}
 
-<h3>Inscripción en el AMPA</h3>
+{% if config.exist_ampa %}
+    <h3>Inscripción en el AMPA</h3>
 
-<p>
-    Si desea inscribirse en la Asociación de Madres y Padres de Alumnado (AMPA) debe <a href="{{ assets|get_key:'ampa_form.pdf' }}" target="blank">rellenar el siguiente formulario</a>, hacer el pago correspondiente según especifica el documento, y entregar la documentación en el puesto del AMPA que estará todos los días de matrícula en el hall de entrada al instituto.
-</p>
+    <p>
+        Si desea inscribirse en la Asociación de Madres y Padres de Alumnado (AMPA) debe <a href="{{ assets|get_key:'ampa_form.pdf' }}" target="blank">rellenar el siguiente formulario</a>, hacer el pago correspondiente según especifica el documento, y entregar la documentación en el puesto del AMPA que estará todos los días de matrícula en el hall de entrada al instituto.
+    </p>
+{% endif %}
 
 {% endblock %}

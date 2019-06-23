@@ -2,7 +2,7 @@
 
 {% block content %}
 
-{% if is_regular_enroll_period %}
+{% if config.is_regular_enroll_period %}
     <div class="alert alert-info" role="alert">
         <i class="fa fa-info-circle"></i>
         Acceda al nivel al que cree que va a promocionar.
@@ -16,7 +16,7 @@
             <th></th>
             <th></th>
             <th>Coste</th>
-            {% if is_regular_enroll_period %}
+            {% if config.is_regular_enroll_period %}
                 <th>Fecha de matrícula</th>
             {% endif %}
         </thead>
@@ -25,7 +25,7 @@
             <tr>
                 <td>
                     <a href=
-                    {% if level.allow_multi_enrollment and level.enrollment_date and is_regular_enroll_period %}
+                    {% if level.allow_multi_enrollment and level.enrollment_date and config.is_regular_enroll_period %}
                         "{% url 'multi_enrollment' level.code %}"
                     {% else %}
                         "{% url 'student' level.code %}"
@@ -35,7 +35,7 @@
                 <td>{{ level.law }}</td>
                 <td>{{ level.description }}</td>
                 <td>{{ level.cost }}€</td>
-                {% if is_regular_enroll_period %}
+                {% if config.is_regular_enroll_period %}
                     <td>{{ level.enrollment_date|default:"---" }}</td>
                 {% endif %}
             </tr>
