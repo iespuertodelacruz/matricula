@@ -1,3 +1,5 @@
+import datetime
+
 from django.db import models
 
 
@@ -55,3 +57,9 @@ class Config(models.Model):
 
     def __str__(self):
         return 'Configuración general de la aplicación'
+
+    def is_regular_enroll_period(self):
+        today = datetime.date.today()
+        return self.regular_enroll_start_date <= \
+            today <= \
+            self.regular_enroll_end_date
