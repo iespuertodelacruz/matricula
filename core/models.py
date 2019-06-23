@@ -63,3 +63,11 @@ class Config(models.Model):
         return self.regular_enroll_start_date <= \
             today <= \
             self.regular_enroll_end_date
+
+    def get_schoolyear(self):
+        today = datetime.date.today()
+        if today >= self.regular_enroll_start_date:
+            ref_year = today.year
+        else:
+            ref_year = today.year - 1
+        return "{}/{}".format(ref_year, ref_year+1)

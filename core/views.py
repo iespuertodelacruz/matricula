@@ -459,6 +459,7 @@ def conditions(request):
 
 
 def form(request, edulevel_code):
+    config = Config.objects.first()
     params = utils.load_session_data(request.session, SECTIONS)
     edulevel = EduLevel.objects.get(code=edulevel_code)
     # vocational training
@@ -472,7 +473,7 @@ def form(request, edulevel_code):
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
-        school_year=utils.calculate_schoolyear(),
+        config=config,
         signature_date=signature_date,
         copy_target="centro"
     )
@@ -485,7 +486,7 @@ def form(request, edulevel_code):
         **params,
         edulevel=edulevel,
         vt_edulevel=vt_edulevel,
-        school_year=utils.calculate_schoolyear(),
+        config=config,
         signature_date=signature_date,
         copy_target="interesado"
     )

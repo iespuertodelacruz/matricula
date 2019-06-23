@@ -33,12 +33,6 @@ def field_verbose(choices, key):
     return dict(choices)[key]
 
 
-def calculate_schoolyear():
-    today = datetime.date.today()
-    ref_year = today.year - (today.month < 5)
-    return "{}/{}".format(ref_year, ref_year+1)
-
-
 def load_session_data(session, sections):
     data = {}
     for s in sections:
