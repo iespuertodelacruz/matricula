@@ -44,3 +44,14 @@ class EduLevel(models.Model):
 
     def is_FPB(self):
         return self.code[1:] == "FPB"
+
+
+class Config(models.Model):
+    regular_enroll_start_date = models.DateField(
+        verbose_name='Fecha de comienzo de matrícula ordinaria')
+    regular_enroll_end_date = models.DateField(
+        verbose_name='Fecha de finalización de matrícula ordinaria')
+    exist_ampa = models.BooleanField(verbose_name='¿Existe AMPA?')
+
+    def __str__(self):
+        return 'Configuración general de la aplicación'
