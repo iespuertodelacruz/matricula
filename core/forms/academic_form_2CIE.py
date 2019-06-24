@@ -100,7 +100,6 @@ class AcademicForm_2CIE_CCS(forms.Form):
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CLB", "Ciencias de la Tierra y el Medioambiente"),
-        ("HFI", "Historia de la filosofía"),
         ("IYS", "Imagen y Sonido"),
         ("PSI", "Psicología"),
         ("SGJ", "Alemán"),
@@ -160,12 +159,6 @@ class AcademicForm_2CIE_CCS(forms.Form):
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 7)",
         help_text="Seleccione la materia que quiera cursar en 7º lugar.<br>"
-                  "Cusará dos materias de las que se le asignen."
-    )
-    specific_subject2_order8 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 8)",
-        help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
                   "Cusará dos materias de las que se le asignen."
     )
 
@@ -205,7 +198,6 @@ class AcademicForm_2CIE_TEC(forms.Form):
     )
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("CLB", "Ciencias de la Tierra y el Medioambiente"),
-        ("HFI", "Historia de la filosofía"),
         ("IYS", "Imagen y Sonido"),
         ("PSI", "Psicología"),
         ("SGJ", "Alemán"),
@@ -265,12 +257,6 @@ class AcademicForm_2CIE_TEC(forms.Form):
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 7)",
         help_text="Seleccione la materia que quiera cursar en 7º lugar.<br>"
-                  "Cusará dos materias de las que se le asignen."
-    )
-    specific_subject2_order8 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 8)",
-        help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
                   "Cusará dos materias de las que se le asignen."
     )
 

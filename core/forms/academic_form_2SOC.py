@@ -10,10 +10,10 @@ class AcademicForm_2SOC(forms.Form):
     SPECIFIC_SUBJECT1_CHOICES = sorted((
         ("ACM", "Acondicionamiento físico"),
         ("ATR", "Antropología y Sociología"),
-        ("LAM", "La mitología y las artes"),
+        ("BES", "Bioestadística"),
+        ("BHU", "Biología humana"),
         ("FOT", "Fotografía"),
-        ("MYS", "Música y Sociedad"),
-        ("TIA", "Técnicas de laboratorio"),
+        ("LAM", "La mitología y las artes"),
         ("RLG", "Religión"),
         ("LCA", "Literatura Canaria"),
         ("HIC", "Historia de Canarias"),
@@ -103,7 +103,6 @@ class AcademicForm_2SOC_HUM(forms.Form):
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("DII", "Dibujo Artístico II"),
         ("FUE", "Fundamentos de administración y gestión"),
-        ("HFI", "Historia de la Filosofía"),
         ("HTZ", "Historia de la música y la danza"),
         ("PSI", "Psicología"),
         ("SGJ", "Alemán"),
@@ -175,12 +174,6 @@ class AcademicForm_2SOC_HUM(forms.Form):
         help_text="Seleccione la materia que quiera cursar en 7º lugar.<br>"
                   "Cusará dos materias de las que se le asignen."
     )
-    specific_subject2_order8 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 8)",
-        help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
-                  "Cusará dos materias de las que se le asignen."
-    )
 
     def clean(self):
         cleaned_data = super(AcademicForm_2SOC_HUM, self).clean()
@@ -220,7 +213,6 @@ class AcademicForm_2SOC_SOC(forms.Form):
     SPECIFIC_SUBJECT2_CHOICES = sorted((
         ("DII", "Dibujo Artístico II"),
         ("FUE", "Fundamentos de administración y gestión"),
-        ("HFI", "Historia de la Filosofía"),
         ("HTZ", "Historia de la música y la danza"),
         ("PSI", "Psicología"),
         ("SGJ", "Alemán"),
@@ -285,12 +277,6 @@ class AcademicForm_2SOC_SOC(forms.Form):
         choices=SPECIFIC_SUBJECT2_CHOICES,
         label="MATERIA ESPECÍFICA 2 (Preferencia 7)",
         help_text="Seleccione la materia que quiera cursar en 7º lugar.<br>"
-                  "Cusará dos materias de las que se le asignen."
-    )
-    specific_subject2_order8 = forms.ChoiceField(
-        choices=SPECIFIC_SUBJECT2_CHOICES,
-        label="MATERIA ESPECÍFICA 2 (Preferencia 8)",
-        help_text="Seleccione la materia que quiera cursar en 8º lugar.<br>"
                   "Cusará dos materias de las que se le asignen."
     )
 
