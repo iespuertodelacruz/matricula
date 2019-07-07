@@ -52,21 +52,22 @@
         <li>Si el alumno/a se va a matricular en <b>Bachillerato</b> y ha suspendido en junio tres o más materias, deberá hacer multimatrícula por si repite.</li>
     </ul>
 
-    Antes de hacer multimatrícula, <a href="{% url 'form' edulevel.code %}">imprima su matrícula actual</a>. A continuación, seleccione el nivel para que el que quiera hacer multimatrícula, y <b>no pierda los datos ya introducidos</b>:
+    Antes de hacer multimatrícula, <a href="{% url 'form' edulevel.code %}">imprima su matrícula actual</a>. A continuación, <b>seleccione el nivel</b> para que el que quiera hacer multimatrícula, y <b>no pierda los datos ya introducidos</b>:
 
     <form action="{% url 'change_edulevel' edulevel.code %}" method="post">
         {% csrf_token %}
         <div class="row">
             <div class="col-md-4">
-                <select class="form-control" name="target_edulevel_id">
+                <select class="form-control" name="target_edulevel_id" id="multienroll_level">
+                    <option value="0">Seleccione nivel</option>
                     {% for e in edulevels %}
                         <option value="{{ e.id }}">{{ e }}</option>
                     {% endfor %}
                 </select>
             </div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa fa-floppy-o"></i>
+                <button type="submit" class="btn btn-primary" id="multienroll_btn" disabled>
+                    <i class="fa fa-refresh"></i>
                     Hacer multimatrícula
                 </button>
             </div>

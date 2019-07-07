@@ -2,7 +2,8 @@ var init_datepickers, new_application;
 
 $(function() {
     init_datepickers();
-    return $("#new_application").on("click", new_application);
+    $("#new_application").on("click", new_application);
+    $("#multienroll_level").on("change", multienroll_level_change)
 });
 
 init_datepickers = function() {
@@ -27,4 +28,12 @@ new_application = function(event) {
     } else {
         return window.location.href = "/";
     }
+};
+
+multienroll_level_change = function() {
+    var select = $(this);
+    if (select.val() === "0")
+        $("#multienroll_btn").prop("disabled", true);
+    else
+        $("#multienroll_btn").prop("disabled", false);
 };
