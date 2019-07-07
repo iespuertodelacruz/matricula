@@ -49,3 +49,13 @@ class SocialSecurityNumberField(forms.CharField):
                     raise ValidationError(
                         "Sólo puede contener números y letras"
                     )
+
+
+class IDField(forms.CharField):
+    ''' Identificador (incluye DNI, NIE o pasaporte) '''
+    def validate(self, value):
+        if value:
+            if not re.match(r"^[\w\d]+$", value):
+                    raise ValidationError(
+                        "Sólo puede contener números y letras"
+                    )

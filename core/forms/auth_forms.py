@@ -1,8 +1,9 @@
 from django import forms
+from .formfields import IDField
 
 
 class PickAuthForm(forms.Form):
-    id1 = forms.CharField(
+    id1 = IDField(
         label="NIF/NIE/Pasaporte (Persona 1)",
         max_length=32,
         required=False
@@ -16,7 +17,7 @@ class PickAuthForm(forms.Form):
         max_length=9,
         required=False
     )
-    id2 = forms.CharField(
+    id2 = IDField(
         label="NIF/NIE/Pasaporte (Persona 2)",
         max_length=32,
         required=False
@@ -30,7 +31,7 @@ class PickAuthForm(forms.Form):
         max_length=9,
         required=False
     )
-    id3 = forms.CharField(
+    id3 = IDField(
         label="NIF/NIE/Pasaporte (Persona 3)",
         max_length=32,
         required=False
@@ -44,7 +45,7 @@ class PickAuthForm(forms.Form):
         max_length=9,
         required=False
     )
-    id4 = forms.CharField(
+    id4 = IDField(
         label="NIF/NIE/Pasaporte (Persona 4)",
         max_length=32,
         required=False
@@ -78,9 +79,9 @@ class PickAuthForm(forms.Form):
             if not id_value and long_name:
                 self.add_error(
                     id_field,
-                    "Debe especificar el NIF"
+                    "Debe especificar el número de identificación"
                 )
-            if id_value.upper() in self.responsibles_ids:
+            if id_value and id_value.upper() in self.responsibles_ids:
                 self.add_error(
                     id_field,
                     ("No puede poner a los responsables como personas "
