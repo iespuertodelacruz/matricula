@@ -3,6 +3,8 @@ var gulp = require("gulp"),
     sass = require("gulp-sass"),
     concat = require("gulp-concat"),
     del = require("del");
+    minify_js = require("gulp-uglify");
+    minify_css = require("gulp-clean-css");
 
 var base_assets_path = "./common/static/",
     base_dist_path = "./common/static/dist/",
@@ -111,6 +113,7 @@ gulp.task("build-vendor", function() {
     ]
 
     gulp.src(files)
+        .pipe(minify_css())
         .pipe(concat("vendor.css"))
         .pipe(gulp.dest(tmp_path))
         .pipe(rev())
@@ -125,6 +128,7 @@ gulp.task("build-vendor", function() {
     ]
 
     gulp.src(files)
+        .pipe(minify_js())
         .pipe(concat("vendor.js"))
         .pipe(gulp.dest(tmp_path))
         .pipe(rev())
