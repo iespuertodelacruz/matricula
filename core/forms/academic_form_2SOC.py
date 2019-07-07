@@ -1,5 +1,7 @@
 from django import forms
 
+from .bachillerato_subjects import SUBJECTS
+
 
 class AcademicForm_2SOC(forms.Form):
     TRAINING_ITINERARY_CHOICES = sorted((
@@ -7,17 +9,8 @@ class AcademicForm_2SOC(forms.Form):
         ("SOC", "Sociales")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT1_CHOICES = sorted((
-        ("ACM", "Acondicionamiento físico"),
-        ("ATR", "Antropología y Sociología"),
-        ("BES", "Bioestadística"),
-        ("BHU", "Biología humana"),
-        ("FOT", "Fotografía"),
-        ("LAM", "La mitología y las artes"),
-        ("RLG", "Religión"),
-        ("LCA", "Literatura Canaria"),
-        ("HIC", "Historia de Canarias"),
-        ("MNC", "Medio Natural Canario")),
+    SPECIFIC_SUBJECT1_CHOICES = sorted(
+        SUBJECTS['2BACH']['Libre configuración autonómica'],
         key=lambda x: x[1]
     )
 
@@ -100,14 +93,8 @@ class AcademicForm_2SOC_HUM(forms.Form):
         ("HAR", "Historia del Arte")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("DII", "Dibujo Artístico II"),
-        ("FUE", "Fundamentos de administración y gestión"),
-        ("HTZ", "Historia de la música y la danza"),
-        ("PSI", "Psicología"),
-        ("SGJ", "Alemán"),
-        ("SGX", "Francés"),
-        ("TFL", "Tecnologías de la información y la comunicación II")),
+    SPECIFIC_SUBJECT2_CHOICES = sorted(
+        SUBJECTS['2SOC']['Materia específica'],
         key=lambda x: x[1]
     )
 
@@ -210,14 +197,8 @@ class AcademicForm_2SOC_SOC(forms.Form):
         ("HFI", "Historia de la Filosofía")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("DII", "Dibujo Artístico II"),
-        ("FUE", "Fundamentos de administración y gestión"),
-        ("HTZ", "Historia de la música y la danza"),
-        ("PSI", "Psicología"),
-        ("SGJ", "Alemán"),
-        ("SGX", "Francés"),
-        ("TFL", "Tecnologías de la información y la comunicación II")),
+    SPECIFIC_SUBJECT2_CHOICES = sorted(
+        SUBJECTS['2SOC']['Materia específica'],
         key=lambda x: x[1]
     )
 

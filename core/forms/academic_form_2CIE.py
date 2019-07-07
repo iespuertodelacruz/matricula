@@ -1,5 +1,7 @@
 from django import forms
 
+from .bachillerato_subjects import SUBJECTS
+
 
 class AcademicForm_2CIE(forms.Form):
     TRAINING_ITINERARY_CHOICES = sorted((
@@ -7,17 +9,8 @@ class AcademicForm_2CIE(forms.Form):
         ("TEC", "Científico-Tecnológico")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT1_CHOICES = sorted((
-        ("ACM", "Acondicionamiento físico"),
-        ("ATR", "Antropología y Sociología"),
-        ("BES", "Bioestadística"),
-        ("BHU", "Biología humana"),
-        ("FOT", "Fotografía"),
-        ("LAM", "La mitología y las artes"),
-        ("RLG", "Religión"),
-        ("LCA", "Literatura Canaria"),
-        ("HIC", "Historia de Canarias"),
-        ("MNC", "Medio Natural Canario")),
+    SPECIFIC_SUBJECT1_CHOICES = sorted(
+        SUBJECTS['2BACH']['Libre configuración autonómica'],
         key=lambda x: x[1]
     )
 
@@ -98,14 +91,8 @@ class AcademicForm_2CIE_CCS(forms.Form):
         ("QUI", "Química")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("CLB", "Ciencias de la Tierra y el Medioambiente"),
-        ("IYS", "Imagen y Sonido"),
-        ("PSI", "Psicología"),
-        ("SGJ", "Alemán"),
-        ("SGX", "Francés"),
-        ("TFL", "Tecnologías de la información y la comunicación II"),
-        ("TII", "Tecnología Industrial II")),
+    SPECIFIC_SUBJECT2_CHOICES = sorted(
+        SUBJECTS['2CIE']['Materia específica'],
         key=lambda x: x[1]
     )
 
@@ -196,14 +183,8 @@ class AcademicForm_2CIE_TEC(forms.Form):
         ("QUI", "Química")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("CLB", "Ciencias de la Tierra y el Medioambiente"),
-        ("IYS", "Imagen y Sonido"),
-        ("PSI", "Psicología"),
-        ("SGJ", "Alemán"),
-        ("SGX", "Francés"),
-        ("TFL", "Tecnologías de la información y la comunicación II"),
-        ("TII", "Tecnología Industrial II")),
+    SPECIFIC_SUBJECT2_CHOICES = sorted(
+        SUBJECTS['2CIE']['Materia específica'],
         key=lambda x: x[1]
     )
 

@@ -1,5 +1,7 @@
 from django import forms
 
+from .bachillerato_subjects import SUBJECTS
+
 
 class AcademicForm_1SOC(forms.Form):
     TRAINING_ITINERARY_CHOICES = sorted((
@@ -29,11 +31,8 @@ class AcademicForm_1SOC_HUM(forms.Form):
         ("LIE", "Literatura Universal")),
         key=lambda x: x[1]
     )
-    SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("CUF", "Cultura científica"),
-        ("SGG", "Francés"),
-        ("SGT", "Alemán"),
-        ("DAI", "Dibujo Artístico I")),
+    SPECIFIC_SUBJECT2_CHOICES = sorted(
+        SUBJECTS['1SOC']['Materia específica'],
         key=lambda x: x[1]
     )
 
@@ -82,11 +81,8 @@ class AcademicForm_1SOC_HUM(forms.Form):
 
 
 class AcademicForm_1SOC_SOC(forms.Form):
-    SPECIFIC_SUBJECT2_CHOICES = sorted((
-        ("CUF", "Cultura científica"),
-        ("SGG", "Francés"),
-        ("SGT", "Alemán"),
-        ("DAI", "Dibujo artístico I")),
+    SPECIFIC_SUBJECT2_CHOICES = sorted(
+        SUBJECTS['1SOC']['Materia específica'],
         key=lambda x: x[1]
     )
 
