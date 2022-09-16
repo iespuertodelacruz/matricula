@@ -10,7 +10,7 @@
 	"license": "ISC",
 	"homepage": "https://matricula.iespuertodelacruz.es",
 	"dependencies": {
-		"bootstrap": "^3.3.7",
+		"bootstrap": "^3.4.1",
 		"del": "^3.0.0",
 		"font-awesome": "^4.7.0",
 		"gulp": "^4.0.0",
